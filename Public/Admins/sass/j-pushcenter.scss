@@ -1,0 +1,126 @@
+@charset "utf-8";
+@import "mixin";
+
+body{
+    background:#f1f1f1;
+    padding-bottom:2rem;
+}
+.head{
+    display:block;
+    background:#fff;
+    font-size:0.52rem;
+    padding:0.5rem 4% 0.8rem;
+    img{
+        width:1.8rem;
+        height:1.8rem;
+        margin-right:0.4rem;  
+        border-radius:0.2rem;
+    }
+    .head-info{
+        width:78%;
+        .name{
+            width:70%;
+            margin-right:5%;
+            line-height:1.8rem;
+            @include font-els(1);
+        }
+        .label{
+            width:1.8rem;
+            font-size:0.4rem;
+            color:$main-color;
+            text-align:center;
+            margin-top:0.6rem;
+            line-height:0.6rem;
+            border-radius:0.1rem;
+            border:1px solid $main-color;
+        }
+    }
+    .iconfont{
+        color:#999;
+        margin-top:0.6rem;
+    }
+}
+.p-top{
+    padding:0.5rem 0;
+    background:$main-color;
+    div{
+        color:#fff;
+        text-align:center;
+    }
+    .p-tit{
+        font-size:0.6rem;
+        line-height:1.2rem;
+    }
+    .p-num{
+        font-size:1.8rem;
+        line-height:2.4rem;
+    }
+    .p-txt{
+        font-size:0.52rem;
+    }
+}
+.p-bot{
+    padding:0 4%;
+    background:#fff;
+    font-size:0.52rem;
+    line-height:1.8rem;
+    .fr{
+        color:$main-color;
+        .iconfont{
+            color:#999;
+            vertical-align:middle;
+        }
+    }
+}
+.classify{
+    font-size:0.52rem;
+    a{
+        float:left;
+        width:33%;
+        text-align:center;
+        padding-bottom:0.4rem;
+        border-right:1px solid #ddd;
+        border-bottom:1px solid #ddd;
+        img{
+            width:1.6rem;
+            height:1.6rem;
+            margin:0.5rem 0 0.2rem;
+        }
+        .tit{
+
+        }
+        .txt{
+            color:#999;
+            line-height:1rem;
+            font-size:0.48rem;
+            span{
+                color:$main-color;
+            }
+        }
+    }
+}
+.footer{
+    left:0;
+    bottom:0;
+    width:100%;
+    display:flex;
+    position:fixed;
+    background:#fff;
+    padding:0.2rem 0;
+    font-size:0.52rem;
+    a{
+        flex:1;
+        color:#666;
+        text-align:center;
+        .iconfont{
+            color:#666;
+            font-size:0.8rem;
+        }
+    }
+    .cur{
+        color:$main-color;
+        .iconfont{
+            color:$main-color;
+        }
+    }
+}

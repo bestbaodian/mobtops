@@ -1,0 +1,332 @@
+@import 'mixin';
+.banner {
+    width: 100%;
+    height: 8rem;
+    overflow: hidden;
+    .swiper-wrapper {
+        height: 8rem;
+        .swiper-slide {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+}
+
+.nav-warpper {
+    display: flex;
+    background: $white;
+    .nav-item {
+        flex: 1;
+        text-align: center;
+        font-size: Rem(30);
+        padding: Rem(20) 0;
+        &.active {
+            border-bottom: Rem(4) solid $main-color;
+            color: $main-color;
+        }
+    }
+}
+
+.list-warpper {
+    width: 100%;
+}
+
+.list-content-item {
+    width: 100%;
+    display: none;
+    &.active {
+        display: block;
+    }
+    .content-item {
+        box-sizing: border-box;
+        border-bottom: 1px solid #fafafa;
+        padding: Rem(30);
+    }
+    .item-link {
+        display: flex;
+    }
+    .left-img-warpper {
+        flex: 0 0 Rem(180);
+        img {
+            width: Rem(180);
+            height: Rem(180);
+        }
+    }
+    .right-text-warpper {
+        flex: 1;
+        margin-left: Rem(20);
+        box-sizing: border-box;
+        .title {
+            font-size: Rem(30);
+            @include font-els(2);
+        }
+        .range-warpper {
+            width: 100%;
+            padding: Rem(30) 0;
+            box-sizing: border-box;
+        }
+        .range-line {
+            width: 100%;
+            height: Rem(10);
+            border-radius: Rem(100);
+            background: #c4c4c4;
+            position: relative;
+            .range-box {
+                font-size: Rem(26);
+                color: $main-color;
+                background: #fff;
+                border-radius: Rem(100);
+                border: 1px solid $main-color;
+                padding: Rem(2) Rem(10);
+                position: absolute;
+                top: -150%;
+                left: 0;
+                z-index: 2;
+            }
+            .red-line {
+                width: 0;
+                height: Rem(10);
+                border-radius: Rem(100);
+                background: $main-color;
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 1;
+            }
+        }
+        .mes-warpper {
+            width: 100%;
+            display: flex;
+            .mes-item {
+                flex: 1;
+                font-size: Rem(24);
+            }
+        }
+    }
+}
+
+// page info
+.contet-warpper {
+    width: 100%;
+    box-sizing: border-box;
+    padding: Rem(30);
+    border-bottom: Rem(10) solid #f1f1f1;
+    .title {
+        font-size: Rem(32);
+    }
+    .tips {
+        font-size: Rem(26);
+        color: $grey999;
+    }
+    .range-warpper {
+        width: 100%;
+        padding: Rem(30) 0;
+        box-sizing: border-box;
+        .range-line {
+            width: 100%;
+            height: Rem(20);
+            border-radius: Rem(100);
+            background: #c4c4c4;
+            position: relative;
+            .range-box {
+                font-size: Rem(26);
+                color: $main-color;
+                background: #fff;
+                border-radius: Rem(100);
+                border: 1px solid $main-color;
+                padding: Rem(2) Rem(10);
+                position: absolute;
+                top: -50%;
+                left: 0;
+                z-index: 2;
+                transition: all .5s;
+            }
+            .red-line {
+                width: 0;
+                height: Rem(20);
+                border-radius: Rem(100);
+                background: $main-color;
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 1;
+                transition: all .5s;
+            }
+        }
+    }
+    .schedule-warpper {
+        display: flex;
+        .schedule-item {
+            flex: 1;
+            text-align: center;
+            .item-head {
+                font-size: Rem(26);
+                color: $grey666;
+                margin-bottom: Rem(10);
+            }
+            .item-con {
+                font-size: Rem(36);
+            }
+        }
+    }
+    .declare-warpper {
+        padding: Rem(20) 0;
+        display: flex;
+        justify-content: space-between;
+        .declare-list {
+            flex: 1;
+        }
+        .follow {
+            flex: 0 0 15%;
+            .follow-con {
+                width: 100%;
+                text-align: center;
+                color: #999;
+                padding: Rem(10);
+                &.red {
+                    color: $main-color;
+                }
+                i {
+                    font-size: Rem(40);
+                    display: block;
+                }
+                span {
+                    font-size: Rem(24);
+                    display: block;
+                }
+            }
+        }
+        .declare-item {
+            font-size: Rem(28);
+            line-height: Rem(40);
+        }
+    }
+}
+
+.info-list-warpper {
+    .info-item {
+        display: none;
+        &.active {
+            display: block;
+        }
+    }
+    .item-back {
+        .item-list {
+            padding: Rem(30);
+            border-bottom: 1px solid #eaeaea;
+            &:last-of-type {
+                border-bottom: 1px solid transparent;
+            }
+        }
+        .back-title {
+            font-size: Rem(26);
+        }
+        .back-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: Rem(26);
+            padding: 0.4rem 0;
+            .back-left {
+                flex: 1;
+                color: $grey999;
+                span {
+                    font-size: Rem(32);
+                    color: $black;
+                    padding: 0 Rem(4);
+                    &.red {
+                        color: $main-color;
+                    }
+                }
+            }
+            .back-right {
+                flex: 0 0 20%;
+                position: relative;
+                a {
+                    display: block;
+                    color: #fff;
+                    background: $main-color;
+                    width: 80%;
+                    @include textHeight(Rem(60));
+                    text-align: center;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                }
+            }
+        }
+        .back-content {
+            font-size: Rem(26);
+            padding: Rem(20) 0;
+            color: $grey999;
+        }
+        .img-warpper {
+            width: 100%;
+            height: Rem(150);
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: space-between;
+            .back-show-imgs {
+                flex: 0 0 30%;
+                height: 100%;
+                margin-right: 3%;
+                box-sizing: border-box;
+                &:last-of-type {
+                    padding-right: 0;
+                }
+            }
+        }
+    }
+    .pay-info-list {
+        .item-list {
+            font-size: Rem(30);
+            color: $grey999;
+            padding: Rem(20) Rem(10);
+            border-bottom: 1px solid #eaeaea;
+            &:last-of-type {
+                border-bottom: 1px solid transparent;
+            }
+        }
+    }
+    .payer-info {
+        display: flex;
+        justify-content: space-between;
+        .info-left {
+            flex: 1;
+            display: flex;
+            font-size: Rem(28);
+            .user-header {
+                width: Rem(60);
+                height: Rem(60);
+                border-radius: 50%;
+                vertical-align: middle;
+                flex: 0 0 Rem(60);
+            }
+            .user-name {
+                flex: 1;
+                vertical-align: middle;
+                @include font-els(1);
+                line-height: Rem(60);
+                padding: 0 Rem(20);
+            }
+        }
+        .info-right {
+            flex: 0 0 25%;
+            line-height: Rem(60);
+        }
+    }
+    .payer-cost {
+        color: $black;
+        font-size: Rem(32);
+        padding: Rem(20) 0;
+        .red {
+            color: $main-color;
+            font-weight: 700;
+        }
+    }
+}

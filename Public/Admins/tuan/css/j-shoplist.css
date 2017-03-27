@@ -1,0 +1,163 @@
+@charset "UTF-8";
+/*颜色*/
+/*rem转换*/
+/*多行文本省略*/
+/*一行文字垂直居中*/
+/*一行文字水平垂直居中*/
+/*清除表单默认样式*/
+/*底部间距*/
+/*底部按钮*/
+/*转为怪异盒模型*/
+/*左右flex布局*/
+body {
+  width: 100%;
+  height: 100%;
+  background: #f1f1f1;
+  padding-bottom: 0.5rem; }
+
+.head {
+  padding: 0.4rem 0;
+  font-size: 0.52rem;
+  background: #fff; }
+  .head .sorts {
+    width: 12%;
+    text-align: center; }
+    .head .sorts .iconfont {
+      font-size: 0.6rem; }
+  .head .search-box {
+    width: 76%;
+    line-height: 1.2rem;
+    background: #f9f9f9;
+    border-radius: 2px; }
+    .head .search-box .s-fdj {
+      width: 0.6rem;
+      height: 0.6rem;
+      list-style: none;
+      margin-left: 0.4rem;
+      background: url(../imgs/fdj.png) no-repeat;
+      background-size: 100% 100%; }
+    .head .search-box .search {
+      width: 85%;
+      background: #f9f9f9; }
+  .head .edit {
+    width: 12%;
+    text-align: center; }
+    .head .edit .iconfont {
+      font-size: 0.7rem; }
+    .head .edit .icon-list-down {
+      display: none; }
+  .head .h-txt {
+    color: #999;
+    font-size: 0.36rem;
+    margin-top: -0.1rem; }
+
+.sortsearch {
+  background: #fff;
+  padding: 0.3rem 0;
+  border-top: 1px solid #eee; }
+  .sortsearch li {
+    float: left;
+    font-size: 0.52rem;
+    text-align: center; }
+  .sortsearch li:nth-child(odd) {
+    width: 22%; }
+  .sortsearch li:nth-child(even) {
+    width: 4%;
+    color: #ccc; }
+  .sortsearch .icon-up {
+    display: none; }
+
+.shop-cont {
+  background: #f1f1f1;
+  font-size: 0.52rem; }
+  .shop-cont a {
+    background: #fff; }
+  .shop-cont .all-shop a {
+    float: left;
+    width: 49.3%;
+    height: 10.4rem;
+    background: #fff;
+    margin-top: 0.2rem; }
+    .shop-cont .all-shop a img {
+      width: 100%;
+      display: block;
+      height: 7.4rem; }
+    .shop-cont .all-shop a .rec-info {
+      height: 3rem;
+      position: relative;
+      padding: 0.4rem 0.4rem; }
+      .shop-cont .all-shop a .rec-info .rec-txt {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical; }
+      .shop-cont .all-shop a .rec-info .rec-price {
+        left: 0.4rem;
+        bottom: 0.32rem;
+        color: #ff595f;
+        position: absolute; }
+  .shop-cont .all-shop a:nth-child(even) {
+    float: right; }
+  .shop-cont .all-list {
+    background: #fff;
+    margin-top: 0.2rem;
+    padding-bottom: 0.4rem; }
+    .shop-cont .all-list a {
+      display: block;
+      overflow: hidden;
+      padding: 0.4rem 4% 0; }
+      .shop-cont .all-list a img {
+        float: left;
+        width: 3rem;
+        height: 3rem;
+        margin-right: 0.5rem; }
+      .shop-cont .all-list a .rec-info {
+        float: left;
+        width: 74%;
+        height: 3rem;
+        position: relative; }
+        .shop-cont .all-list a .rec-info .rec-txt {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical; }
+        .shop-cont .all-list a .rec-info .rec-price {
+          left: 0;
+          bottom: 0;
+          color: #ff595f;
+          position: absolute; }
+  .shop-cont .zhw {
+    color: #999;
+    text-align: center;
+    font-size: 0.8rem; }
+
+.mc {
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  z-index: 99;
+  position: fixed;
+  background: rgba(0, 0, 0, 0.5); }
+
+.nav {
+  z-index: 9;
+  top: 0;
+  left: -8rem;
+  width: 8rem;
+  position: fixed;
+  overflow-y: auto;
+  background: #fff; }
+  .nav a {
+    width: 100%;
+    display: block;
+    padding: 0.5rem;
+    font-size: 0.6rem;
+    border-bottom: 1px solid #ececec; }
+  .nav .cur {
+    color: #fff;
+    background: #e13953; }
+
+/*# sourceMappingURL=j-shoplist.css.map */

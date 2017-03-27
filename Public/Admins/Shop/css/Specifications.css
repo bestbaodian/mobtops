@@ -1,0 +1,138 @@
+
+
+.fl{
+    float:left;
+}
+.fr{
+    float:right;
+}
+.header-bar {
+    background: #0084ff;
+    width: 100%;
+    /*height: 2.225rem;*/
+    line-height: 2.225rem;
+}
+.header-bar a {
+    width: 10%;
+    color: #fff;
+}
+.header-bar a .iconfont {
+    font-size: 0.9rem;
+}
+.header-bar a.fr .iconfont {
+    font-size: 1.5rem;
+}
+.header-bar p {
+    width: 76%;
+    color: #fff;
+    font-size: 0.9rem;
+    text-align: center;
+}
+.cont{
+    padding:0.5rem 0.5rem 0;
+}
+.tit{
+    font-size:0.7rem;
+    line-height:1.6rem;
+    border-bottom:1px solid #ececec;
+}
+.shop-pic{
+    padding:0.5rem 0;
+    border-bottom:1px solid #ececec;
+}
+.shop-pic img{
+    width:3rem;
+    height:2.24rem;
+    margin-right:0.5rem;
+    display:inline-block;
+}
+.shop-info{
+    /*width:10rem;*/
+}
+.shop-name{
+    width:10.5rem;
+    font-size:0.7rem;
+    display:block;
+    white-space:nowrap; 
+    overflow:hidden; 
+    text-overflow:ellipsis;
+}
+.spe{
+    color:#999;
+    font-size:0.5rem;
+}
+.shop-price{
+    color:#999;
+    font-size:0.5rem;
+}
+.rmb{
+    color:#0084ff;
+    font-size:0.6rem;
+}
+.spe-list{
+    font-size:0.6rem;
+    padding:0.6rem 0;
+    border-bottom:1px solid #ececec;
+}
+.spe-list span{
+    color:#999;
+    width:1.7rem;
+    font-size:0.5rem;
+    text-align:center;
+    border-radius:3px;
+    line-height:0.8rem;
+    margin-left:0.2rem;
+    display:inline-block;
+    border:1px solid #ececec;
+}
+.spe-list .cur{
+    color:#fff;
+    background:#0084ff;
+}
+.num img{
+    width:0.7rem;
+    height:0.7rem;
+    display:inline-block;
+    vertical-align:middle;
+}
+.num input{
+    width:3.4rem;
+    height:1rem;
+    margin:0 0.4rem;
+    text-align:center;
+    border:1px solid #ececec;
+}
+.num .fl{
+    margin-top:0.1rem;
+}
+.gwc{
+    left:0.5rem;
+    bottom:3rem;
+    position:fixed;
+}
+.gwc img{
+    width:2rem;
+    height:2rem;
+    display:inline-block;
+}
+.gw-num{
+    top:0.5rem;
+    right:0.3rem;
+    color:#0084ff;
+    background:#fff;
+    font-size:0.4rem;
+    padding:0 0.1rem;
+    position:absolute;
+    border-radius:1rem;
+    line-height:0.5rem;
+}
+.sub{
+    left:0;
+    bottom:0;
+    color:#fff;
+    width:100%;
+    height:1.8rem;
+    position:fixed;
+    font-size:0.7rem;
+    background:#0084ff;
+}

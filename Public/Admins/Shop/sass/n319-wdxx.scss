@@ -1,0 +1,42 @@
+@charset "utf-8";
+@import "mixin";
+.items{
+  position: relative;
+  .items-img{
+	width: Rem(76);
+	height: Rem(76);
+	position: absolute;
+	top: 50%;
+	left: 0;
+	margin-top: Rem(-(76/2));
+	img{
+	  width: Rem(76);
+	  height: Rem(76);
+	}
+  }
+  .items-mes{
+	margin-left: Rem(96);
+	padding: Rem(38) 0;
+	border-bottom: $border-bottom;
+	font-size: Rem(30);
+  }
+  .mes-header{
+	@include textHeight(Rem(46));
+	h5{
+	  width: 70%;
+	  @include font-els(1);
+	}
+	span{
+	  width: 26%;
+	  font-size: Rem(24);
+	  color: $grey999;
+	  @include font-els(1);
+	  text-align: right;
+	}
+  }
+  .mes-footer{
+	font-size: Rem(24);
+	color: $grey666;
+	@include font-els(1);
+  }
+}

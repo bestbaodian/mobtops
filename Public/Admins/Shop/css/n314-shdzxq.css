@@ -1,0 +1,85 @@
+/*$*/
+/*rem*/
+/*mixin*/
+/*class*/
+/*header*/
+.header-bar {
+  background: #e13953;
+  width: 100%;
+  line-height: 1.48rem; }
+  .header-bar a {
+    width: 10%;
+    color: #fff; }
+    .header-bar a .iconfont {
+      font-size: 0.72rem; }
+    .header-bar a.fr .iconfont {
+      font-size: 1.2rem; }
+  .header-bar p {
+    width: 76%;
+    color: #fff;
+    font-size: 0.72rem;
+    text-align: center; }
+
+.page-group, .group, .content {
+  background: #fff; }
+
+/*icon-link*/
+.m-change-icon {
+  background: #f9f8f9;
+  height: 1.92rem;
+  line-height: 1.92rem; }
+  .m-change-icon p {
+    position: relative; }
+    .m-change-icon p .change-link {
+      color: #e13953;
+      position: absolute;
+      right: 0;
+      top: 0;
+      font-size: 0.64rem; }
+
+/*m-place-mes*/
+.m-place-mes {
+  font-size: 0.6rem; }
+  .m-place-mes .mes-list {
+    border-bottom: 1px solid #f2f2f2;
+    position: relative;
+    height: 2.44rem;
+    line-height: 2.44rem; }
+    .m-place-mes .mes-list p:last-of-type {
+      width: 72%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical; }
+
+/*m-change-mes*/
+.m-change-mes {
+  font-size: 0.6rem;
+  display: none; }
+  .m-change-mes .mes-list {
+    border-bottom: 1px solid #f2f2f2;
+    height: 2.44rem;
+    line-height: 2.44rem; }
+    .m-change-mes .mes-list input {
+      color: #666666;
+      width: 72%;
+      height: 2.4rem;
+      line-height: 2.4rem;
+      float: right; }
+
+.delete-message {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  height: 1.96rem;
+  line-height: 1.96rem;
+  background: #e13953;
+  color: #fff !important;
+  font-size: 0.64rem; }
+  .delete-message:active {
+    background: #e13953; }
+
+/*# sourceMappingURL=n314-shdzxq.css.map */

@@ -1,0 +1,204 @@
+<?php 
+namespace Mp\Controller;
+use Think\Controller;
+
+/**
+ * 插件移动端控制器
+ * @author 魔派<180256122@qq.com>
+ */
+class MobileBaseController extends Controller {
+    /**
+     * 初始化
+     * @author 魔派<180256122@qq.com>
+     */
+    public function _initialize() {
+
+        if (!is_wechat_browser() && !get_user_id() && !I('out_trade_no')) {
+            $mp_info = get_mp_info();
+            redirect('https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx3c3d9d4152897668&redirect_uri=&wxref=mp.weixin.qq.com&from=singlemessage&isappinstalled=0&response_type=code&scope=snsapi_base&state=&connect_redirect=1#wechat_redirect');
+        }
+        if (I('out_trade_no')) {
+            $payment = I('post.');
+            if (!M('mp_payment')->where(array('orderid'=>$payment['out_trade_no']))->find()) {
+                $data['mpid'] = $payment['mpid'];
+                $data['openid'] = $payment['openid'];
+                $data['orderid'] = $payment['out_trade_no'];
+                $data['create_time'] = strtotime($payment['time_end']);
+                $data['detail'] = json_encode($payment);
+                M('mp_payment')->add($data);
+                $return_code = I('return_code');
+                $return_msg = I('return_msg');
+                return '<xml>
+                          <return_code><![CDATA['.$return_code.']]></return_code>
+                          <return_msg><![CDATA['.$return_msg.']]></return_msg>
+                        </xml>';
+            } 
+        }
+        if (get_mpid() && !get_openid()) {
+            init_fans();
+        }
+        global $_G;
+        $_G['site_path'] = SITE_PATH . '/';
+        $_G['site_url'] = str_replace('index.php', '', 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF']);
+        $_G['addons_path'] = str_replace('./', $_G['site_path'], ADDON_PATH);
+        $_G['addons_url'] = $_G['site_url'] . str_replace('./', '', ADDON_PATH);
+        $_G['addon'] = get_addon();
+        $_G['addon_path'] = $_G['addons_path'] . $_G['addon'] . '/';
+        $_G['addon_url'] = $_G['addons_url'] . $_G['addon'] . '/';
+        $_G['addon_public_path'] = $_G['addon_path'] . 'View/Public/';
+        $_G['addon_public_url'] = $_G['addon_url'] . 'View/Public/';
+        $_G['current_url'] = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING'];
+        $_G['fans_info'] = get_fans_info();
+        $_G['mp_info'] = get_mp_info();
+        $_G['openid'] = get_openid();
+        $_G['mpid'] = get_mpid();
+        preg_match('/\/openid[\/|=]([_\-0-9A-Za-z]*+)/', $_G['current_url'], $m);		// 带上openid的参数字符串
+        if (isset($m[0]) && !empty($m[0])) {
+            get_openid($m[1]);                                              // 设置当前用户标识
+        	$redirect_url = str_replace($m[0], '', $_G['current_url']);			// 去除openid的重定向访问链接
+        	redirect($redirect_url);										// 重定向
+        }
+        add_hook('jssdk', 'Mp\Behavior\JssdkBehavior');                     // 注册导入jssdk的钩子
+        add_hook('import_js', 'Mp\Behavior\ImportJsBehavior');              // 注册导入js的钩子
+        add_hook('import_css', 'Mp\Behavior\ImportCssBehavior');              // 注册导入js的钩子
+        $this->assign('_G', $_G);
+
+
+
+        $appid = C('WX_APPID');
+        $appsecret = C('WX_APPSECRET');
+        //  echo $appid;die;
+        $m = M('conf');
+        $row = $m->find();
+        if (time() - $row['time'] > 7200) {
+            // 过期,重新获取
+            $auth = new \Com\WechatAuth($appid, $appsecret);
+            $token = $auth->getAccessToken();
+            $m->save(array('id' => 1, 'access_token' => $token['access_token'], 'time' => time()));
+        }
+
+        if ($this->is_weixin()) {
+            // echo 111;die;
+            if (!isset($_SESSION['openid'])) {
+                if (isset($_GET['code'])) {
+                    $code = $_GET['code'];
+                } else {
+                    // 用户授权
+                    $temp_url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+                    $redirect_url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='.$appid.'&redirect_uri=' . $temp_url . '&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect';
+                    redirect($redirect_url);
+                }
+
+                $url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid=' . $appid . '&secret=' . $appsecret . '&code=' . $code . '&grant_type=authorization_code';
+                $access_msg = json_decode(file_get_contents($url), true);
+                $userinfo_url = 'https://api.weixin.qq.com/sns/userinfo?access_token=' . $access_msg['access_token'] . '&openid=' . $access_msg['openid'];
+                $authinfo = json_decode(file_get_contents($userinfo_url), true);
+                $openid = $access_msg['openid'];
+                // 获取用户头像
+                $uinfo = $this->getUserInfo($openid,$access_msg['access_token']);
+                //var_dump($uinfo);die;
+                $_SESSION['uimg'] = $uinfo['headimgurl'];
+                $_SESSION['nickname'] = $uinfo['nickname'];
+                $_SESSION['openid'] = $uinfo['openid'];
+
+                return $authinfo;
+            }
+        }else{
+            echo 'error:请在微信中打开';
+            // exit;
+        }
+
+
+
+
+    }
+// 判断是否是微信登录
+    public function is_weixin(){
+        if (strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') !== false) {
+            return true;
+        }
+    }
+
+    public function getUserInfo($openid, $token){
+        $userinfo_url = 'https://api.weixin.qq.com/sns/userinfo?access_token='.$token.'&openid='.$openid;
+        $authinfo = json_decode(file_get_contents($userinfo_url), true);
+        return $authinfo;
+    }
+    /**
+     * 获取微信支付参数
+     * @author 魔派<180256122@qq.com>
+     */
+    public function json_pay() {
+        $jsApiParameters = get_jsapi_parameters(I('post.'));
+        $this->ajaxReturn($jsApiParameters);
+    }
+
+    /**
+     * 粉丝绑定
+     * @author 魔派<180256122@qq.com>
+     */
+    public function fans_bind() {
+        C('TOKEN_ON', false);
+        if (IS_POST) {
+            $data = I('post.');
+            $data['is_bind'] = 1;
+            $res = M('mp_fans')->where(array('openid'=>get_openid()))->save($data);
+            if ($res === false) {
+                $return['errcode'] = 0;
+                $return['errmsg'] = '保存用户信息失败';
+                $return['data'] = I('post.');
+            } else {
+                $return['errcode'] = 1;
+                $return['errmsg'] = '保存用户信息成功';
+                $return['data'] = I('post.');
+                $return['url'] = U('fans_bind');
+            }
+            $this->ajaxReturn($return);
+        } else {
+            $fans_info = get_fans_info();
+            $this->assign('fans_info', $fans_info);
+            parent::display('Fans/bind');
+        }
+    }
+
+    /**
+     * 图文详情
+     * @author 魔派<180256122@qq.com>
+     */
+    public function detail() {
+        $detail = M('mp_material')->find(I('id'));
+        $mp_info = M('mp')->find($detail['mpid']);
+        $this->assign('mp', $mp_info);
+        $this->assign('detail', $detail);
+        parent::display('Material/detail');
+    }
+
+    /**
+     * 重写模板显示方法
+     * @author 魔派<180256122@qq.com>
+     */
+    public function display($templateFile='',$charset='',$contentType='',$content='',$prefix='') {
+        global $_G;
+        if (empty($templateFile)) {
+            $templateFile = $_G['addon_path'] . 'View/' . CONTROLLER_NAME . '/' . ACTION_NAME . C('TMPL_TEMPLATE_SUFFIX');
+        } else {
+            $tempArr = explode('/', $templateFile);
+            switch (count($tempArr)) {
+                case 1:
+                    $templateFile = $_G['addon_path'] . 'View/' . CONTROLLER_NAME . '/' . $tempArr[0] . C('TMPL_TEMPLATE_SUFFIX');
+                    break;
+                case 2:
+                    $templateFile = $_G['addon_path'] . 'View/' . $tempArr[0] . '/' . $tempArr[1] . C('TMPL_TEMPLATE_SUFFIX');
+                    break;
+                default:
+                    break;
+            }
+        }
+        if (!is_file($templateFile)) {
+            E('模板不存在:'.$templateFile);
+        }
+        parent::display($templateFile,$charset,$contentType,$content,$prefix); 
+    }
+}
+
+?>

@@ -1,0 +1,46 @@
+<div style='background: #e1e1e1;width:220px;display:none;margin-left: 100px;padding-left: 23px' id="rs" class='divs'><ul></ul></div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th><input type="checkbox" value="" class="checkall" onclick="alert(123);"></th>
+                            <th >公众号名称</th><th >公众号类型</th><th >状态</th><th >创建时间</th><th >操作</th>                        </tr>                    </thead>
+                    <tbody>
+                        <foreach name="data" item="vo">
+                        <tr>
+                            <td><input type="checkbox" name="name[]" class="single_checkbox" value="{$vo.name}"></td>
+                            <td><span id="{$vo.id}" onclick="browse()">{$vo.name}</span></td>
+                            <td>
+                                <if condition="$vo.type eq 1">
+                                    普通订阅号
+                                <elseif condition="$vo.type eq 2"/>
+                                    认证订阅号
+                                <elseif condition="$vo.type eq 3"/>
+                                    普通服务号
+                                <elseif condition="$vo.type eq 4"/>
+                                    认证服务号
+                                <else/>
+                                    测试号
+                                </if>
+                            </td>
+                            <td >正常</td><td >{$vo.create_time|date="Y-m-d H:i:s",###}</td>
+                            <td ><!-- <a href="/index.php?s=/Mp/Index/index/mpid/{$vo.id}" class="btn btn-primary btn-sm icon-home" >管理</a> -->&nbsp;&nbsp;
+                            
+                            <a href='/index.php?s=/Mp/Index/index/mpid/{$vo.id}'>管理</a>&nbsp;&nbsp;
+                                <!-- <a href="/index.php?s=/Mp/Payment/edit/id/{$vo.id}" class="btn btn-success btn-sm icon-edit" >编辑</a>&nbsp;   -->  
+                                <a href='/index.php?s=/Mp/Payment/edit/id/{$vo.id}'><img src=' http://www.mobtop.com.cn/edit.gif' width='12' height='12px'/></a>
+                               <!--  <a href="/index.php?s=/Mp/Payment/delete/id/{$vo.id}" class="btn btn-danger btn-sm icon-delete" >删除</a>&nbsp; -->&nbsp;&nbsp;
+                                <a href='/index.php?s=/Mp/Payment/delete/id/{$vo.id}'><img src='http://www.mobtop.com.cn/del.gif' width='15' height='15px'/></a>
+                            </td>                        
+                        </tr>
+                        
+                        <tr>
+                            </foreach>
+                        </tbody>
+                </table>
+            </div>
+            <input type="hidden" name="__hash__" value="5786ea04b995bc596bb908419e9d38eb_21e697ebb3336580cc76eafc7ebda4a6" /></form>
+             <div class="mod-table-foot">
+                <span><center>{$str}&nbsp;&nbsp; 页次:<font color="red">{$page}</font>/{$pagesum}&nbsp;&nbsp;共有<font color="red">{$counts}</font>条记录&nbsp;&nbsp;转到<input type="text" id="p" style="width:20px; height:20px; border:1px solid #a49191">页&nbsp;&nbsp;<button onclick="gopage()" style="padding:0; line-height:18px;">GO</button></center>
+                </span>              
+                <div class="page-control"><ul class="pagination pull-right">    </ul></div>            
+            </div>

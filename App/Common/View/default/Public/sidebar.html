@@ -1,0 +1,83 @@
+<div class="aw-side" id="aw-side">
+    <div class="mod" id="moddd">
+        
+        
+        <block name="sidenav">
+            <volist name="sidenav" id="vo">
+                <ul class="mod-bar">
+                    <li>
+                        <a href="{$vo.url}" class="{$vo.class} list" {$vo.attr}>
+                            <!-- <a href="{$vo.url}" {$vo.attr} > -->
+                            <span>{$vo.title}</span>
+                        </a>
+                        <!--<ul <if condition="CONTROLLER_NAME neq 'Addons'">class="hide"</if>-->
+                        <ul class="hide">
+                            <volist name="vo.children" id="vv">
+                                <li>
+                                    <a href="{$vv.url}" class="">
+                                        <span>{$vv.title}</span>
+                                    </a>
+                                </li>
+                            </volist>
+                        </ul>
+                    </li>
+                </ul>
+            </volist>
+        </block>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $(function () {
+        $('.ulList .active').click(function () {
+            $('.ulList li').css('background', '#323232')
+        })
+        
+    });
+    var path_info = "<php>echo $_SERVER['PATH_INFO'];</php>";
+    var controller = "<php>echo CONTROLLER_NAME;</php>";        // 获取当前控制器
+    var addon = "{:get_addon()}";
+    if (controller == 'Web') {
+        if (addon) {
+            var active_a = $("#aw-side a[href*='" + addon + "']");
+        } else {
+            var active_a = $("#aw-side a[href*='" + path_info + "']");
+        }
+    } else {
+        var active_a = $("#aw-side a[href*='" + controller + "']");              // 获取链接中包含当前控制器的a标签
+    }
+    
+    var thisHref = 'index.php'+ window.location.search;
+    var active_ul = active_a.parent("li").parent("ul");         // 获取需要显示的ul标签
+    var active_wrap = active_ul.siblings("a");
+/*    active_a.addClass("active");*/
+    //获取地址，循环判断添加active
+   var linkA = $('.mod-bar ul li a');
+   linkA.each(function(i,e){
+       var linkHref = $(e).attr('href');
+       if(linkHref[0] === '/'){
+           linkHref = linkHref.slice(1,linkHref.length);
+       }
+       
+       /*
+       *  index.php?s=/Mp/Shopping/list
+       *
+       * */
+       if(linkHref === thisHref){
+           $(e).addClass('active');
+           $(e).parent('li').parent('ul').prev().addClass('active');
+       }
+   });
+    active_ul.removeClass("hide");
+    
+    
+    //active_wrap.addClass("active");
+    
+    
+    // $('#moddd').on('click', 'a', function(){
+    //     $(this).css('background', '#484848');
+    // });
+</script>
+
+

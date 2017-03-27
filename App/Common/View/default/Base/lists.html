@@ -1,0 +1,173 @@
+<extend name="./App/Common/View/default/Base/common.html" />
+<block name="main_content">
+<include file="./App/Common/View/default/Public/crumb.html" />
+<div class="mod">
+    <div class="mod-head">
+        <h3>
+            <include file="./App/Common/View/default/Public/nav.html" />
+        </h3>
+    </div>
+    <div class="mod-body tab-content">
+        <if condition="$tip">
+        <div class="alert alert-info tip" role="alert">{$tip}</div>
+        </if>
+        <include file="./App/Common/View/default/Public/search.html" />
+        <div class="tab-pane active" id="list">
+            <if condition="$subnav">
+            <ul class="nav nav-tabs">
+                <volist name="subnav" id="vo">
+                <li role="presentation" class="{$vo.class}"><a href="{$vo.url}">{$vo.title}</a></li>
+                </volist>
+            </ul> 
+            <br>
+            </if>
+            <div class="mod-table-head">
+                <if condition="$add_button"><a class="btn btn-primary" href="{:U('add')}">添加{$model['title']}</a></if>
+                <if condition="$del_button"><a class="btn btn-danger del-btn" href="javascript:;">删除{$model['title']}</a></if>
+                <volist name="btn" id="vo">
+                    <a class="{$vo.class}" href="{$vo.url}" {$vo.attr}>{$vo.title}</a>&nbsp;
+                </volist>
+            </div>
+            <br>
+            <form action="{:U('delete', array('addon'=>get_addon()))}" method="post" style="margin-top:-10px;">
+            <input type="hidden" name="model" value="{$model.name}" />
+            <input type="hidden" id="action" name="action" value="mass_delete">
+            <input type="hidden" name="mass_delete_key" value="{$lists['fields'][0]['name']}" />
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <if condition="$lists['fields']">
+                        <tr>
+<!--                            <th><input type="checkbox" value="" class="checkall" onclick="alert(123);">选中</th>-->
+                        <th>选中</th>
+                            <volist name="lists.fields" key="k" id="vo">          
+                                <th <eq name="vo.format" value="hidden">style="display:none"</eq>>{$vo['title']}</th>                              
+                            </volist>
+                        </tr>
+                        </if>
+                    </thead>
+                    <tbody>
+                        <if condition="$lists['data']">
+                        <volist name="lists.data" id="vo">
+                        <tr>
+                            <td><input type="checkbox" name="{$lists['fields'][0]['name']}[]" class="single_checkbox" value="{$vo[0]}"></td>
+                            <volist name="vo" key="k" id="vv">
+                                <td <if condition="$lists['fields'][$k-1]['format'] eq 'hidden'">style="display:none"</if>>{$vv}</td>
+                            </volist>
+                        </tr>
+                        </volist>   
+                        </if>                                                     
+                    </tbody>
+                </table>
+            </div>
+            </form>
+<!--            <div class="mod-table-foot">
+                <if condition="$count neq 0">
+                <span class="pull-left">记录总数：{$count}</span>
+                </if>
+                {$pagination}
+            </div>-->
+<div class="mod-table-foot">
+     <?php
+         if (CONTROLLER_NAME == 'Mp' || get_addon()) {
+     ?>
+         　　&nbsp;&nbsp;&nbsp;<input type="checkbox" class="check-all">全选
+         <a href="javascript:void(0);" onclick="delall()" style="vertical-align: middle; display:inline-block;"><img src="http://www.mobtop.com.cn/del.gif" alt=""  style="width:15px; height:20px; display:inline-block; margin:0 0 0 10px;"></a>
+         </span>
+         <?php
+         }
+         ?>
+        </div>
+    </div>
+</div>
+<!--<script type="text/javascript">
+    $(document).on('click', '.iCheck-helper,checkall', function() {
+        alert(123);
+    }).on('click', '.del-btn', function() {
+        var checkedboxs = $('.single_checkbox:checked');
+        var count = checkedboxs.length;
+        if (count == 0) {
+            alert('请选择要删除的数据');
+            return false;
+        }
+        if (confirm('是否确认删除')) {
+            $('form').submit();
+        }
+    });
+</script>
+</block>-->
+<block name="script">
+    <script type="text/javascript">
+        function dels(obj) {
+            var postUrl = "{:U('Admin/User/delete')}";
+            if (confirm('你确定删除吗？')) {
+                $.post(postUrl, {"id":obj}, function (data) {
+                    if (data.status == 1) {
+                        bootAlert(data.info);
+                        window.location.href="{:U('Admin/User/lists')}";
+                    } else {
+                        bootAlert(data.info);
+                    }
+                });
+            }
+            else{
+
+            }
+        }
+        $(".check-all").on('ifChecked', function (e)
+        {
+            // alert(1);
+            e.preventDefault();
+
+            $('.table').find(".icheckbox_square-blue").iCheck('check');
+        });
+
+        $(".check-all").on('ifUnchecked', function (e)
+        {
+            // alert(0);
+            e.preventDefault();
+
+            $('.table').find(".icheckbox_square-blue").iCheck('uncheck');
+
+        });
+        var tableFristText = $('.table-title-text');
+        tableFristText.each(function(i,elem){
+            var sl = "...";
+            var html = "";
+            if($(elem).html().length >4){
+                html = $(elem).html().slice(0,4) + sl;
+            }else {
+                html = $(elem).html();
+            }
+            $(elem).html(html);
+        });
+
+        function gopage(){
+            var page = $("#p").val();
+            window.location.href='index.php?s=/Admin/User/lists/p/'+page;
+        }
+        function delall(){
+            if(confirm('你确定要删除多项吗？')){
+                var id = document.getElementsByName("id");
+                // alert(own_id.length);
+                var str = '';
+                var lengths = id.length;
+                for(var i=0;i<lengths;i++){  
+                    if(id[i].checked)  
+                    str+=id[i].value+',';   
+                }
+                // alert(str);
+                var postUrl = "{:U('Mp/Mp/delall')}";
+                $.get(postUrl,{'id':str},function(data){
+                    if (data.status == 1) {
+                        alert(data.info);
+                        window.location.href="{:U('Mp/Mp/lists')}";
+                    } else {
+                        alert(data.info);
+                    }
+                });
+                }
+            
+        }
+    </script>
+</block>

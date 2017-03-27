@@ -1,0 +1,195 @@
+a<extend name="./App/Common/View/default/Base/common.html" />
+<block name="main_content">
+<include file="./App/Common/View/default/Public/crumb.html" />
+<style>
+            .form-group{
+                margin-left:0!important;
+                margin-right:0!important;
+            }
+            .form-group .col-sm-2{
+                width:10%;
+            }
+            .form-group .col-sm-9{
+                width:82%!important;
+            }
+            .col-sm-9 #edui1{
+                width:100%!important;
+            }
+</style>
+<div class="mod">
+    <div class="mod-head">
+            <h3>
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="{:U('Mp/User/base_data')}">基本资料</a>
+                    </li>
+                </ul>
+            </h3>
+        </div>
+    <div class="tab-content mod-content">
+        <if condition="$tip">
+            <div class="alert alert-info tip" role="alert">{$tip}</div>
+        </if>
+        <form method="post" action="{:U('Mp/User/base_data')}" class="form-horizontal" role="form" enctype="multipart/form-data">
+                            <div class="form-group" style="margin-left:-57px;">
+                                <label class="col-sm-2 col-xs-3 control-label" style=""><font color="red">*</font>会员身份:</label>
+                                <div class="col-sm-9 col-xs-12" style="padding-top:8px;">
+                                    <if condition="$own_data.position eq 1">
+                                        <input type="radio" name="position" value="1" checked="checked">个人
+                                        <input type="radio" name="position" value="0">公司
+                                        <else/>
+                                        <input type="radio" name="position" value="1">个人
+                                        <input type="radio" name="position" value="0" checked="checked">公司
+                                    </if>
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-left:-57px;">
+                                <label class="col-sm-2 col-xs-3 control-label" style=""><font color="red">*</font>真实姓名:</label>
+                                <div class="col-sm-9 col-xs-12" style="padding-top:8px;">
+                                    {$own_data.nickname}
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-left:-57px;">
+                                <label class="col-sm-2 col-xs-3 control-label" style=""><font color="red">*</font>行业应用:</label>
+                                <div class="col-sm-9 col-xs-12">
+                                    <input class="form-control" type="text" name="industry" required="required"  placeholder="" value="{$own_data.industry}" />
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-left:-57px;">
+                                <label class="col-sm-2 col-xs-3 control-label"><font color="red">*</font>主营业务:</label>
+                                <div class="col-sm-9 col-xs-12">
+                                    <input class="form-control" type="text" name="primary_service" required="required"  placeholder="" value="{$own_data.primary_service}" />
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-left:-57px;">
+                                <label class="col-sm-2 col-xs-3 control-label">网址:</label>
+                                <div class="col-sm-9 col-xs-12">
+                                    <input class="form-control" type="text" name="url" required="required"  placeholder="" value="{$own_data.url}"  />
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-left:-57px;">
+                                <label class="col-sm-2 col-xs-3 control-label">单位名称:</label>
+                                <div class="col-sm-9 col-xs-12">
+                                    <input class="form-control" type="text" name="workname" required="required"  placeholder="" value="{$own_data.workname}"  />
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-left:-57px;">
+                                <label class="col-sm-2 col-xs-3 control-label">联系人:</label>
+                                <div class="col-sm-9 col-xs-12">
+                                    <input class="form-control" type="text" name="linkman" required="required"  placeholder="" value="{$own_data.linkman}"  />
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-left:-57px;">
+                                <label class="col-sm-2 col-xs-3 control-label">电话:</label>
+                                <div class="col-sm-9 col-xs-12">
+                                    <input class="form-control" type="text" name="telephone" required="required"  placeholder="" value="{$own_data.telephone}"  />
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-left:-57px;">
+                                <label class="col-sm-2 col-xs-3 control-label">传真:</label>
+                                <div class="col-sm-9 col-xs-12">
+                                    <input class="form-control" type="text" name="facsimile" required="required"  placeholder="" value="{$own_data.facsimile}"  />
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-left:-57px;">
+                                <label class="col-sm-2 col-xs-3 control-label">手机:</label>
+                                <div class="col-sm-9 col-xs-12">
+                                    <input class="form-control" type="text" name="phone" required="required"  placeholder="" value="{$own_data.phone}"  />
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-left:-57px;">
+                                <label class="col-sm-2 col-xs-3 control-label">E-mail:</label>
+                                <div class="col-sm-9 col-xs-12">
+                                    <input class="form-control" type="text" name="e_mail" required="required"  placeholder="" value="{$own_data.e_mail}"  />
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-left:-57px;">
+                                <label class="col-sm-2 col-xs-3 control-label">QQ:</label>
+                                <div class="col-sm-9 col-xs-12">
+                                    <input class="form-control" type="text" name="qqnum" required="required"  placeholder="" value="{$own_data.qqnum}"  />
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-left:-57px;">
+                                <label class="col-sm-2 col-xs-3 control-label">微信号:</label>
+                                <div class="col-sm-9 col-xs-12">
+                                    <input class="form-control" type="text" name="weixinnum" required="required"  placeholder="" value="{$own_data.weixinnum}"  />
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-left:-57px;">
+                                <label class="col-sm-2 col-xs-3 control-label">更换地址：</label>
+                                <div class="col-sm-9 col-xs-12" style="padding-top:8px;">
+                                  <select name="province" id="province" style="width:120px!important; display:inline-block!important;" onchange="pro_change(this)">
+                                     <option value="">请选择</option>
+                                 </select>省
+                                 <select name="city" id="city" style="width:120px!important; display:inline-block!important;" onchange="city_change(this)">
+                                     <option value="">请选择</option>
+                                 </select>市
+                                 <select name="county" id="county" style="width:120px!important; display:inline-block!important;">
+                                     <option value="">请选择</option>
+                                 </select>
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-left:-57px;">
+                                <label class="col-sm-2 col-xs-3 control-label">我的地址:</label>
+                                <div class="col-sm-9 col-xs-12">
+                                    <input class="form-control" type="text" required="required" disabled="disabled"  placeholder="" value="{$own_data.myaddress}"  />
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-left:-57px;">
+                                <label class="col-sm-2 col-xs-3 control-label">详细地址:</label>
+                                <div class="col-sm-9 col-xs-12">
+                                    <input class="form-control" type="text" name="address" required="required"  placeholder="" value="{$own_data.address}"  />
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-left:-57px;">
+                                <label class="col-sm-2 col-xs-3 control-label">邮编:</label>
+                                <div class="col-sm-9 col-xs-12">
+                                    <input class="form-control" type="text" name="postal" required="required"  placeholder="" value="{$own_data.postal}"  />
+                                </div>
+                            </div>
+                            <div class="form-group" style="text-align: center">
+                                <input type="submit" value="确认" class="btn btn-primary" style="display: inline-block" />
+                                <input type="reset" value="重置" class="btn btn-primary" style="display: inline-block" />
+                            </div>
+            </div>
+        </form>
+    </div>
+</div>
+</block>
+<block name="script">
+  <script src="__PUBLIC__/Common/js/area.js"></script>
+  <script>
+    var obj = eval(json);
+    // alert(obj.county);
+    var str="<option>请选择</option>";
+    for(var i in obj.province){
+        str+= '<option value="'+i+'">'+obj.province[i]+'</option>';
+    }
+    //alert(str);
+    $("#province").html(str);
+    $("#county").html("<option>请选择</option>");
+
+
+    function pro_change(pro){
+        var id = $(pro).val();
+        // alert(id);
+        var str="<option>请选择</option>";
+        for(var i in obj.city[id]){
+            str+= '<option value="'+i+'">'+obj.city[id][i]+'</option>';
+        }
+        //alert(str);
+        $("#city").html(str);
+    }
+
+    function city_change(pro){
+        var id = $(city).val();
+        //alert(id);
+        var str="<option>请选择</option>";
+        for(var i in obj.county[id]){
+            str+= '<option value="'+i+'">'+obj.county[id][i]+'</option>';
+        }
+        // alert(str);
+        $("#county").html(str);
+    }
+    </script>
+</block>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{$system_settings.site_name}</title>
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/Common/css/bootstrap.css" />
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/Common/css/icon.css?v=20141226" />
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/Common/css/font-awesome.min.css" />
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/common.css" />
+	<link href="__PUBLIC__/Admin/css/login.css?v=20141226" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="__PUBLIC__/Common/css/reset.css">
+	<link rel="stylesheet" href="__PUBLIC__/Common/css/sign.css">
+	<style>
+	
+	</style>
+</head>
+<body>
+<div class="head">
+	<div class="container">
+		<div id="header">
+			<div class="left">
+				<img src="__PUBLIC__/Common/imgs/logo.png" alt="">
+				<div class="title">
+					<div class="logo-top">魔派学院</div>
+					<div class="logo-bottom">MOBTOP.COM.CN</div>
+				</div>
+			</div>
+			<ul>
+				<li><a href="#" class="lj">首页</a></li>
+				<li class="center"><a href="#" class="lj">联系我们</a></li>
+				<li><a href="#" class="lj">帮助中心</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="main-body">
+	<div class="container">
+		<div class="main-left">
+			<img src="__PUBLIC__/Common/imgs/mobtop.png" alt="">	
+		</div>
+		<div class="main-right">
+			<div class="enter">登录</div>
+			<form method="post" action="index.php?s=/User/Public/Login">
+						<input type="text" id="username" class="form-control" placeholder="邮箱 / 用户名" name="username">
+						<input type="password" id="password" class="form-control" placeholder="密码" name="password">
+						<input type="submit" value="登&nbsp;&nbsp;录" id="sub">
+                       <div class="msg">
+							<a href="#" class="msg-zh">还没有账号？</a>
+							<a href="#" class="msg-zc">点击注册</a>
+						</div>
+                    
+                </form>
+			<ul>
+				<li class="wx-left">
+					<a href="#">
+						<img src="__PUBLIC__/Common/imgs/wx.png" alt="">
+						<span>微信登录</span>
+					</a>
+				</li>
+				<li class="qq-mid">
+					<a href="#">
+						<img src="__PUBLIC__/Common/imgs/qq.png" alt="">
+						<span>QQ登录</span>
+					</a>
+				</li>
+				<li class="zf-right">
+					<a href="#">
+						<img src="__PUBLIC__/Common/imgs/fb.png" alt="">
+						<span>支付宝登录</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+</body>
+</html>
+<script type="text/javascript" src="__PUBLIC__/Common/js/jquery.js" ></script>
+<script src="http://static.geetest.com/static/tools/gt.js"></script>
+<script type="text/javascript">
+    var handlerPopup = function(captchaObj) {
+        $('#login').click(function() {
+            var data = $('form').serialize();
+            var url = $('form').attr('action');
+            var validate = captchaObj.getValidate();
+            if (!validate) {
+                $('.error_message em').html('请先拖动滑块完成验证码校验');
+                $('.error_message').show().find('.icon-delete').click(function() {
+                    $('.error_message').hide();
+                });
+                return false;
+            }
+            $.ajax({
+                'url' : url,
+                'type' : 'post',
+                'dataType' : 'json',
+                'data' : data,
+                success : function(data) {
+                    console.log(data);
+                    if (data.status == 1) {
+                        $('.error_message').html(data.info+'，页面即将自动跳转...').show();
+                        setTimeout(function() {
+                            window.location.href = data.url;
+                        }, 1500);
+                    } else {
+                        $('.error_message em').html(data.info);
+                        $('.error_message').show().find('.icon-delete').click(function() {
+                            $('.error_message').hide();
+                        });
+                    }
+                },
+                error : function() {
+                    console.log('error');
+                }
+            });
+            return false;
+        });
+        captchaObj.bindOn('#login');
+        captchaObj.appendTo('#float-captcha');
+    }
+    $.ajax({
+        url : "{:U('geetest_verify')}/t/"+(new Date()).getTime(),
+        type : 'get',
+        dataType : 'json',
+        success : function(result) {
+            console.log(result);
+            initGeetest({
+                gt : result.gt,
+                challenge : result.challenge,
+                product : 'float',
+                offline : !result.success
+            }, handlerPopup);
+        },
+        error : function() {
+            console.log('error');
+        }
+    });
+</script>

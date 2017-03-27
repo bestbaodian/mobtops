@@ -1,0 +1,20 @@
+<html>
+	<body>
+		<table class="table table-striped">
+                    <thead>
+                    </thead>
+                    <tbody>
+                    <volist name="data" id="vo" key="k">
+                        <tr>
+                            <td style="width:94%;padding-left:2%"><?php echo str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;|-',$vo['level']); ?><input type="hidden" name="" value="{$vo.nid}" class="checks" >{$vo.pname}</td>
+                            <td  style="text-align:center;">
+                                <!-- <a class="btn btn-success btn-sm icon-edit" href="{:U('Admin/User/edit',array('id'=>$vo['id']))}">编辑</a><a class="btn btn-danger btn-sm icon-delete" href="#" onclick="del({$vo['id']})">删除</a> -->
+                                <a href="{:U('Admin/Option/edit',array('id'=>$vo['nid']))}"><img src='http://www.mobtop.com.cn/edit.gif' width='12px' height='12px'/></a>&nbsp;&nbsp;
+                                <a href="{:U('Admin/Option/deletes',array('id'=>$vo['nid']))}" style="vertical-align:middle;"><img src='http://www.mobtop.com.cn/del.gif' width='12px' height='12px'/></a>&nbsp;&nbsp;
+                            </td>
+                        </tr>
+                    </volist>
+                    </tbody>
+                </table>
+	</body>
+</html>

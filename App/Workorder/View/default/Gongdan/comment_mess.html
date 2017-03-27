@@ -1,0 +1,66 @@
+<extend name="./App/Common/View/default/Base/common.html" />
+<block name="main_content">
+    <include file="./App/Common/View/default/Public/crumb.html" />
+    <script src="__PUBLIC__/Admin/css/jquery.minicolors.min.js"></script>
+    <link rel="stylesheet" href="__PUBLIC__/Admin/css/jquery.minicolors.css" />
+    <style>     
+        .form-group .col-sm-2 {
+            width: 12%;
+        }
+        
+        .form-group .col-sm-9 {
+            width: 82%!important;
+        }
+        
+        .col-sm-9 #edui1 {
+            width: 100%!important;
+        }
+    </style>
+    <div class="mod">
+        <div class="mod-head">
+            <h3>
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="{:U('Workorder/Gongdan/profile')}">工单管理</a>
+                    </li>
+                </ul>
+            </h3>
+        </div>
+        <div class="tab-content mod-content">
+            <if condition="$tip">
+                <div class="alert alert-info tip" role="alert">{$tip}</div>
+            </if>
+            <form method="post"  class="form-horizontal" role="form" enctype="multipart/form-data">
+                    <div class="form-group" style="">
+                        <label class="col-sm-2 col-xs-3 control-label">你对此工单的评价:</label>
+                        <div class="col-sm-9 col-xs-12" style="margin-top:8px;">
+                            <if condition="$mess_data.is_satis eq 1">
+                                <input type="radio" name="is_satis" value="1" checked="checked">满意
+                                <input type="radio" name="is_satis" value="0">不满意
+                                <else/>
+                                <input type="radio" name="is_satis" value="1">满意
+                                <input type="radio" name="is_satis" value="0" checked="checked">不满意
+                            </if>
+                        </div>
+                    </div>
+                    <div class="form-group" style="">
+                        <label class="col-sm-2 col-xs-3 control-label"></label>
+                        <div class="col-sm-9 col-xs-12">
+                           <textarea name="message" required="required" id="" style="width:100%;height:200px; padding:8px 10px;border-radius:5px; border:1px solid #ddd; color:#778899 !important;" placeholder="请输入留言">{$mess_data.message}</textarea>
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="form-group" style="">
+                        <label class="col-sm-2 col-xs-3 control-label">留言时间:</label>
+                        <div class="col-sm-9 col-xs-12">
+                           <input class="form-control" type="text" name="email" required="required" id="name" placeholder="" value="{$mess_data.leave_time|date="Y-m-d H:i:s",###}" />
+                        </div>
+                    </div>
+                    <input type="hidden" name="pid" value="{$pid}">
+                <div class="form-group" style="text-align: center">
+                    <a href="{:U('Workorder/Gongdan/profile')}"><input type="button" value="返回" class="btn btn-primary" style="display: inline-block" /></a>
+                </div>
+            </form>
+        </div>
+    </div>
+</block>

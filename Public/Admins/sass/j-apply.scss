@@ -1,0 +1,228 @@
+@charset "utf-8";
+@import "mixin";
+
+body{
+    position:relative;
+    background:#f1f1f1;
+    padding-bottom:2rem;
+}
+.head{
+    padding:0 4%;
+    font-size:0.52rem;
+    .tit{
+        font-size:0.6rem;
+        line-height:1.5rem;
+        span{
+            color:$main-color;
+        }
+    }
+    .follow{
+        background:#fff;
+        border-radius:0.2rem;
+        padding:0 0.3rem;
+        border:1px solid #ddd;
+        .fl{
+            line-height:2.3rem;
+        }
+        .fr{
+            span{
+                line-height:1rem;
+                vertical-align:middle;
+                display:inline-block;
+            }
+            .follow-btn{
+                width:3rem;
+                color:#fff;
+                margin-top:0.5rem;
+                text-align:center;
+                line-height:1.2rem;
+                background:$main-color;
+                border-radius:0.1rem;
+            }
+            .complete{
+                width:3rem;
+                margin-top:0.5rem;
+                text-align:center;
+                color:$main-color;
+                line-height:1.2rem;
+                transform:rotate(10deg);
+                border:1px solid $main-color;
+            }
+        }
+    }
+}
+.cont-tit{
+    padding:0 4%;
+    font-size:0.6rem;
+    line-height:1.5rem;
+}
+.cont{
+    margin:0 4%;
+    background:#fff;
+    font-size:0.52rem;
+    border-radius:0.2rem;
+    border:1px solid #ddd;
+    .items{
+        margin:0 0.3rem;
+        padding:0.4rem 0;
+        border-bottom:1px solid #ddd;
+        .icon{
+            width:1.6rem;
+            text-align:center;
+            border-radius:50%;
+            line-height:1.6rem;
+            margin-right:0.4rem;
+            .iconfont{
+                color:#fff;
+                height:1rem;
+                font-size:0.8rem;
+            }
+        }
+        .dian{
+            line-height:1.6rem;
+            background:$main-color;
+        }
+        .qian{
+            padding-top:0.1rem;
+            line-height:1.5rem;
+            background:#ead32d;
+            .iconfont{
+                font-size:0.9rem;
+            }
+        }
+        .info{
+            width:84%;
+            .item-name{
+                padding:0 0 0.2rem;
+            }
+            .item-txt{
+                color:#999;
+                font-size:0.48rem;
+            }
+        }
+    }
+    .txt{
+        color:#999;
+        line-height:1rem;
+        font-size:0.52rem;
+        padding:0.4rem 0.3rem;
+    }
+}
+.cont-more{
+    padding:0 4% 0.5rem;
+    img{
+        width:100%;
+        margin-top:0.4rem;
+    }
+}
+.foot{
+    left:0;
+    bottom:0;
+    width:92%;
+    position:fixed;
+    background:#fff;
+    font-size:0.6rem;
+    padding:0.2rem 4%; 
+    .btn{
+        width:100%;
+        color:#fff;
+        background:#999;
+        line-height:1.6rem;
+        border-radius:0.2rem;
+    }
+    .cur{
+        background:$main-color;
+    }
+}
+html,body{
+    width:100%;
+    height:100%;
+}
+.mc{
+    top:0;
+    left:0;
+    z-index:99;
+    width:100%;
+    height:100%;
+    display:none;
+    position:fixed;
+    background:rgba(0,0,0,0.5);
+}
+.agreement{
+    left:0;
+    top:20%;
+    width:100%;
+    z-index:999;
+    display:none;
+    position:fixed;
+    background:#fff;
+    font-size:0.52rem;
+    padding:0 0 0.4rem;
+    .agr-tit{
+        color:#fff;
+        font-size:0.6rem;
+        text-align:center;
+        line-height:1.6rem;
+        background:#3ac500;
+        border-bottom:1px solid #eee;
+    }
+    .agr-txt{
+        text-indent:2em;
+        padding:0.4rem 4%;
+    }
+    .option{
+        display:flex;
+        justify-content:center;
+        label{
+            width:20%;
+        }
+        input{
+            width:0.6rem;
+            height:0.6rem;
+            background:url('../imgs/j-no-icon.png') no-repeat;
+            background-size:100% 100%;
+            background-color: transparent;
+            vertical-align:middle;
+        }
+        input:checked{
+            background:url('../imgs/check-in.png') no-repeat;
+            background-size:100% 100%;
+            background-color: transparent;
+        }
+    }
+}
+.info-cont{
+    margin:0 4%;
+    background:#fff;
+    font-size:0.52rem;
+    border-radius:0.2rem;
+    border:1px solid #ddd;
+    .info-items{
+        margin:0 0.3rem;
+        line-height:1.5rem;
+        border-bottom:1px solid #ddd;  
+        label{
+            width:20%;
+            display:inline-block;
+            vertical-align:top;
+        }  
+        input{
+            width:78%;
+            background:#fff;
+        }
+        textarea{
+            width:78%;
+            padding-top:0.3rem;
+            border:1px solid #ddd;
+        }
+    }
+    .textarea{
+        border:0;
+        margin-top:0.3rem;
+        label{
+        }
+    }
+}
+.qie{
+    display:none;
+}

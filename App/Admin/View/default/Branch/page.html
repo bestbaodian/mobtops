@@ -1,0 +1,34 @@
+<html>
+	<body>
+		<table class="table table-striped">
+            <thead>
+            <tr>
+                <th style="width:100px; padding-left:20px;">选中<span style="padding-left:10px;">序号</span</th>
+                <th style="width:900px;">部门名称</th>
+<!--                         <th style="width:800px">备注</th> -->
+                <th style="">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <volist name="data.lists" key="k" id="vo">
+                <tr>
+                    <td style="width:10%; padding-left:20px;"><div class="icheckbox_square-blue" style="position:relative"><input type="checkbox" style="position:absolute;top:-20%;left:-20%;display:block;width:140%;height:140%;margin:0px;padding:0px;background:rgb(255,255,255) none repeat scroll 0% 0%;border:0px none; opacity:0;" name="id" class="checks" value="{$vo.id}"><ins  class="iCheck-helper" style="position:absolute;top:-20%;left:-20%;display:block;width:140%;height:140%;margin:0px;padding:0px;background:rgb(255,255,255) none repeat scroll 0% 0%;border:0px none; opacity:0;"></ins></div><span style="padding-left:20px;">{$k}</span></td>
+	         		<td style="width:75%;">{$vo.branch_name}</td>
+<!-- 							<td style="width:800px">{$vo.content}</td> -->
+                    <td style="width:10%;">
+                        <a href="{:U('Admin/Branch/edit',array('id'=>$vo['id'],'order'=>$k))}"><img src="http://www.mobtop.com.cn/edit.gif" alt="" width='12px' height='12px'></a>  &nbsp;&nbsp; <a href="javascript:void(0);" onclick="del({$vo.id})"><img src="http://www.mobtop.com.cn/del.gif" alt="" width='15px' height='15px'></a>
+                        <!-- <a href="{:U('Admin/User/edit',array('id'=>$vo['id']))}"><img src='http://www.mobtop.com.cn/edit.gif' width='12' height='12px'/></a>&nbsp;&nbsp;
+                        <a href="{:U('Admin/User/delete',array('id'=>$vo['id']))}"><img src='http://www.mobtop.com.cn/del.gif' width='15' height='15px'/></a> -->
+                    </td>
+                </tr>
+            </volist>
+            </tbody>
+        </table>
+        <input type="hidden" name="__hash__" value="5786ea04b995bc596bb908419e9d38eb_21e697ebb3336580cc76eafc7ebda4a6" />
+                <div class="mod-table-foot">
+                    <span style="margin-left:20px;"><div class="icheckbox_square-blue" style="position:relative"><input type="checkbox" style="position:absolute;top:-20%;left:-20%;display:block;width:140%;height:140%;margin:0px;padding:0px;background:rgb(255,255,255) none repeat scroll 0% 0%;border:0px none; opacity:0;" name="id" class="check-all" value="{$vo.id}"><ins  class="iCheck-helper" style="position:absolute;top:-20%;left:-20%;display:block;width:140%;height:140%;margin:0px;padding:0px;background:rgb(255,255,255) none repeat scroll 0% 0%;border:0px none; opacity:0;"></ins></div>全选<a href="javascript:void(0);" onclick="delall()" style="vertical-align: middle; display:inline-block;"><img src="http://www.mobtop.com.cn/del.gif" alt=""  style="width:15px; height:20px; display:inline-block; margin:0 0 0 10px;"></a><center>{$data.str}&nbsp;&nbsp; 页次:<font color="red">{$data.page}</font>/{$data.pagesum}&nbsp;&nbsp;共有<font color="red">{$data.counts}</font>条记录&nbsp;&nbsp;转到<input type="text" id="p" style="width:20px; height:20px; border:1px solid #a49191">页&nbsp;&nbsp;<button onclick="gopage()" style="padding:0; line-height:18px;">GO</button></center>
+                    </span>              
+                    <div class="page-control"><ul class="pagination pull-right">    </ul></div>            
+                </div>
+	</body>
+</html>

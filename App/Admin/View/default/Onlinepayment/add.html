@@ -1,0 +1,120 @@
+<extend name="./App/Common/View/default/Base/common.html" />
+<block name="main_content">
+<include file="./App/Common/View/default/Public/crumb.html" />
+<div class="mod">
+    <div class="mod-head">
+        <h3>
+        	<include file="./App/Common/View/default/Public/navigation.html" />
+        </h3>
+    </div>
+    <div class="tab-content mod-content">
+        <if condition="$tip">
+            <div class="alert alert-info tip" role="alert">{$tip}</div>
+        </if>
+        <form method="post" action="" class="form-horizontal" role="form">
+            <div class="form-group no-offset">
+                <div id="artlist">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" id="addn">
+	<form id="myform" action="/index.php?g=System&m=Site&a=insert" method="post">
+		<tr> 
+			<td  height="48" align="right"><strong>支付方式：</strong></td>
+			<td>
+				<select name="pay_type" id="pay_type">
+					<option value="alipay" selected>支付宝</option>
+					<option value="tenpay">财付通</option>
+				</select>
+			</td>
+		</tr>
+		<tr> 
+			<td  height="48" align="right"><strong>财付通partnerId：</strong></td>
+			<td>
+								<span class="tenpay_partnerid" style="display:none;width: inherit;">
+					*************************					<span class="btnGreen" style="width: inherit;" onclick="$('.tenpay_partnerid').hide();$('.tenpay_partnerid-edit').show();$('input[name=\'tenpay_partnerid\']').val('');">修改</span>
+				</span>
+				<span class="tenpay_partnerid-edit" style="width: inherit;">
+					<input type="text" name="tenpay_partnerid" value="" class="ipt" size="45" />
+					<span class="btnGreen" style="width: inherit;" onclick="$('.tenpay_partnerid').show();$('.tenpay_partnerid-edit').hide();$('input[name=\'tenpay_partnerid\']').val('');">显示</span>
+				</span>
+				<span>&nbsp;&nbsp;(仅选择财付通时填写)</span>
+			</td>
+		</tr>
+		<tr> 
+			<td  height="48" align="right"><strong>财付通partnerKey：</strong></td>
+			<td>
+								<span class="tenpay_partnerkey" style="display:none;width: inherit;">
+					*************************					<span class="btnGreen" style="width: inherit;" onclick="$('.tenpay_partnerkey').hide();$('.tenpay_partnerkey-edit').show();$('input[name=\'tenpay_partnerkey\']').val('');">修改</span>
+				</span>
+				<span class="tenpay_partnerkey-edit" style="width: inherit;">
+					<input type="text" name="tenpay_partnerkey" value="" class="ipt" size="45" />
+					<span class="btnGreen" style="width: inherit;" onclick="$('.tenpay_partnerkey').show();$('.tenpay_partnerkey-edit').hide();$('input[name=\'tenpay_partnerkey\']').val('');">显示</span>
+				</span>
+				<span>&nbsp;&nbsp;(仅选择财付通时填写)</span>
+			</td>
+		</tr>
+		<tr> 
+			<td  height="48" align="right"><strong>支付宝帐号：</strong></td>
+			<td>
+								<span class="alipay_name" style="width: inherit;">
+					46*************************om					<span class="btnGreen" style="width: inherit;" onclick="$('.alipay_name').hide();$('.alipay_name-edit').show();$('input[name=\'alipay_name\']').val('');">修改</span>
+				</span>
+				<span class="alipay_name-edit" style="display:none;width: inherit;">
+					<input type="text" name="alipay_name" value="46242605@qq.com" class="ipt" size="45" />
+					<span class="btnGreen" style="width: inherit;" onclick="$('.alipay_name').show();$('.alipay_name-edit').hide();$('input[name=\'alipay_name\']').val('46242605@qq.com');">显示</span>
+				</span>
+				<span>&nbsp;&nbsp;例：phpw_CN@163.COM(仅选择支付宝时填写)</span>
+			</td>
+		</tr>
+		<tr> 
+			<td  height="48" align="right"><strong>支付宝PID：</strong></td>
+			<td>
+								<span class="alipay_pid" style="width: inherit;">
+					20*************************20					<span class="btnGreen" style="width: inherit;" onclick="$('.alipay_pid').hide();$('.alipay_pid-edit').show();$('input[name=\'alipay_pid\']').val('');">修改</span>
+				</span>
+				<span class="alipay_pid-edit" style="display:none;width: inherit;">
+					<input type="text" name="alipay_pid" value="2088902921332320" class="ipt" size="45" />
+					<span class="btnGreen" style="width: inherit;" onclick="$('.alipay_pid').show();$('.alipay_pid-edit').hide();$('input[name=\'alipay_pid\']').val('2088902921332320');">显示</span>
+				</span>
+				<span>&nbsp;&nbsp;请登陆支付宝商家服务中去查看(仅选择支付宝时填写)</span>
+			</td>
+		</tr>
+		<tr> 
+			<td  height="48" align="right"><strong>支付宝KEY：</strong></td>
+			<td>
+								<span class="alipay_key" style="width: inherit;">
+					tr*************************a2					<span class="btnGreen" style="width: inherit;" onclick="$('.alipay_key').hide();$('.alipay_key-edit').show();$('input[name=\'alipay_key\']').val('');">修改</span>
+				</span>
+				<span class="alipay_key-edit" style="display:none;width: inherit;">
+					<input type="text" name="alipay_key" value="tr10v2cka97372wmeliogmdvudfhnma2" class="ipt" size="45" />
+					<span class="btnGreen" style="width: inherit;" onclick="$('.alipay_key').show();$('.alipay_key-edit').hide();$('input[name=\'alipay_key\']').val('tr10v2cka97372wmeliogmdvudfhnma2');">显示</span>
+				</span>
+				<span>&nbsp;&nbsp;请登陆支付宝商家服务中去查看(仅选择支付宝时填写)</span>
+			</td>
+		</tr>
+    
+	   <input type="hidden" name="files" value="YWxpcGF5LnBocA==" />
+	   <input type="hidden" name="files_hash" value="7dfbed6a56e530d95c93b4f4977d6524" />
+		<tr> 
+			<td height="48" colspan="2">
+				<div id="addkey"></div>
+				<div style="padding-left:100px;">
+					<input type="submit" value="保存设置" />
+				</div>
+			</td>
+		</tr>
+	<input type="hidden" name="__hash__" value="fc9fd50b770ccbdd947c7a76938798e4_e5d6afb37d2186be41574664cb7be92b" /></form>
+</table>
+<br />
+<br />
+<br />
+
+</div>
+            </div>
+            <div class="form-group no-offset">
+                <div class="col-sm-offset-2 col-sm-5 col-xs-8">
+                    <input type="hidden" name="id" value="{$rule.id}" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</block>

@@ -1,0 +1,305 @@
+@charset "utf-8";
+@import "mixin";
+
+body{
+	background: #f9f8f9;
+	padding-bottom: 2.2rem;
+}
+.shop-mes{
+  padding: Rem(30) 0;
+  font-size: Rem(28);
+  font-weight: normal;
+  p{
+	width: 92%;
+	padding: 0 3%;
+	border-left: Rem(10) solid $main-color;
+  }
+}
+.mes-lists{
+  @include heightBorder(Rem(10));
+  padding: 4%;
+}
+/*商品列表*/
+.shop-lists{
+  padding: 0 4% 0.2rem 4%;
+	margin-top:0.2rem;
+	background: #fff;
+}
+.lists-header{
+  width: 100%;
+  font-size: Rem(32);
+  padding: Rem(20) 0;
+  // border-bottom: 1px solid $border-grey;
+  .now-type{
+	font-size: Rem(24);
+	color: $main-color;
+  }
+}
+/*items*/
+.items{
+  min-height: Rem(140);
+  padding: Rem(26) 0 ;
+  position: relative;
+  // border-bottom: 1px solid $border-grey;
+  .items-check{
+	position: absolute;
+	left: Rem(-64);
+	top:Rem(50);
+  }
+  .pic{
+	width: Rem(150);
+	height: Rem(112);
+	& img{
+	  width: Rem(150);
+	  height: Rem(160);
+	}
+  }
+  .items-right{
+	width: 70%;
+	min-height: Rem(140);
+	margin-left: Rem(26);
+  }
+}
+/*item-con-head*/
+.item-con-header {
+  & h4{
+	width: 80%;
+	font-size: Rem(26);
+	font-weight: normal;
+	@include font-els(1);
+  }
+  & .items-num{
+	color: $grey2;
+	font-size: Rem(26);
+  }
+}
+/*item-con-middle*/
+.items-middle{
+  font-size: Rem(24);
+  color: $grey999;
+  margin-top: Rem(20);
+}
+
+/*item-con-footer*/
+.items-footer{
+  span{
+	vertical-align: bottom;
+  }
+  .item-footer-money{
+	font-size: Rem(34);
+	color: $main-color;
+  }
+  .item-footer-oldmoney{
+	color: $grey999;
+	margin-left: Rem(30);
+  }
+  .text{
+	font-size: Rem(26);
+	color: $grey2;
+  }
+}
+/*lists-footer*/
+.lists-footer{
+    padding-top: Rem(20);
+    font-size: Rem(26);
+  	.bx-num{
+		color:#999;
+		font-size:0.46rem;
+		text-align: right;
+	}
+}
+.m-money-mes{
+  	.m-top{
+		padding:0.4rem 4%;
+		border-bottom:1px solid #ccc;
+		div{
+			color:#999;
+			font-size:0.44rem;
+		}
+		.dd-zj{
+			div{
+				color:#333;
+				font-size: 0.6rem;
+			}
+		}
+	}
+	.xfk{
+		padding:0.4rem 4%;
+		div{
+			font-size:0.6rem;
+		}
+		.fr{
+			color:$main-color;
+		}
+	}
+}
+.ckyfx{
+	font-size:0.6rem;
+	padding:0.4rem 4%;
+	background: #fff;
+	border-bottom:1px solid #ccc;
+}
+.jf{
+	font-size:0.6rem;
+	padding:0.4rem 4%;
+	background: #fff;
+	border-bottom:1px solid #ccc;
+	.jf-tit{
+		font-size:0.4rem;
+		color:$main-color;
+		padding:0 3px;
+		line-hieght:0.44rem;
+		border-radius:5px;
+		margin-right:0.4rem;
+		border:1px solid $main-color;
+	}
+	.jf-num{
+		color:$main-color;
+	}
+}
+
+.fh {
+	margin-top: 0.2rem;
+	padding: 0.4rem 4%;
+	background: #fff;
+	font-size: 0.52rem;
+}
+.fh a {
+	width: 47%;
+	border-radius: 0.1rem;
+	line-height: 1.2rem;
+	border: 1px solid #ccc;
+	text-align: center;
+}
+.shop-num {
+	 font-size: 0.44rem;
+	 padding: 0.5rem 4%;
+	 background: #fff;
+ }
+
+.shop-num div {
+	color: #999;
+}
+
+.head{
+	background: #f00;
+	padding:0.5rem 1rem;
+	div{
+		color:#fff;
+	}
+	.h-top{
+		font-size: 0.6rem;
+	}
+	.h-info{
+		font-size: 0.48rem;
+	}
+}
+.info-cont {
+	background: #fff;
+	padding: 0 4% 0.4rem;
+	.fl{
+		width:8%;
+		line-height:1.6rem;
+		margin-top:0.5rem;
+		iconfont{
+			font-size: Rem(30);
+		}
+	}
+	.fr{
+		width:92%;
+	}
+}
+
+.in-top span {
+	color: #333;
+}
+
+.in-c {
+	width: 48%;
+	color: #999;
+	font-size: 0.56rem;
+	display: inline-block;
+}
+
+.in-txt {
+	font-size: 0.56rem;
+}
+.fapiao{
+	background: #fff;
+	padding:0.4rem 4%;
+	font-size: 0.52rem;
+	border-top:1px solid #ccc;
+	div{
+		color:#666;
+	}
+}
+.all-cont {
+	background: #fff;
+	margin-top: 0.2rem;
+}
+.all-cont .xs-tit {
+	height: 1.4rem;
+	font-size: 0.52rem;
+	position: relative;
+}
+.all-cont .xs-tit .bj-line {
+	top: 50%;
+	left: 50%;
+	width: 14rem;
+	height: 1px;
+	background: #999;
+	margin-left: -7rem;
+	position: absolute;
+}
+.all-cont .xs-tit .xs-name {
+	top: 0;
+	left: 50%;
+	width: 6rem;
+	background: #f1f1f1;
+	position: absolute;
+	text-align: center;
+	margin-left: -3rem;
+	line-height: 1.6rem;
+	.iconfont{
+		color:$main-color;
+		vertical-align: middle;
+	}
+}
+.content{
+	padding-bottom:2.2rem;
+}
+.foot {
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	position: fixed;
+	background: #fff;
+	font-size: 0.52rem;
+	padding: 0.3rem 4%;
+	a {
+		width: 48%;
+		text-align: center;
+		line-height: 1.2rem;
+		display: inline-block;
+		border: 1px solid #ccc;
+		border-radius: 0.16rem;
+	}
+}
+.tuikuan{
+	a{
+		padding:0 0.2rem;
+		font-size:Rem(22);
+		border-radius:5px;
+		text-align: center;
+		line-height:Rem(50);
+		border:1px solid #ccc;
+	}
+}
+
+
+
+
+
+
+
+

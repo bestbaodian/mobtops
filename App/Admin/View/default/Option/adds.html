@@ -1,0 +1,47 @@
+<extend name="./App/Common/View/default/Base/common.html"/>
+<block name="main_content">
+    <include file="./App/Common/View/default/Public/crumb.html"/>
+    <div class="mod">
+        <div class="mod-head">
+            <h3>
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="{:U('Admin/Option/lists')}">选项展示</a>
+                    </li>
+                </ul>
+            </h3>
+        </div>
+        <div class="tab-content mod-content">
+            <if condition="$tip">
+                <div class="alert alert-info tip" role="alert">{$tip}</div>
+            </if>
+            <form method="post" action="{:U('Admin/Option/adds')}" class="form-horizontal" role="form">
+                <div class="form-group" style="margin-left:-100px;">
+                    <label class="col-sm-2 col-xs-3 control-label">选项名称：</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <input class="form-control" type="text" name="option_name" placeholder="" value=""/>
+                        <span class="help-block" id="sname"></span>
+                    </div>
+                </div>
+                <div class="form-group" style="margin-left:-100px;">
+                    <label class="col-sm-2 col-xs-3 control-label">所属模块：</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <select style="margin-left:-3px;" class="form-control" name="id" id="sel" onchange="change()">
+                            <option value="0">新模块</option>
+                            <foreach name="data" item="vo">
+                                <option value="{$vo.nid}"><?php echo str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;|-',$vo['level']); ?>
+                                    {$vo.pname}
+                                </option>
+                            </foreach>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group" style="margin-left:-100px; text-align: center" >
+                    <input type="submit" value="确认" class="btn btn-primary"/>
+                    <input type="reset" value="重置" class="btn btn-primary"/>
+                </div>
+                <input type="hidden" name="__hash__"
+                       value="9554d1d1b2b1aba94084ad271ac05e6a_2a17f68789adcdaeeea1fb25dfafcb19"/></form>
+        </div>
+    </div>
+</block>

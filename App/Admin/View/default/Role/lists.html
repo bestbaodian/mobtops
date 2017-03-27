@@ -1,0 +1,138 @@
+<extend name="./App/Common/View/default/Base/common.html" />
+<block name="main_content">
+    <include file="./App/Common/View/default/Public/crumb.html" />
+    <div class="mod">
+        <div class="mod-head">
+            <h3>
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="#">角色管理</a>
+                    </li>
+                    <!-- <li class="">
+                        <a href="#">抽奖商品</a>
+                    </li> -->
+                </ul>
+            </h3>
+        </div>
+        <div class="tab-content mod-content">
+            <div class="table-responsive">
+                <div>
+                    <a style="padding:0px 10px; font-size:96%; color:#fff; background:#337ab7; border-radius: 5px; border: none;display:inline-block; text-align:center;" id="jilu" href="{:U('Admin/Role/add')}">新增记录</a>
+                    <form action="{:U('Admin/Role/search')}" method="post">
+                    <if condition="$search neq ' '">
+                        <input type="text"  name="search" value="{$search}"  placeholder="请输入角色名称" class="search">
+                    <else/>
+                        <input type="text"  name="search" value="" placeholder="请输入角色名称" class="search">
+                    </if>
+                    <input type="submit" class="button"  value="搜索" style="padding:1px 10px; font-size:96%; color:#fff; background:#337ab7; border-radius: 5px; border: none;display:inline-block; text-align:center;"/>
+                    </form>
+                </div>                <!--公众号搜索功能-->
+                <style>
+                     #jilu{
+                        font-size: 13px;
+                        line-height: 25px;
+                    }
+                    input[placeholder], [placeholder], *[placeholder] {
+                    color:#778899 !important;
+                    } 
+                    form{margin:0px;display: inline}
+                    .search{
+                            width:200px;
+                            height: 25px;
+                            border-radius: 5px;
+                            border: 1px solid #ccc;
+                            padding-left: 10px;
+                            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+                        }
+                    #select{
+                            border-radius: 5px;
+                            border: 1px solid red;
+                        }     
+                </style>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th style="width:5%;">序号</th>
+                        <th style="width:10%;">角色名称</th>
+                        <th style="width:20%;">角色描述</th>
+                        <th style="width:20%;">角色类型</th>
+                        <th style="width:20%;">数量</th>
+                        <th style="width:10%;">状态</th>
+                        <th style="width:15%;">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <volist name="data" id="vo" key="k">
+                        <tr>
+                            <td>{$k}</td>
+                            <td>{$vo.name}</td>
+			         		<td>{$vo.remark}</td>
+							<td>
+                                <if condition="$vo.type eq system_manager">
+                                    系统管理员
+                                <elseif condition="$vo.type eq admin_manager"/>
+                                    后台管理员
+                                    <elseif condition="$vo.type eq wangzhan_manager"/>
+                                    普通后台管理员
+                                    <elseif condition="$vo.type eq school_manager"/>
+                                    学校管理员
+                                    <elseif condition="$vo.type eq teacher_manager"/>
+                                    教师管理员
+                                <else/>
+                                    
+                                </if>
+                            </td>
+                            <td>{$vo.num}</td>
+			         		<td>
+                                <if condition="$vo.status eq 1">
+                                    正常
+                                <else/>
+                                    禁用
+                                </if>              
+                            </td>
+                            <td> <a href="{:U('Admin/Role/edit',array('id'=>$vo['id']))}"><img src='http://www.mobtop.com.cn/edit.gif' width='12' height='12px'/></a>&nbsp;&nbsp;
+                                 <a href="{:U('Admin/Role/delete',array('id'=>$vo['id']))}"><img src='http://www.mobtop.com.cn/del.gif' width='15' height='15px'/></a>
+                        </tr>
+                    </volist>
+                    </tbody>
+                </table>
+                <input type="hidden" name="__hash__" value="5786ea04b995bc596bb908419e9d38eb_21e697ebb3336580cc76eafc7ebda4a6" /></form>
+            <div class="mod-table-foot">
+                <span class="pull-left"></span>                <div class="page-control"><ul class="pagination pull-right">    </ul></div>            </div> 
+            </div>
+        </div>
+    </div>
+</block>
+<block name="script">
+    <script type="text/javascript">
+        function del(obj) {
+            var postUrl = "{:U('Admin/Role/delete')}";
+            if (confirm('你确定删除吗？')) {
+                $.post(postUrl, {"id":obj}, function (data) {
+                    if (data.status == 1) {
+                        bootAlert(data.info, 'success');
+                        setTimeout(function () {
+                            location.reload();
+                        }, 1500);
+                    } else {
+                        bootAlert(data.info);
+                    }
+                });
+            }
+            else{
+
+            }
+        }
+        var tableFristText = $('.table-title-text');
+        tableFristText.each(function(i,elem){
+            var sl = "...";
+            var html = "";
+            if($(elem).html().length >4){
+                html = $(elem).html().slice(0,4) + sl;
+            }else {
+                html = $(elem).html();
+            }
+            $(elem).html(html);
+        });
+    </script>
+</block>

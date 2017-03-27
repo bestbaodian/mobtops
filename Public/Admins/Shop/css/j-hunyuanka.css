@@ -1,0 +1,79 @@
+
+
+.head{
+    width:92%;
+    height:5.88rem;
+    padding:0.5rem 4%;
+    background:url('../imgs/j-hyk-bj.png') no-repeat;
+    background-size:100% 100%;
+}
+.card{
+    width:100%;
+    height:5.28rem;
+    background:#fff;
+    padding-top:0.6rem;
+    border-radius:0.2rem;
+}
+.logo{
+    display:block;
+    width:6.44rem;
+    height:1.88rem;
+    padding:0 0.5rem;
+    margin-bottom:0.6rem;
+}
+.card-num{
+    padding:0.5rem 0.5rem;
+    border-top:1px dashed #ccc;
+}
+.card-tit{
+    font-size:0.6rem;
+}
+.cardNum{
+    color:#ff6767;
+    font-size:0.8rem; 
+}
+.content{
+    
+}
+.item{
+    margin:0 4%;
+    font-size:0.6rem;
+    line-height:2.2rem;
+    border-bottom:1px solid #f1f1f1;
+}
+.icon{
+    width:0.6rem;
+    height:0.6rem;
+    margin-right:0.3rem;
+    vertical-align:middle;
+}
+.r-arrow{
+    width:0.4rem;
+    height:0.4rem;
+}
+.chzh{
+    color:#999;
+}
+.content .duxiang{
+    margin:0;
+    padding:0 4%;
+    border-top:0.2rem solid #f1f1f1;
+    border-bottom:0.2rem solid #f1f1f1;
+}
+.content .gr-info{
+    margin:0;
+    padding:0 4%;
+    border-top:0.2rem solid #f1f1f1;
+}
+.content .mdtel{
+    margin:0;
+    padding:0 4%;
+    border-top:0.2rem solid #f1f1f1;
+}
+.btn{
+    width:100%;
+    color:#fff;
+    height:1.8rem;
+    margin-top:1.6rem;
+    background:#02b300;
+}

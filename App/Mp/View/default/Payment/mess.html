@@ -1,0 +1,97 @@
+<extend name="./App/Common/View/default/Base/common.html" />
+<block name="main_content">
+<include file="./App/Common/View/default/Public/crumb.html" />
+<div class="mod">
+    <div class="mod-head">
+        <h3>
+            <include file="./App/Common/View/default/Public/nav.html" />
+        </h3>
+    </div>
+    <div class="tab-content mod-content">
+        <if condition="$tip">
+            <div class="alert alert-info tip" role="alert">{$tip}</div>
+        </if>
+        <form method="post" action="{:U('Admin/Node/edit_pro')}" class="form-horizontal" role="form">
+                
+                            <div class="form-group" style="margin-left:-57px;">
+                                <label class="col-sm-2 col-xs-3 control-label">公众号名称:</label>
+                                <div class="col-sm-9 col-xs-12">
+                                    <input class="form-control" type="text" name="name" id="name" placeholder="" value="{$data.name}" disabled="disabled"/>
+                                    <span class="help-block" id="sname"></span>
+                                </div>
+                            </div>   
+                            <div class="form-group" style="margin-left:-57px;">
+                                <label class="col-sm-2 col-xs-3 control-label">公众号类型:</label>
+                                <div class="col-sm-9 col-xs-12">
+                                    <if condition="$data.type eq 1">
+                                        <input class="form-control" type="text" name="name" id="name" placeholder="" value="普通订阅号" disabled="disabled"/>
+                                    <elseif condition="$data.type eq 2"/>
+                                        <input class="form-control" type="text" name="name" id="name" placeholder="" value="认证订阅号" disabled="disabled"/>
+                                    <elseif condition="$data.type eq 3"/>
+                                        <input class="form-control" type="text" name="name" id="name" placeholder="" value="普通服务号" disabled="disabled"/>
+                                    <elseif condition="$data.type eq 4"/>
+                                        <input class="form-control" type="text" name="name" id="name" placeholder="" value="认证服务号" disabled="disabled"/>
+                                    <else/>
+                                        <input class="form-control" type="text" name="name" id="name" placeholder="" value="测试号" disabled="disabled"/>
+                                    </if>
+                                    <span class="help-block" id="sname"></span>
+                                </div>
+
+                            </div> 
+                        <div class="form-group" style="margin-left:-57px;">
+                                <label class="col-sm-2 col-xs-3 control-label">状态:</label>
+                                <div class="col-sm-9 col-xs-12">
+                                    <if condition="$data.status eq 1">
+                                        <input class="form-control" type="text" name="name" id="name" placeholder="" value="正常" disabled="disabled"/>
+                                    <else/>
+                                        <input class="form-control" type="text" name="name" id="name" placeholder="" value="异常" disabled="disabled"/>
+                                    </if>                        
+                                    <span class="help-block"></span>
+                                </div>
+                            </div>
+                        <div class="form-group" style="margin-left:-57px;">
+                                <label class="col-sm-2 col-xs-3 control-label">APPID:</label>
+                                <div class="col-sm-9 col-xs-12">
+                                        <input class="form-control" type="text" name="name" id="name" placeholder="" value="{$data.appid}" disabled="disabled"/>
+                                        <span class="help-block"></span>
+                                </div>
+                         </div>
+                        <div class="form-group" style="margin-left:-57px;">
+                            <label class="col-sm-2 col-xs-3 control-label">头像:</label>
+                            <div class="col-sm-9 col-xs-12">
+                            <img src="{$data.headimg}" alt="" width="100px" height="100px">
+                              <span class="help-block"></span>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-left:-57px;">
+                            <label class="col-sm-2 col-xs-3 control-label">创建时间:</label>
+                            <div class="col-sm-9 col-xs-12">
+                                <input class="form-control" type="text" name="name" id="name" placeholder="" value="{$data.create_time|date="Y-m-d H:i:s",###}" disabled="disabled"/>
+                                <span class="help-block" id="sname"></span>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-left:-57px;">
+                            <div class="col-sm-9 col-xs-12 col-sm-offset-2" style="text-align: center">
+                                <a href="{:U('Mp/Mp/lists')}"><input type="button" value="返回" class="btn btn-primary" /></a>
+                                <a href=""><input type="button" value="修改" class="btn btn-primary" /></a>
+                            </div>
+                        </div>
+
+            </div>
+        <input type="hidden" name="__hash__" value="9554d1d1b2b1aba94084ad271ac05e6a_2a17f68789adcdaeeea1fb25dfafcb19" /></form>
+    </div>
+</div>
+</block>
+<script>
+    function checkname(){
+        var name = $("#name").val();
+        var postUrl = "U('Admin/Node/checkname')";
+        $.get(postUrl,{'name':name},function(e){
+            if(e == 1){
+                $("#sname").html('<font color="red">您输入的菜单名不能和主菜单名重复。</font>');
+            }eles{
+                $("#sname").html('');
+            }
+        });
+    }
+</script>

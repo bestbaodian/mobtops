@@ -1,0 +1,379 @@
+<extend name="./App/Common/View/default/Base/common.html" />
+<block name="main_content">
+    <include file="./App/Common/View/default/Public/crumb.html" />
+    <div class="mod">
+        <div class="mod-head">
+            <h3>
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="{:U('Admin/Role/lists')}">角色管理</a>
+                    </li>
+                    <!-- <li class="">
+                        <a href="#">抽奖商品</a>
+                    </li> -->
+                </ul>
+            </h3>
+        </div>
+        <div class="tab-content mod-content">
+            <div class="table-responsive">
+                <!-- <form action="{:U('Admin/Role/empower_pro')}" method=:"post"> -->
+                <!-- table-bordered -->
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <td >序号</td>
+                        <td >权限名称</td>
+                        <td colspan="3" style="text-align:center">个人</td>
+                        <td colspan="3" style="text-align:center">部门</td>
+                        <td colspan="3" style="text-align:center">全部</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td style="text-align:center">浏览</td>
+                        <td style="text-align:center">编辑</td>
+                        <td style="text-align:center">删除</td>
+                        <td style="text-align:center">浏览</td>
+                        <td style="text-align:center">编辑</td>
+                        <td style="text-align:center">删除</td>
+                        <td style="text-align:center">浏览</td>
+                        <td style="text-align:center">编辑</td>
+                        <td style="text-align:center">删除</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <volist name="nodes" id="vo" key="k">
+                        <tr>
+                            <td style="text-align:center">{$k}</td>
+                            <td >
+                                <?php echo str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;|-',$vo['level']); ?><input type="checkbox" name="check_quan" value="{$vo.id}" class="checks" <?php foreach($checks as $v){ if($v["node_id"]==$vo["id"]){ echo "checked"; } } ?> >{$vo.name}
+                            </td>
+                            
+                            <td style="text-align:center">
+                                <if condition="$vo.pid neq 0">
+                                    <input type="checkbox" name="check_own_read" value="{$vo.id}" pid="{$vo.id}" class="check-this" <?php foreach($checks as $v){ if($v["node_id"]==$vo["id"]){ if($v['own_read'] == 1){ echo "checked"; } } } ?>>
+                                </if>
+                            </td>
+                            <td style="text-align:center">
+                                <if condition="$vo.pid neq 0">
+                                    <input type="checkbox" name="check_own_edit" value="{$vo.id}" pid="{$vo.id}" class="check-this" <?php foreach($checks as $v){ if($v["node_id"]==$vo["id"]){ if($v['own_edit'] == 1){ echo "checked"; } } } ?>>
+                                </if>
+                            </td>
+                            <td style="text-align:center">
+                                <if condition="$vo.pid neq 0">
+                                    <input type="checkbox" name="check_own_delete" value="{$vo.id}" pid="{$vo.id}" class="check-this" <?php foreach($checks as $v){ if($v["node_id"]==$vo["id"]){ if($v['own_delete'] == 1){ echo "checked"; } } } ?>>
+                                </if>
+                            </td>
+                            <td style="text-align:center">
+                                <if condition="$vo.pid neq 0">
+                                    <input type="checkbox" name="check_group_read" value="{$vo.id}" pid="{$vo.id}" class="check-this" <?php foreach($checks as $v){ if($v["node_id"]==$vo["id"]){ if($v['group_read'] == 1){ echo "checked"; } } } ?>>
+                                </if>
+                            </td>
+                            <td style="text-align:center">
+                                <if condition="$vo.pid neq 0">
+                                    <input type="checkbox" name="check_group_edit" value="{$vo.id}" pid="{$vo.id}" class="check-this" <?php foreach($checks as $v){ if($v["node_id"]==$vo["id"]){ if($v['group_edit'] == 1){ echo "checked"; } } } ?>>
+                                </if>
+                            </td>
+                            <td style="text-align:center">
+                                <if condition="$vo.pid neq 0">
+                                    <input type="checkbox" name="check_group_delete" value="{$vo.id}" pid="{$vo.id}" class="check-this" <?php foreach($checks as $v){ if($v["node_id"]==$vo["id"]){ if($v['group_delete'] == 1){ echo "checked"; } } } ?>>
+                                </if>
+                            </td>
+                            <td style="text-align:center">
+                                <if condition="$vo.pid neq 0">
+                                    <input type="checkbox" name="check_all_read" value="{$vo.id}" pid="{$vo.id}" class="check-this" <?php foreach($checks as $v){ if($v["node_id"]==$vo["id"]){ if($v['all_read'] == 1){ echo "checked"; } } } ?>>
+                                </if>
+                            </td>
+                            <td style="text-align:center">
+                                <if condition="$vo.pid neq 0">
+                                    <input type="checkbox" name="check_all_edit" value="{$vo.id}" pid="{$vo.id}" class="check-this" <?php foreach($checks as $v){ if($v["node_id"]==$vo["id"]){ if($v['all_edit'] == 1){ echo "checked"; } } } ?>>
+                                </if>
+                            </td>
+                            <td style="text-align:center">
+                                <if condition="$vo.pid neq 0">
+                                    <input type="checkbox" name="check_all_delete" value="{$vo.id}" id="{$vo.id}" class="check-this" <?php foreach($checks as $v){ if($v["node_id"]==$vo["id"]){ if($v['all_delete'] == 1){ echo "checked"; } } } ?>>
+                                </if>
+                            </td>
+                        </tr>
+                    </volist>
+                    </tbody>
+                </table>
+                <input type="hidden" id="id" value="{$id}">
+                <!-- </form> -->
+                <div class="col-sm-offset-2 col-sm-5 col-xs-8" style="float:left;width:300px;padding-left:200px;">
+                            <button id="submits"  class="btn btn-primary" />确认</button>
+                        </div>
+                        <div class="col-sm-offset-2 col-sm-5 col-xs-8" style="float:left;padding-right:500px; margin-left:-30px;">
+                            <input type="reset" value="重置" class="btn btn-primary" />
+                        </div>
+                <input type="hidden" name="__hash__" value="5786ea04b995bc596bb908419e9d38eb_21e697ebb3336580cc76eafc7ebda4a6" /></form>
+            <div class="mod-table-foot">
+                <div class="page-control"><ul class="pagination pull-right">    </ul></div>            </div> 
+            </div>
+        </div>
+    </div>
+</block>
+<block name="script">
+    <script type="text/javascript">
+
+        function del(obj) {
+            var postUrl = "{:U('Admin/Role/delete')}";
+            if (confirm('你确定删除吗？')) {
+                $.post(postUrl, {"id":obj}, function (data) {
+                    if (data.status == 1) {
+                        updateAlert(data.info, 'success');
+                        setTimeout(function () {
+                            location.reload();
+                        }, 1500);
+                    } else {
+                        updateAlert(data.info);
+                    }
+                });
+            }
+            else{
+
+            }
+        }
+        var tableFristText = $('.table-title-text');
+        tableFristText.each(function(i,elem){
+            var sl = "...";
+            var html = "";
+            if($(elem).html().length >4){
+                html = $(elem).html().slice(0,4) + sl;
+            }else {
+                html = $(elem).html();
+            }
+            $(elem).html(html);
+        });
+
+        //点击子集的时候父集自动选中
+        $(".checks").on('ifChecked', function (e){
+            var val = $(this).val();
+            var postUrl = "{:U('Admin/Role/check_true')}";
+            $.get(postUrl,{'id':val},function(e){
+                if(e!=0){
+                    if(e){
+                        $(".checks").each(function(){
+                        // alert($(this).val());
+                            if($(this).val() == e){
+                                $(this).parents('tr').find('td').eq(1).find('div').addClass('checked');
+                            }
+                        });
+                    }else{
+                        alert('获取失败');
+                    }
+                    
+                }
+            });
+            
+        });
+
+        //父集未选中的情况下子集取消选中
+        $(".checks").on('ifUnchecked', function (e){
+            var val = $(this).val();
+            var postUrl = "{:U('Admin/Role/check_fu')}";
+            $.get(postUrl,{'id':val},function(e){
+                    if(e){
+                        console.log(e);
+                        for(var i=0;i<e.length;i++){
+                            // alert(e[i].id);
+                            $(".checks").each(function(){
+                                if($(this).val() == e[i].id){
+                                    $(this).parents('tr').find('td').eq(1).find('div').removeClass('checked');
+                                    uncheck($(this));
+                                }
+                            });
+                        }
+                        
+                    }else{
+                        alert('获取失败');
+                    }
+            });
+            
+        });
+
+        function uncheck(elem){
+            elem.parents('tr').find('.icheckbox_square-blue').removeClass('checked');
+        }
+
+        //点击右边项目的时候左边默认选中
+        $(".check-this").on('ifChecked', function(e){
+            var str = $(this).parents('tr').find('td').eq(1).find('div').attr("class");
+            var length = str.length;
+            // alert(length);
+            var checks = str.substring(22,29);
+            // alert(checks);
+            if(checks != 'checked'){
+                // alert('请先选择左侧对应权限再进行分配。');
+                var father = $(this).parents('tr').find('td').eq(1).find('div');
+                father.addClass('checked');
+                var val = father.children(0).val();
+
+                var postUrl = "{:U('Admin/Role/check_true')}";
+                $.get(postUrl,{'id':val},function(e){
+                    if(e!=0){
+                        if(e){
+                            $(".checks").each(function(){
+                            // alert($(this).val());
+                                if($(this).val() == e){
+                                    $(this).parents('tr').find('td').eq(1).find('div').addClass('checked');
+                                }
+                            });
+                        }else{
+                            alert('获取失败');
+                        }
+                        
+                    }
+                });
+            }
+        })
+
+        $("#submits").click(function(){
+            //获取当前角色的id
+            var role_id = $("#id").val();
+            //获取到的权限的id
+            var obj = document.getElementsByName("check_quan");
+            var s='';//如果这样定义var s;变量s中会默认被赋个null值
+            for(var i=0;i<obj.length;i++){
+                 /*if(obj[i].checked)
+                 s+=obj[i].value+','; */
+                 if($(obj[i]).parent().hasClass('checked')){
+                    /*s+=$(obj[i]).children[0].val();*/
+                    s+=$(obj[i]).val()+',';
+                 }  
+            }
+            var length = s.length;
+            new_val = s.substring(0,length-1);
+            // alert(new_val);
+
+            //个人浏览id
+            var own_read_id = document.getElementsByName("check_own_read");
+            // alert(own_id.length);
+            var o_read_id = '';
+            for(var i=0;i<own_read_id.length;i++){  
+                if(own_read_id[i].checked)  
+                o_read_id+=own_read_id[i].value+',';      
+            }
+            var o_read_id_length = o_read_id.length;
+            var new_own_read_id = o_read_id.substring(0,o_read_id_length-1);
+            //alert(new_own_id);
+
+            //个人编辑id
+            var own_edit_id = document.getElementsByName("check_own_edit");
+            // alert(own_id.length);
+            var o_edit_id = '';
+            for(var i=0;i<own_edit_id.length;i++){  
+                if(own_edit_id[i].checked)  
+                o_edit_id+=own_edit_id[i].value+',';      
+            }
+            var o_edit_id_length = o_edit_id.length;
+            var new_own_edit_id = o_edit_id.substring(0,o_edit_id_length-1);
+
+            //个人删除
+            var own_delete_id = document.getElementsByName("check_own_delete");
+            // alert(own_id.length);
+            var o_delete_id = '';
+            for(var i=0;i<own_delete_id.length;i++){  
+                if(own_delete_id[i].checked)  
+                o_delete_id+=own_delete_id[i].value+',';      
+            }
+            var o_delete_id_length = o_delete_id.length;
+            var new_own_delete_id = o_delete_id.substring(0,o_delete_id_length-1);
+
+            //部门
+            //部门浏览id
+            var group_read_id = document.getElementsByName("check_group_read");
+            // alert(group_id.length);
+            var g_read_id = '';
+            for(var i=0;i<group_read_id.length;i++){  
+                if(group_read_id[i].checked)  
+                g_read_id+=group_read_id[i].value+',';      
+            }
+            var g_read_id_length = g_read_id.length;
+            var new_group_read_id = g_read_id.substring(0,g_read_id_length-1);
+            //alert(new_group_id);
+
+            //部门编辑id
+            var group_edit_id = document.getElementsByName("check_group_edit");
+            // alert(group_id.length);
+            var g_edit_id = '';
+            for(var i=0;i<group_edit_id.length;i++){  
+                if(group_edit_id[i].checked)  
+                g_edit_id+=group_edit_id[i].value+',';      
+            }
+            var g_edit_id_length = g_edit_id.length;
+            var new_group_edit_id = g_edit_id.substring(0,g_edit_id_length-1);
+
+            //部门删除
+            var group_delete_id = document.getElementsByName("check_group_delete");
+            // alert(group_id.length);
+            var g_delete_id = '';
+            for(var i=0;i<group_delete_id.length;i++){  
+                if(group_delete_id[i].checked)  
+                g_delete_id+=group_delete_id[i].value+',';    
+            }
+            var g_delete_id_length = g_delete_id.length;
+            var new_group_delete_id = g_delete_id.substring(0,g_delete_id_length-1);
+            // alert(new_group_delete_id);
+
+            //所有人
+            //所有人浏览id
+            var all_read_id = document.getElementsByName("check_all_read");
+            // alert(all_id.length);
+            var a_read_id = '';
+            for(var i=0;i<all_read_id.length;i++){  
+                if(all_read_id[i].checked)  
+                a_read_id+=all_read_id[i].value+',';      
+            }
+            var a_read_id_length = a_read_id.length;
+            var new_all_read_id = a_read_id.substring(0,a_read_id_length-1);
+            //alert(new_all_id);
+
+            //所有人编辑id
+            var all_edit_id = document.getElementsByName("check_all_edit");
+            // alert(all_id.length);
+            var a_edit_id = '';
+            for(var i=0;i<all_edit_id.length;i++){  
+                if(all_edit_id[i].checked)  
+                a_edit_id+=all_edit_id[i].value+',';      
+            }
+            var a_edit_id_length = a_edit_id.length;
+            var new_all_edit_id = a_edit_id.substring(0,a_edit_id_length-1);
+
+            //所有人删除
+            var all_delete_id = document.getElementsByName("check_all_delete");
+            // alert(all_id.length);
+            var a_delete_id = '';
+            for(var i=0;i<all_delete_id.length;i++){  
+                if(all_delete_id[i].checked)  
+                a_delete_id+=all_delete_id[i].value+',';    
+            }
+            var a_delete_id_length = a_delete_id.length;
+            var new_all_delete_id = a_delete_id.substring(0,a_delete_id_length-1);
+            // alert(new_all_delete_id);
+
+            var postUrl = "{:U('Admin/Role/empower_pro')}";
+            $.post(postUrl,{'role_id':role_id,'new_val':new_val,'new_own_read_id':new_own_read_id,'new_own_edit_id':new_own_edit_id,'new_own_delete_id':new_own_delete_id,'new_group_read_id':new_group_read_id,'new_group_edit_id':new_group_edit_id,'new_group_delete_id':new_group_delete_id,'new_all_read_id':new_all_read_id,'new_all_edit_id':new_all_edit_id,'new_all_delete_id':new_all_delete_id},function(data){
+                if (data.status == 1) {
+                    alert(data.info);
+                    location.reload();
+                } else {
+                    alert(data.info);
+                }
+            });
+        });
+
+       /* var tdChecks = $('.check-this');
+
+        tdChecks.each(function(i,elem){
+           console.log($(elem).prop('checked'));
+           $(elem).on('click',function(){
+                alert(1);
+           })
+        })*/
+       // var td = $('td');
+       // td.on('click','ins',function(){
+       //      alert('aaaa');
+       // })
+    </script>
+</block>

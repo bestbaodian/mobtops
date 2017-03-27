@@ -1,0 +1,16 @@
+<div class="goutong"><div class="form-control">沟通记录</div></div>
+                    <volist name="chat_data" id="vo">
+                        <div class="gt-list">
+                            <if condition="$vo.p_type eq 1">
+                                <img src="http://www.mobtop.com.cn/admin.jpg" alt="">
+                                <div class="jilu">
+                                    <b>售后工程师:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$vo.update_times|date="Y-m-d H:i:s",###}</b>
+                                    <p><b>{$vo.answers}</b></p>
+                                </div>
+                            <else/>
+                                <img src="{$mess_data.headimg}" alt="">{$mess_data.email}:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$vo.update_times|date="Y-m-d H:i:s",###}
+                                <p>{$vo.answers}</p>
+                            </if>
+                        </div>
+                        <hr style=" height:2px;border:none;border-top:2px dotted #185598;" />
+                    </volist>

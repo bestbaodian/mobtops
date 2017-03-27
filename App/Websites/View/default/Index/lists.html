@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="title" content="mobtop网站可视化开发">
+    <meta name="description" content="mobtop网站可视化开发">
+    <meta name="keywords" content="mobtop网站可视化开发">
+    <title>mobtop网站可视化开发</title>
+    <!-- Le styles -->
+    <link rel="shortcut icon" href="http://www.mobtop.com.cn/logo.png" width="25px" height="25px">
+    <link rel="stylesheet" href="__PUBLIC__/Website/css/reset.css">
+    <!--<link href="__PUBLIC__/Ckeditor/css/bootstrap-combined.min.css" rel="stylesheet">-->
+    <link href="__PUBLIC__/Ckeditor/css/layoutit.css" rel="stylesheet">
+    <link rel="stylesheet" href="__PUBLIC__/Ckeditor/css/bootstrap.min.css">
+    <!--Le scripts-->
+    <script type="text/javascript" src="__PUBLIC__/Ckeditor/js/jquery-3.0.0.min.js"></script>
+    <script src="__PUBLIC__/Ckeditor/js/bs3.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Website/css/swiper.min.js"></script>
+    <!--更多样式-->
+    <link type="text/css" rel="stylesheet" href="__PUBLIC__/Website/css/swiper.min.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Website/css/j-ksh-index.css" />
+    <style>
+        img{
+            width: 100%;
+        }
+    </style>
+</head>
+<!-- 轮播效果展示css及js代码    同时引用swiper.min.js和swiper.min.css -->
+<style>
+    .banner{  width: 100%; height: 420px; overflow: hidden; }
+    .banner ul{ position: absolute; top: 0; left: 0; }
+    .banner ul li{width: 100%; float: left; height: 420px; overflow: hidden;}
+    .banner ul li img{width: 100%; height: 420px;}
+    .swiper-container {  width: 100%;  height: 100%;  }
+    .swiper-slide {  text-align: center;  font-size: 18px; background: #fff;
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+    }
+</style>
+<script type="text/javascript" src="__PUBLIC__/Common/js/jquery.js"></script>
+<script>
+    $(function(){
+        var swiper = new Swiper('.seiper1', {
+            pagination: '.swiper-pagination',
+            nextButton: '.swiper-button-next',
+            prevButton: '.swiper-button-prev',
+            paginationClickable: true,
+            centeredSlides: true,
+            autoplay: 2500,
+            loop:true
+        });
+
+        // 切换
+        $('.choose-list').on('click','li',function(){
+            $(this).addClass('active-items').siblings().removeClass('active-items');
+        })
+    })
+</script>
+<body>
+<!-- MySQL中获取所遇到的数据 -->
+{$data[0]['content']}
+<!--mysql中获取到的数据-->
+</body>
+</html>

@@ -1,0 +1,226 @@
+<extend name="./App/Common/View/default/Base/common.html" />
+<block name="main_content">
+<style>
+    body{
+        height:100%;
+    }
+    .aw-content-wrap{
+        background: #fff;
+        height:100%;
+    }
+    .aw-content-wrap .mod{
+        box-shadow: none!important;
+        height:100%;
+    }
+    .p-fr{
+        float:right;
+        width:65%;
+        height:100%;
+        border-left:1px solie #ddd!important;
+    }
+    .fr{
+        float:right;
+    }
+    .aw-footer{
+        display: none;
+    }
+    .z-cont{
+        padding:20px;
+    }
+    .wen-img{
+        width:30px;
+        height:30px;
+        border-radius:50%;
+        margin-left:20px;
+    }
+    .hui-img{
+        width:30px;
+        height:30px;
+        border-radius:50%;
+        margin-right:20px;
+    }
+    .hui{
+        margin-bottom:30px;
+    }
+    .fl{
+        float:left;
+    }
+    .wen, .hui{
+        overflow: hidden;
+    }
+    .wen-cont, .hui-cont{
+        width:180px;
+        min-height:60px;
+        max-height:300px;
+        border:#ccc;
+        overflow:hidden;
+        padding:10px;
+        background: #fff;
+        border-radius:5px;
+    }
+    .col-sm-2{
+        line-height:40px;
+        width:80%!important;
+        text-align: left!important;
+    }
+    .form-group{
+        margin-bottom:0!important;
+    }
+    .gj-txt{
+        padding:10px 15px;
+        border-radius:5px;
+        border:1px solid #ddd;
+    }
+    .gj-txt div{
+        /*padding:0 20px;*/
+    }
+    .phone-cont{
+        position:relative;
+        background:url(__PUBLIC__/Admin/img/p-bj.jpg);
+        background-size:100% 100%;
+    }
+    .phone-foot{
+        left:0;
+        bottom:0;
+        position:absolute;
+    }
+    .f-img{
+        width:321px;
+        height:43px;
+        display:block;
+    }
+    .f-name{
+        top:0;
+        left:20%;
+        width:200px;
+        text-align:center;
+        line-height:43px;
+        position:absolute;
+    }
+    .col-sm-offset-2 {
+        padding-left:0!important;
+    }
+</style>
+    <include file="./App/Common/View/default/Public/crumb.html" />
+  <div class="mod" style="">
+    <div class="mod-head">
+        <h3>
+            <ul class="nav nav-tabs">
+                    <li class="active"><a href="javascript:void(0)">文本回复</a></li>
+                    <li class="active"><a href="index.php?s=/Mp/AutoReply/addimage">图片回复</a></li>
+                    <li class="active"><a href="index.php?s=/Mp/AutoReply/addtextimage">图文回复</a></li>
+            </ul>
+        </h3>
+    </div>
+    <!--会员卡效果展示区域-->
+        
+    <div class="tab-content mod-content" style="border:none; overflow:hidden;height:100%;">
+        <div class="col-sm-5 col-md-5 hidden-xs img-config" style="width:336px;height:640px; border:1px solid #999; border-radius:30px; position:relative;padding:50px 0 0; top:30px; right:-30px; position:fixed; top:130px; left:240px;" >
+            <div class="tt"></div>
+            <div class="phone-cont">
+                <div class="phone-tit">
+                    <h1 class="hh1">文本回复</h1>
+                </div>
+                <div class="z-cont">
+                    <div class="hui">
+                        <img class="fl hui-img" src="http://www.mobtop.com.cn/logo.png" alt="">
+                        <div class="fl hui-cont"></div>
+                    </div>
+
+                    <div class="wen">
+                        <img class="fr wen-img" src="http://www.mobtop.com.cn/logo.png" alt="">
+                        <div class="fr wen-cont"></div>
+                    </div>
+                    <div class="phone-foot">
+                        <div class="f-name">菜单中心</div>
+                        <img src="__PUBLIC__/Admin/img/p-foot.jpg" alt="" class="f-img">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="fr p-fr" style="">
+            <form method="post" action="index.php?s=/Mp/AutoReply/addtext" class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label class="col-sm-2 col-xs-3 control-label">关键词:</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <input class="form-control gjc" type="text" name="keyword"/>
+                        <span class="help-block">多个关键词请用空格格开：例如: 美丽 漂亮 好看 </span>
+                    </div>
+                    <label class="col-sm-2 col-xs-3 control-label">关键词类型：</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <div class="gj-txt">
+                            <div>
+                                <label for=""><input type="radio" name="radio"></label>
+                                包含匹配 （当此关键词包含粉丝输入关键词时有效）</div>
+                            <div>
+                                <label for=""><input type="radio" name="radio"></label>
+                                完全匹配 （当此关键词和粉丝输入关键词完全相同时有效）
+                            </div>
+                        </div>
+                    </div>
+                    </div><div class="form-group">
+                        <label class="col-sm-2 col-xs-2 control-label">文本内容:</label>
+                        <div class="col-sm-9 col-xs-12">
+                            <textarea class="form-control txt-cont" name="content" placeholder="" rows="6"></textarea>
+                            <span class="help-block">请不要多于300个中文字符或者1000个英文字符否则无法发送! </span>
+                        </div>
+                    </div>      
+                    <div class="form-group" style="width:82%!important;text-align:center;padding:20px 0;">
+                        <input type="submit" value="保存" class="btn btn-primary center-block ajax-post" style="display:inline-block;" />
+                    </div>
+                </div>
+            </form>
+        </div>
+  </div>
+                <!--公众号搜索功能-->
+                <style>
+                   /* #jilu{
+                        font-size: 13px;
+                        line-height: 15px;
+                    }*/
+                    input[placeholder], [placeholder], *[placeholder] {
+                        color:#778899 !important;
+                    }
+                    form{margin:0px;display: inline}
+                    .search{
+                            width:200px;
+                            height: 25px;
+                            border-radius: 5px;
+                            border: 1px solid #ccc;
+                            padding-left: 10px;
+                            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+                        }
+                    #select{
+                            border-radius: 5px;
+                            border: 1px solid red;
+                        }
+                </style>
+                    <input type="hidden" name="__hash__" value="5786ea04b995bc596bb908419e9d38eb_21e697ebb3336580cc76eafc7ebda4a6" />
+                    <div class="mod-table-foot">            
+                        <div class="page-control"><ul class="pagination pull-right">    </ul></div>            
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="script">
+<script type="text/javascript">
+    $('.gjc').on('input', function(){
+        var gjc = $(this).val();
+        $('.hui-cont').html(gjc);
+    });
+    $('.gjc').on('propertychange', function(){
+        var gjc = $(this).val();
+        $('.hui-cont').html(gjc);
+    });
+    $('.txt-cont').on('input', function(){
+        var gjc = $(this).val();
+        $('.wen-cont').html(gjc);
+    });
+    $('.txt-cont').on('propertychange', function(){
+        var gjc = $(this).val();
+        $('.wen-cont').html(gjc);
+    });
+</script>
+</block>

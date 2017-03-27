@@ -1,0 +1,100 @@
+@charset "utf-8";
+@import "mixin";
+
+.nav{
+    background:#fff;
+    font-size:0.52rem;
+    border-bottom:1px solid #ddd;
+    a{
+        width:25%;
+        float:left;
+        text-align:center;
+        line-height:1.4rem;
+        .b-line{
+            width:Rem(20);
+            height:Rem(6);
+            margin-left:45%;
+            border-radius:Rem(3);
+        }
+    }
+    .cur{
+        color:$main-color;
+        .b-line{
+            background:$main-color;
+        }
+    }
+}
+.cont {
+    display:block;
+    background:#fff;
+    padding: Rem(20) 4%;
+    margin-bottom:0.2rem;
+    .cont-title {
+        font-size:0.52rem;
+        color: $main-color;
+        margin-top:0.4rem;
+        padding-top:0.3rem;
+        border-top:1px solid #ddd;
+    }
+    .shop-pic {
+        display: flex;
+        .imgSrc {
+            flex: 0 0 4rem;
+            width: 4rem;
+            height: 3.4rem;
+        }
+        .shop-info {
+            flex: 1;
+            padding-left: Rem(20);
+            font-size: Rem(26);
+            .shop-name{
+                margin-bottom: Rem(10);
+            }
+            .shop-price {
+                color: $main-color;
+                margin-bottom: Rem(20);
+                .rmb {
+                    font-size: Rem(36);
+                }
+                .old-price {
+                    color: $grey999;
+                    text-decoration: line-through;
+                    margin-left: Rem(20);
+                }
+                .fr {
+                    color: $black;
+                }
+            }
+        }
+        .group{
+            display: flex;
+            justify-content: flex-start;
+            p{
+                margin-left: Rem(20);
+                color: $grey999;
+                font-size: Rem(24);
+            }
+        }
+        .group-icon {
+            display: flex;
+            border: 1px solid $main-color;
+            justify-content: flex-start;
+            font-size: Rem(24);
+            border-radius: Rem(5);
+            width: Rem(140);
+            overflow: hidden;
+            .icon-l {
+                flex: 0 0 Rem(40);
+                text-align: center;
+                color: $white;
+                background: $main-color;
+            }
+            .icon-r {
+                flex: 1;
+                color: $main-color;
+                background: $white;
+                text-align: center;
+            }
+        }
+    }
+}

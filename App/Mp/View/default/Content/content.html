@@ -1,0 +1,109 @@
+<extend name="./App/Common/View/default/Base/common.html" />
+<block name="main_content">
+    <include file="./App/Common/View/default/Public/crumb.html" />
+    <div class="mod">
+        <div class="mod-head">
+            <h3>
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="{:U('Mp/Content/content')}">公告中心</a>
+                    </li>
+                </ul>
+            </h3>
+        </div>
+        <style>
+        .aw-footer{
+            display:none;
+        }
+        </style>
+        <div class="tab-content mod-content">
+            <div class="table-responsive">
+                <div>
+                    <form action="{:U('Mp/Content/content')}" method="post">
+                    <if condition="$search neq ' '">
+                        <input type="text"  name="search" value="{$search}"  placeholder="请输入公告标题" class="search" style="width:400px!important;">
+                    <else/>
+                        <input type="text"  name="search" value="" placeholder="请输入公告标题" class="search" style="width:400px!important;">
+                    </if>
+                    <input type="submit" class="button"  value="搜索" style="padding:1px 10px; font-size:96%; color:#fff; background:#337ab7; border-radius: 5px; border: none;display:inline-block; text-align:center;"/>
+                    </form> 
+                </div>               <!--公众号搜索功能-->
+                <style>
+                   /* #jilu{
+                        font-size: 13px;
+                        line-height: 15px;
+                    }*/
+                   
+                   input[placeholder],[placeholder],*[placeholder] {
+                    color: #778899 !important;
+                   }
+                   
+                   form {
+                    margin: 0px;
+                    display: inline
+                   }                 
+                   .search {
+                    width: 200px;
+                    height: 25px;
+                    border-radius: 5px;
+                    border: 1px solid #ccc;
+                    padding-left: 10px;
+                    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+                   }                  
+                </style>        
+                <div class="commoun gt-cont">
+                <div id="showdiv">
+                <div id="msg">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th style="width:5%;">ID</th>
+                        <th style="width:75%;">公告标题</th>
+                        <th style="width:15%;">提交时间</th>
+                        <th style="width:8%;">状态</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <volist name="data.lists" key="k" id="vo">
+                        <tr>
+                            <td>{$k}</td>
+                            <td><a href="{:U('Mp/Content/content_mess',array('cid'=>$vo['cid']))}" style="color:blue;">{$vo.affiche_title}</a></td>
+                            <td>{$vo.affiche_time|date="Y-m-d H:i:s",###}</td>
+                            <td>
+                                <if condition="$vo.is_read eq 1">
+                                    已读
+                                    <else/>
+                                    <font color="red">未读</font>
+                                </if>
+                            </td>
+                        </tr>
+                    </volist>
+                    </tbody>
+                </table>
+            </div>
+            </div>
+            </div>
+            <div style="margin-top:20px;">
+                    <center>
+                        <a href="index.php?s=/Mp/Content/content/p/1">首页</a>&nbsp;&nbsp;
+                        <a href="index.php?s=/Mp/Content/content/p/{$data.pre}">上一页</a>&nbsp;&nbsp;
+                        <a href="index.php?s=/Mp/Content/content/p/{$data.next}">下一页</a>&nbsp;&nbsp;
+                        <a href="index.php?s=/Mp/Content/content/p/{$data.pagesum}">尾页</a>
+
+                        &nbsp;&nbsp; 页次:<font color="red">{$data.page}</font>/{$data.pagesum}&nbsp;&nbsp;共有<font color="red">{$data.counts}</font>条记录&nbsp;&nbsp;转到<input type="text" id="p" style="width:20px; height:20px; border:1px solid #a49191">页&nbsp;&nbsp;<button onclick="gopage()" style="padding:0; line-height:18px;">GO</button></center>
+                    </span>
+                    <div class="page-control"><ul class="pagination pull-right">    </ul></div>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="script">
+    <script>
+        
+        function gopage(){
+            var page = $("#p").val();
+            var postUrl = "{:U('Mp/Content/content')}";
+            window.location.href='index.php?s=/Mp/Content/content/p/'+page;
+        }
+    </script>
+</block>

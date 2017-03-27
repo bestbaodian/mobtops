@@ -1,0 +1,62 @@
+@charset "utf-8";
+@import "mixin";
+
+.page-group, .group, .content {
+  background: $white
+}
+
+/*icon-link*/
+.m-change-icon {
+  background: #f9f8f9;
+  @include textHeight(Rem(96));
+  p{
+	position: relative;
+	.change-link {
+	  color: $main-color;
+	  position: absolute;
+	  right: 0;
+	  top: 0;
+	  font-size: Rem(32);
+	}
+  }
+}
+/*m-place-mes*/
+.m-place-mes{
+  font-size: Rem(30);
+  .mes-list{
+	border-bottom: $border-bottom;
+	position: relative;
+	@include textHeight(Rem(122));
+	p:last-of-type{
+	  width: 72%;
+	  @include font-els(1);
+	}
+  }
+}
+/*m-change-mes*/
+.m-change-mes{
+  font-size: Rem(30);
+  .mes-list{
+	border-bottom: $border-bottom;
+	@include textHeight(Rem(122));
+	input{
+	  color: $grey666;
+	  width: 72%;
+	  @include textHeight(Rem(120));
+		float: right;
+	}
+  }
+  display: none;
+}
+
+.delete-message{
+  @include fixed-bottom();
+  text-align: center;
+  @include textHeight(Rem(98));
+  background: $main-color;
+  color: $white !important;
+  font-size: Rem(32);
+  &:active{
+	background: $main-act;
+  }
+}

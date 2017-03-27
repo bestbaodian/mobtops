@@ -1,0 +1,88 @@
+a<extend name="./App/Common/View/default/Base/common.html" />
+<block name="main_content">
+<include file="./App/Common/View/default/Public/crumb.html" />
+<style>
+            .form-group{
+                margin-left:0!important;
+                margin-right:0!important;
+            }
+            .form-group .col-sm-2{
+                width:12%;
+            }
+            .form-group .col-sm-9{
+                width:82%!important;
+            }
+            .col-sm-9 #edui1{
+                width:100%!important;
+            }
+</style>
+<div class="mod">
+    <div class="mod-head">
+            <h3>
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="{:U('Admin/Content/content')}">公告中心</a>
+                    </li>
+                </ul>
+            </h3>
+        </div>
+    <div class="tab-content mod-content">
+        <if condition="$tip">
+            <div class="alert alert-info tip" role="alert">{$tip}</div>
+        </if>
+        <form method="post" action="{:U('Admin/Content/content_edit')}" class="form-horizontal" role="form" enctype="multipart/form-data">
+                            <div class="form-group" style="margin-left:-57px;">
+                            <label class="col-sm-2 col-xs-3 control-label" style="">公告标题:</label>
+                            <div class="col-sm-9 col-xs-12">
+                                <input class="form-control" type="text" name="affiche_title" required="required" id="name" placeholder="" value="{$data.affiche_title}"  />
+                                <span class="help-block"> </span>
+                            </div>
+                            <div class="form-group" style=" ">
+                                <label class="col-sm-2 col-xs-3 control-label">公告内容:</label>
+                                <div class="col-sm-9 col-xs-12" style="width:68%!important;">
+                                    <script id="post-content" name="affiche_content" required="required" type="text/plain">{$data.affiche_content}</script>
+                                    <span class="help-block"></span>
+                                </div>
+                            </div>
+                            <div class="form-group" style="">
+                                <label class="col-sm-2 col-xs-3 control-label">公告图片:</label>
+                                <div class="col-sm-9 col-xs-12" ng-invoker="context.bind();">
+                                    <div class="input-group ">
+                                        <input name="affiche_img" class="form-control webuploader-input" value="{$data.affiche_img}" type="text">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default webuploader-btn" type="button" data-toggle="modal" data-target="#modal-wechat-webuploader" style="height: 34px; width:100%;">选择图片</button>
+                                        </span>
+                                    </div>
+                                    <div class="input-group " style="margin-top:.5em;">
+                                        <img src="{$data.affiche_img}" data-nopic="/Public/Mp/img/nopic.jpg" class="img-responsive img-thumbnail webuploader-picture" width="150">
+                                        <em class="close" style="position:absolute; top: 0px; right: -14px;" title="删除这张图片">×</em>
+                                    </div>
+                                    <span class="help-block"></span>
+                                </div>
+                            </div>
+                           <input type="hidden" name="cid" value="{$data.cid}">
+                            
+                            <div class="form-group" style="text-align: center">
+                                <input type="submit" value="确认" class="btn btn-primary" style="display: inline-block" />
+                                <input type="reset" value="重置" class="btn btn-primary" style="display: inline-block" />
+                            </div>
+            </div>
+            </form>
+    </div>
+</div>
+</block>
+<block name="script">
+    <script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.all.js"></script>
+    <script type="text/javascript">
+        var ue = UE.getEditor('post-content',{
+            toolbars: [
+                ['fullscreen', 'source', 'undo', 'redo','bold', 'italic', 'underline','fontborder', 'strikethrough', '|','simpleupload', 'insertimage','emotion','link','unlink', '|', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote','searchreplace', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc'],
+                ['inserttable','insertrow', 'insertcol','mergeright', 'mergedown','deleterow', 'deletecol','splittorows','splittocols', 'splittocells','deletecaption','inserttitle', 'mergecells', 'deletetable','insertparagraphbeforetable', 'paragraph','fontsize','fontfamily']
+            ],
+            initialFrameHeight:200,
+            initialFrameWidth:600,
+            zIndex:100
+        });
+    </script>
+</block>

@@ -1,0 +1,90 @@
+@charset "utf-8";
+@import "mixin";
+.m-user-center{
+  width: 92%;
+  height: Rem(244);
+  background: url("../imgs/j-hyk-bj.png") no-repeat;
+  background-size: cover;
+  padding: 0 4%;
+  .head-pic{
+	float: left;
+	width: 24%;
+	height: Rem(244);
+	text-align: center;
+	position: relative;
+	img{
+	  width: Rem(122);
+	  height: Rem(122);
+	  position: absolute;
+	  top: 50%;
+	  left: 50%;
+	  margin-top:Rem(-61);
+	  margin-left:Rem(-61);
+	}
+  }
+  .head-text{
+	float: left;
+	width: 75%;
+	height: Rem(244);
+	padding-top: Rem(90);
+	box-sizing: border-box;
+	.user,.jf{
+	  font-size: Rem(24);
+	  color: $white;
+	}
+	.iconfont{
+	  color: $white;
+	  margin-top: Rem(20);
+	}
+	p{
+	  font-size: Rem(24);
+	  color: $white;
+	  span{
+		float: right;
+	  }
+	}
+  }
+}
+/*m-user-icons*/
+.m-user-icons{
+  margin-top: Rem(40);
+  border-bottom: 12px solid #f5f5f5;
+  h4{
+	padding: $auto-pad;
+	font-size:Rem(28);
+	border-left:4px solid $main-color;
+  }
+}
+.m-user-fn{
+
+}
+.user-fn-list{
+  width: 92%;
+  padding: $auto-pad;
+  line-height: Rem(80);
+  border-bottom: Rem(10) solid #f5f5f5;
+  li{
+	border-bottom: 1px solid $border-grey;
+	&:last-of-type{
+	  border-bottom: none;
+	}
+  }
+  div{
+	font-size: Rem(28);
+	padding-left: Rem(56);
+	position: relative;
+	img{
+	  width: Rem(30);
+	  height: Rem(27);
+	  position: absolute;
+	  left: 0;
+	  top: Rem(26);
+	}
+	span{
+	  float: right;
+	}
+	.iconfont{
+	  color: #9f9f9f;
+	}
+  }
+}

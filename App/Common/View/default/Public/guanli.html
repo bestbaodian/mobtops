@@ -1,0 +1,36 @@
+<ul class="pull-left">
+            <li class="dropdown mp">
+                <if condition="$mp_info['origin_id']">
+                <a href="#" class="dropdown-toggle mod-bell" data-toggle="dropdown">
+                    <img src="<if condition="$mp_info['headimg']">{$mp_info['headimg']}<else />__PUBLIC__/Admin/img/noname.jpg</if>" class="img-circle" width="30" height="30" style="position:relative;top:8px;">
+                    {$mp_info['name']}
+                    <span class="caret"></span>
+                </a>
+                <else />
+                <a href="#" class="dropdown-toggle mod-bell" data-toggle="">
+                    <img src="__PUBLIC__/Admin/img/noname.jpg" class="img-circle" width="30" height="30" style="position:relative;top:8px;">
+                    <if condition="$_G['module_name'] eq 'admin'">
+                    系统管理后台
+                    <else />
+                    请先选择公众号
+                    </if>
+                </a>
+                </if>
+                <ul class="dropdown-menu mod-user">
+                    <li>
+                        <a href="{:U('Mp/Index/index')}"><i class="icon icon-home"></i>公众号首页</a>
+                    </li>
+                    <li>
+                        <a href="{:U('Mp/Mp/edit', array('id'=>$mp_info['id']))}"><i class="icon icon-edit"></i>编辑当前账号</a>
+                    </li>
+                    <li>
+                        <a href="{:U('Mp/Mp/lists')}"><i class="icon icon-ul"></i>管理其他账号</a>
+                    </li>
+                </ul>
+            </li>
+            <volist name="topmenu" id="vo">
+            <li class="top-menu"> 
+                <a href="{$vo.url}" class="{$vo.class}">{$vo.title}</a>
+            </li>
+            </volist>
+        </ul>

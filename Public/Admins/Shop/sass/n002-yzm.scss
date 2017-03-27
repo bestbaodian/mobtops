@@ -1,0 +1,45 @@
+@charset "utf-8";
+@import "mixin";
+/*验证码*/
+.m-phone-num{
+  background: #f9f8f9;
+  height: Rem(94);
+  font-size: Rem(28);
+  p{
+	line-height: Rem(94);
+  }
+  span{
+	padding: Rem(4) Rem(20);
+	background: $main-color;
+	color: $white;
+	border-radius: Rem(20);
+  }
+}
+.m-inps{
+  div{
+	width: 100%;
+	height: Rem(120);
+	line-height: Rem(120);
+	border-bottom: $border-bottom;
+	p{
+	  float: left;
+	  font-size: Rem(24);
+	}
+	input{
+	  float: right;
+	  height: Rem(120);
+	  line-height: Rem(30);
+	  width: 78%;
+	  font-size: Rem(30);
+	}
+  }
+  input[type=submit]{
+	width: 100%;
+	height: Rem(86);
+	margin-top: Rem(98);
+	background: $main-color;
+	color: $white;
+	font-size: Rem(30);
+
+  }
+}

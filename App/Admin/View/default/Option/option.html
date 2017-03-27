@@ -1,0 +1,136 @@
+<extend name="./App/Common/View/default/Base/common.html" />
+<block name="main_content">
+    <include file="./App/Common/View/default/Public/crumb.html" />
+    <div class="mod">
+        <div class="mod-head">
+            <h3>
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="#">选项设置</a>
+                    </li>
+                    <!-- <li class="">
+                        <a href="#">抽奖商品</a>
+                    </li> -->
+                </ul>
+            </h3>
+        </div>
+        <div class="tab-content mod-content">
+            <div class="table-responsive">
+                <div>
+                    模块名：
+                    <select onchange="change()">
+                      <foreach name="nodes" item="vo">
+                    
+                        <option>{$vo.name}</option>
+                <option value=''></option>
+	  <option value="销控管理" >销控管理</option><option value="报价表" >报价表</option><option value="网上发布" >网上发布</option><option value="文件管理" >文件管理</option><option value="资产管理" >资产管理</option><option value="车辆管理" >车辆管理</option><option value="会员管理" >会员管理</option><option value="客户关怀" >客户关怀</option><option value="客户管理" >客户管理</option><option value="产品管理" >产品管理</option><option value="销售合同" >销售合同</option><option value="合同系统" >合同系统</option><option value="客户投诉" >客户投诉</option><option value="其它合同" >其它合同</option><option value="问题处理" >问题处理</option><option value="用品管理" >用品管理</option><option value="服务合同" >服务合同</option><option value="有效客户" >有效客户</option><option value="授权业务" >授权业务</option><option value="货单管理" >货单管理</option><option value="密码管理" >密码管理</option><option value="销售管理" >销售管理</option><option value="财务管理" >财务管理</option><option value="人力资源" >人力资源</option><option value="图书管理" >图书管理</option><option value="费用管理" >费用管理</option><option value="知识产权" >知识产权</option><option value="日程安排" >日程安排</option><option value="我的考勤" >我的考勤</option><option value="服务管理 " >服务管理 </option><option value="文书管理" >文书管理</option><option value="会议管理" >会议管理</option><option value="销项发票" >销项发票</option><option value="公共信息" >公共信息</option><option value="产品购买" >产品购买</option><option value="" selected></option><option value="信息处理" >信息处理</option><option value="开发新客户" >开发新客户</option><option value="提醒管理" >提醒管理</option><option value="沟通任务" >沟通任务</option><option value="开发管理" >开发管理</option><option value="开发测试" >开发测试</option><option value="客户记录" >客户记录</option><option value="所在省市" >所在省市</option><option value="采购合同" >采购合同</option><option value="进项发票" >进项发票</option><option value="收条管理" >收条管理</option><option value="快乐音乐" >快乐音乐</option><option value="休假申请" >休假申请</option><option value="技术服务 " >技术服务 </option><option value="联系人" >联系人</option><option value="证书管理" >证书管理</option><option value="合同管理" >合同管理</option><option value="付款记录" >付款记录</option><option value="商务合同" >商务合同</option><option value="客户级别" >客户级别</option><option value="销售服务" >销售服务</option><option value="加班申请" >加班申请</option><option value="流程管理" >流程管理</option><option value="案卷管理" >案卷管理</option>
+   
+                      </foreach>
+                         </select>
+                    <a style="padding:2px 10px; font-size:96%; color:#fff; background:#337ab7; border-radius: 5px; border: none;display:inline-block; text-align:center;" href="JavaScript：void(0)">新增记录</a>
+                    <a style="padding:2px 10px; font-size:96%; color:#fff; background:#337ab7; border-radius: 5px; border: none;display:inline-block; text-align:center;" href="javascript:void(0)">删除模块</a>
+                </div>               <!--公众号搜索功能-->
+                <style>
+                   /* #jilu{
+                        font-size: 13px;
+                        line-height: 15px;
+                    }*/
+                    input[placeholder], [placeholder], *[placeholder] {
+                        color:#778899 !important;
+                    }
+                    form{margin:0px;display: inline}
+                    .search{
+                            width:200px;
+                            height: 25px;
+                            border-radius: 5px;
+                            border: 1px solid #ccc;
+                            padding-left: 10px;
+                            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+                        }
+                    #select{
+                            border-radius: 5px;
+                            border: 1px solid red;
+                        }
+                </style>
+                <div id="msg">
+                <div id="showdiv">
+                    <div id="">
+                        
+                    </div>
+                </div>
+                    <input type="hidden" name="__hash__" value="5786ea04b995bc596bb908419e9d38eb_21e697ebb3336580cc76eafc7ebda4a6" />
+                    <div class="mod-table-foot">
+                        <span><center>{$str}&nbsp;&nbsp; 页次:<font color="red">{$page}</font>/{$pagesum}&nbsp;&nbsp;共有<font color="red">{$counts}</font>条记录&nbsp;&nbsp;转到<input type="text" id="p" style="width:20px; height:20px; border:1px solid #a49191">页&nbsp;&nbsp;<button onclick="gopage()" style="padding:0; line-height:18px;">GO</button></center>
+                        </span>              
+                        <div class="page-control"><ul class="pagination pull-right">    </ul></div>            
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="script">
+    <script type="text/javascript">
+        function del(obj) {
+            // alert(obj);
+            var postUrl = "{:U('Admin/Branch/del')}";
+            if (confirm('你确定删除吗？')) {
+                $.post(postUrl, {"id":obj}, function (data) {
+                    if (data.status == 1) {
+                        alert(data.info);
+                        setTimeout(function () {
+                            location.reload();
+                        }, 100);
+                    } else {
+                        alert(data.info);
+                    }
+                });
+            }
+            else{
+
+            }
+        }
+        var tableFristText = $('.table-title-text');
+        tableFristText.each(function(i,elem){
+            var sl = "...";
+            var html = "";
+            if($(elem).html().length >4){
+                html = $(elem).html().slice(0,4) + sl;
+            }else {
+                html = $(elem).html();
+            }
+            $(elem).html(html);
+        });
+        function checkall(){
+          var chk_value =[];
+          $('input[name="options"]:checked').each(function(){
+          var val = chk_value.push($(this).val());
+          alert(1);
+          alert(val);
+          });
+        }
+        function page(page){
+            var search = $("input[name='search']").val();
+            // alert(search);
+            var postUrl = "{:U('Admin/Branch/page')}";
+            $.get(postUrl,{'p':page,'search':search},function(e){
+                if(e){
+                    $("#msg").html(e);
+                }
+            });
+        }
+
+        function gopage(){
+            var page = $("#p").val();
+            var postUrl = "{:U('Admin/Branch/page')}";
+            $.get(postUrl,{'p':page},function(e){
+                if(e){
+                    $("#msg").html(e);
+                }
+            });
+        }
+        function change(){
+            alert('123456');
+        }
+    </script>
+</block>

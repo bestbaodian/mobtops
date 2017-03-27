@@ -1,0 +1,179 @@
+<extend name="./App/Common/View/default/Base/common.html" />
+<block name="main_content">
+    <include file="./App/Common/View/default/Public/crumb.html" />
+    <div class="mod">
+        <div class="mod-head">
+            <h3>
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="{:U('Admin/Log/log')}">日志</a>
+                    </li>
+                </ul>
+            </h3>
+        </div>
+        <div class="tab-content mod-content">
+            <div class="table-responsive">
+                <div>
+                    <form action="{:U('Admin/Log/log')}" method="post">
+                    工单编号:<input type="text"  name="profile_order" class="search" value="{$profile_order}" placeholder="请输入编号" >
+                    时间:<input type="text"  name="start_time" value="{$start_time}" placeholder="请选择开始时间" class="search date-input ">至<input type="text"  name="end_time" value="{$end_time}" placeholder="请选择结束时间" class="search date-input" >
+                    关键字:<input type="text"  name="keywords" value="{$keywords}" class="search" placeholder="请输入关键字" >
+                    <input type="submit" class="button"  value="搜索"  style="padding:1px 10px; font-size:96%; color:#fff; background:#337ab7; border-radius: 5px; border: none;display:inline-block; text-align:center;"/>
+                    </form> 
+                </div>               <!--公众号搜索功能-->
+                <style>
+                   /* #jilu{
+                        font-size: 13px;
+                        line-height: 15px;
+                    }*/
+                    input[placeholder], [placeholder], *[placeholder] {
+                        color:#778899 !important;
+                    }
+                    form{margin:0px;display: inline}
+                    .search{
+                            width:140px;
+                            height: 25px;
+                            border-radius: 5px;
+                            border: 1px solid #ccc;
+                            padding-left: 10px;
+                            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+                        }
+                    #select{
+                            border-radius: 5px;
+                            border: 1px solid red;
+                        }
+                </style>               <!--公众号搜索功能-->
+                <div id="showdiv">
+                <div id="msg">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>操作内容</th>
+                        <th>操作控制器</th>
+                        <th>操作方法</th>
+                        <th>操作IP</th>
+                        <th>操作人</th>
+                        <th>操作时间</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <volist name="data.lists" id="vo" key="k">
+                        <tr>
+                            <td>{$k}</td>
+                            <td><a href="#" style="color:blue;">{$vo.log_content}</a></td>
+                            <td>{$vo.log_controller}</td>
+                            <td>{$vo.log_action}</td>
+                            <td>{$vo.log_ip}</td>
+                            <td>{$vo.name}</td>
+                            <td>{$vo.log_addtime|date="Y-m-d H:i:s",###}</td>
+                            <td>
+                                <a href="{:U('',array('id'=>$vo['id']))}"><img src='http://www.mobtop.com.cn/del.gif' width='15' height='15px'/></a>
+                        </tr>
+                    </volist>
+                    </tbody>
+                </table>
+                </div>
+                </div>
+                    <div class="mod-table-foot">
+                        <span style="margin-left:8px;"><input type="checkbox" class="check-all"><div class="quanxuan" style="margin-left:2%; display:inline-block;">全选</div><a href="javascript:void(0);" onclick="delall()" style="vertical-align: middle; display:inline-block;"><img src="http://www.mobtop.com.cn/del.gif" alt=""  style="width:15px; height:20px; display:inline-block; margin:0 0 0 10px;"></a><center>
+                            <a href="index.php?s=/Admin/Log/log/p/1/search/{$search}">首页</a>&nbsp;&nbsp;
+                            <a href="index.php?s=/Admin/Log/log/p/{$data.pre}/search/{$search}">上一页</a>&nbsp;&nbsp;
+                            <a href="index.php?s=/Admin/Log/log/p/{$data.next}/search/{$search}">下一页</a>&nbsp;&nbsp;
+                            <a href="index.php?s=/Admin/Log/log/p/{$data.pagesum}/search/{$search}">尾页</a>
+
+                            &nbsp;&nbsp; 页次:<font color="red">{$data.page}</font>/{$data.pagesum}&nbsp;&nbsp;共有<font color="red">{$data.counts}</font>条记录&nbsp;&nbsp;转到<input type="text" id="p" style="width:20px; height:20px; border:1px solid #a49191">页&nbsp;&nbsp;<button onclick="gopage()" style="padding:0; line-height:18px;">GO</button></center>
+                        </span>
+                        <div class="page-control"><ul class="pagination pull-right">    </ul></div>
+
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div class="popup-img" style="position: fixed;top: 0;left: 0;bottom: 0;right: 0; display: none;background: rgba(51, 51, 51,0.8);z-index: 9999;">
+        <img src="" alt="" style="position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);"/>
+    </div>
+</block>
+<block name="script">
+    <script type="text/javascript">
+    //设置日期选择器
+        $('.date-input').each(function() {
+            $(this).flatpickr({
+                // minDate: new Date()
+            });
+        });
+
+        function gopage(){
+            var page = $("#p").val();
+            window.location.href = 'index.php?s=/Mp/Gongdan/profile/p/'+page; 
+        }
+         function del(obj) {
+        var postUrl = "{:U('Mp/Gongdan/profile_dele')}";
+        if(confirm('您确定要删除吗？')) {
+            $.post(postUrl, {
+                "pid": obj
+            }, function(data) {
+                if(data.status == 1) {
+                    bootAlert(data.info);
+                    window.location.href = "{:U('Mp/Gongdan/profile')}";
+                } else {
+                    bootAlert(data.info);
+                }
+            });
+        }
+    }
+    var tableFristText = $('.table-title-text');
+    tableFristText.each(function(i, elem) {
+        var sl = "...";
+        var html = "";
+        if($(elem).html().length > 4) {
+            html = $(elem).html().slice(0, 4) + sl;
+        } else {
+            html = $(elem).html();
+        }
+        $(elem).html(html);
+    });
+    $(".check-all").on('ifChecked', function(e) {
+        // alert(1);
+        e.preventDefault();
+
+        $('.table').find(".icheckbox_square-blue").iCheck('check');
+    });
+
+
+    $(".check-all").on('ifUnchecked', function(e) {
+        // alert(0);
+        e.preventDefault();
+
+        $('.table').find(".icheckbox_square-blue").iCheck('uncheck');
+
+    });
+
+
+    function delall() {
+        if(confirm('你确定要删除多项吗？')) {
+            var id = document.getElementsByName("id");
+            // alert(own_id.length);
+            var str = '';
+            var lengths = id.length;
+            for(var i = 0; i < lengths; i++) {
+                if(id[i].checked)
+                    str += id[i].value + ',';
+            }
+            // alert(str);
+            var postUrl = "{:U('Mp/Gongdan/profile_delall')}";
+            $.post(postUrl, {
+                'pid': str
+            }, function(data) {
+                if(data.status == 1) {
+                    bootAlert(data.info);
+                    window.location.href = "{:U('Mp/Gongdan/profile')}";
+                } else {
+                    bootAlert(data.info);
+                }
+            });
+        }
+    }
+    </script>
+</block>

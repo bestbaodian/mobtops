@@ -1,0 +1,146 @@
+<extend name="./App/Common/View/default/Base/common.html" />
+<block name="main_content">
+    <include file="./App/Common/View/default/Public/crumb.html" />
+    <div class="mod">
+        <div class="mod-head">
+            <h3>
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="{:U('Admin/User/lists')}">用户管理</a>
+                    </li>
+                </ul>
+            </h3>
+        </div>
+        <style>
+            .choose-box{
+                position: absolute;
+                top: -20%;
+                left: -20%;
+                display: block;
+                width: 140%;
+                height: 140%;
+                margin: 0px;
+                padding: 0px;
+                background: rgb(255, 255, 255) none repeat scroll 0% 0%;
+                border: 0px none; opacity: 0;
+            }
+            .list-items{
+                margin-right: 20px;
+            }
+            .more-size{
+                margin-bottom: 10px;
+            }
+            .form-group .col-sm-2{
+                width:11%!important;
+                text-align:right;
+            }
+            .form-group .col-sm-9{
+                width:82%!important;
+            }
+            .col-sm-9 #edui1{
+                width:100%!important;
+            }
+        </style>
+        <div class="tab-content mod-content clearfix">
+            <form action="{:U('user/edits')}" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="id" value="{$res['id']}">
+                <div class="form-group clearfix" style="">
+                    <label class="col-sm-2 col-xs-3 control-label clearfix" style="">用户名：</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <input class="form-control" type='text' name="username" value="{$res['username']}">
+                    </div>
+                </div>
+                <div class="form-group clearfix" style="">
+                    <label class="col-sm-2 col-xs-3 control-label clearfix" style="">昵称：</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <input class="form-control" type='text' name="nickname"  value="{$res['nickname']}">
+                    </div>
+                </div>
+                <div class="form-group clearfix" style="">
+                    <label class="col-sm-2 col-xs-3 control-label clearfix" style="">新密码：</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <input class="form-control" type='text' name="password"  value="{$res['password']}">
+                    </div>
+                </div>
+                <div class="form-group clearfix" style="">
+                    <label class="col-sm-2 col-xs-3 control-label clearfix" style="">邮箱：</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <input class="form-control" type='text' name="email"  value="{$res['email']}">
+                    </div>
+                </div>
+                <div class="form-group clearfix">
+                    <label class="col-sm-2 col-xs-3 control-label clearfix" style="text-align: right">图片：</label>
+                    <div class="col-sm-9 col-xs-12" ng-invoker="context.bind();">
+
+                        <div class="input-group ">
+                            <input name="headimg" class="form-control webuploader-input" value="{$res.headimg}" type="text">
+                            <span class="input-group-btn">
+                                        <button class="btn btn-default webuploader-btn" type="button" data-toggle="modal" data-target="#modal-wechat-webuploader" style="height: 34px; width:100%;">选择图片</button>
+                                    </span>
+                        </div>
+                        <div class="input-group" style="margin-top:16px;">
+                            <div class="" style="margin-top:.5em;display:inline-block;">
+                                <img src="{$res['headimg']}" alt="" style="width:150px;margin-right:10px;">
+                            </div>
+                            <div class=" " style="margin-top:.5em;display:inline-block;">
+                                <img src="/Public/Mp/img/nopic.jpg" data-nopic="/Public/Mp/img/nopic.jpg" class="img-responsive img-thumbnail webuploader-picture" width="150">
+                                <em class="close" style="position:absolute; top: 0px; right: -14px;" title="删除这张图片">×</em>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group clearfix" style="">
+                    <label class="col-sm-2 col-xs-3 control-label clearfix" style="">行业应用：</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <input class="form-control" type='text' name="application"  value="{$res['application']}">
+                    </div>
+                </div>
+                <div class="form-group clearfix" style="">
+                    <label class="col-sm-2 col-xs-3 control-label clearfix" style="">域名名称：</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <input class="form-control" type='text' name="yuming"  value="{$res['yuming']}">
+                    </div>
+                </div>
+                <div class="form-group clearfix" style="">
+                    <label class="col-sm-2 col-xs-3 control-label clearfix" style="">注册时间：</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <input class="form-control" type='text' name="register_time"  value="{$res['register_time']}">
+                    </div>
+                </div>
+        </div>
+    </div>
+    <div class="form-group clearfix" style="text-align: center">
+        <input class="btn btn-primary" id="submit" value="确  认" type="submit">
+        <input class="btn btn-primary"  type="reset" value='重 置'/>
+    </div>
+    </form>
+    </div>
+    </div>
+</block>
+<block name="script">
+    <script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.all.js"></script>
+    <script type="text/javascript">
+        var ue = UE.getEditor('post-content',{
+            toolbars: [
+                ['fullscreen', 'source', 'undo', 'redo','bold', 'italic', 'underline','fontborder', 'strikethrough', '|','simpleupload', 'insertimage','emotion','link','unlink', '|', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote','searchreplace', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc'],
+                ['inserttable','insertrow', 'insertcol','mergeright', 'mergedown','deleterow', 'deletecol','splittorows','splittocols', 'splittocells','deletecaption','inserttitle', 'mergecells', 'deletetable','insertparagraphbeforetable', 'paragraph','fontsize','fontfamily']
+            ],
+            initialFrameHeight:200,
+            initialFrameWidth:600,
+            zIndex:100
+        });
+
+        var moreTypeChoose = $('#more-type-choose');
+        moreTypeChoose.hide();
+        $('.choose-box').on('ifChecked', function (e){
+            var val = $(this).val();
+            if(val == 1){
+                moreTypeChoose.slideDown();
+            }else{
+                moreTypeChoose.slideUp();
+            }
+
+        });
+    </script>
+</block>

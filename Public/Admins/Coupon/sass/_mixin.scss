@@ -1,0 +1,55 @@
+@charset "utf-8";
+
+/*$*/
+$main-color:#ff6767;
+$yellow: #ffc46b;
+$blcak:#333333;
+$border-grey:#e7e7e7;
+$bg-color:#f9f8f9;
+$grey1:#999999;
+$grey2:#8c8c8c;
+$white:#fff;
+
+
+
+$border-bottom:1px solid #e7e7e7;
+$auto-pad:0 4%;
+
+@mixin box-padding($padding){
+    padding: $padding;
+    box-sizing: border-box;
+}
+
+/*rem*/
+@function Rem($px){
+    @return ($px / 50) * 1rem;
+}
+/*mixin*/
+
+@mixin font-els($line){
+    overflow : hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: $line;
+    -webkit-box-orient: vertical;
+}
+
+@mixin textHeight($num){
+    height: $num;
+    line-height: $num;
+}
+
+@mixin auto-style(){
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+/*class*/
+@mixin float {
+    &.fl{
+        float: left;
+    }
+    &.fr{
+        float: right;
+    }
+}

@@ -1,0 +1,253 @@
+@charset "utf-8";
+@import 'mixin';
+body,
+html {
+    width: 100%;
+    height: 100%;
+}
+
+.sui-warpper {
+    width: 100%;
+    height: 93%;
+    position: relative;
+}
+.footer-submit{
+    width: 100%;
+    height: 7%;
+    background: $main-color;
+    display: table;
+    a{
+        color: #fff;
+        display: table-cell;
+        width: 100%;
+        height: 100%;
+        vertical-align: middle;
+        text-align: center;
+        font-size: Rem(36);
+    }
+}
+.page-group,
+.page {
+    background: #fff;
+}
+
+.header-warpper {
+    width: 100%;
+}
+
+.cont {
+    .cont-title {
+        font-size: Rem(30);
+        color: $main-color;
+        padding: Rem(20) Rem(30);
+    }
+    .shop-pic {
+        display: flex;
+        padding: 0 Rem(30) Rem(30) Rem(30);
+        border-bottom: 0.2rem solid #ececec;
+        .imgSrc {
+            flex: 0 0 4rem;
+            width: 4rem;
+            height: 3.4rem;
+        }
+        .shop-info {
+            flex: 1;
+            padding-left: Rem(20);
+            font-size: Rem(26);
+            .shop-name{
+                margin-bottom: Rem(10);
+            }
+            .shop-price {
+                color: $main-color;
+                margin-bottom: Rem(20);
+                .rmb {
+                    font-size: Rem(36);
+                }
+                .old-price {
+                    color: $grey999;
+                    text-decoration: line-through;
+                    margin-left: Rem(20);
+                }
+                .fr {
+                    color: $black;
+                }
+            }
+        }
+        .group{
+            display: flex;
+            justify-content: flex-start;
+            p{
+                margin-left: Rem(20);
+                color: $grey999;
+                font-size: Rem(24);
+            }
+        }
+        .group-icon {
+            display: flex;
+            border: 1px solid $main-color;
+            justify-content: flex-start;
+            font-size: Rem(24);
+            border-radius: Rem(5);
+            width: Rem(140);
+            overflow: hidden;
+            .icon-l {
+                flex: 0 0 Rem(40);
+                text-align: center;
+                color: $white;
+                background: $main-color;
+            }
+            .icon-r {
+                flex: 1;
+                color: $main-color;
+                background: $white;
+                text-align: center;
+            }
+        }
+    }
+}
+.group-info-warpper{
+    padding: Rem(20) Rem(30);
+    border-bottom: 0.2rem solid #ececec;
+    .info-header{
+        display: flex;
+        justify-content: space-between;
+        font-size: Rem(30);
+        .pay-num{
+            span{
+                color: $main-color;
+                font-weight: 700;
+            }
+        }
+    }
+    .info-range{
+        display: flex;
+        justify-content: space-between;
+        padding: Rem(40) Rem(20);
+        font-size: Rem(30);
+        .range{
+            flex: 1;
+            padding: 0 Rem(20);
+            .range-backgroud{
+                width: 100%;
+                height: Rem(40);
+                background: #ececec;
+                border-radius: 10px;
+                position: relative;
+                .range-line{
+                    width: 0%;
+                    height: Rem(40);
+                    border-radius: 10px;
+                    background: $main-color;
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    transition:all .2s linear;
+                }
+                .insert-content{
+                    background: $main-color;
+                    color: $white;
+                    position: absolute;
+                    padding: Rem(10);
+                    border-radius: Rem(10);
+                    top: Rem(60);
+                    left: 0%;
+                    transform: translateX(-50%);
+                    transition:all .2s linear;
+                    .num{
+                        position: relative;
+                        .triangle{
+                            position: absolute;
+                            top: Rem(-20);
+                            left: 50%;
+                            transform: translateX(-50%);
+                            @include triangle(Rem(20),$main-color);
+                        }
+                    }
+                }
+            }
+        } 
+    }
+    .user-info{
+        width: 100%;
+        margin-top: Rem(100);
+        overflow-x: auto;
+        .infos-list{
+            display: flex;
+            justify-content: flex-start;
+            .info-item{
+                flex: 0 0 Rem(120);
+                position: relative;
+                margin-right: Rem(20);
+                img{
+                    width: Rem(120);
+                    height: Rem(120);
+                    border-radius: 50%;
+                }
+                span{
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    font-size: Rem(24);
+                    color:#fff;
+                    background: $main-color;
+                    padding: Rem(5) Rem(10);
+                    border-radius: 50%;
+                }
+            }
+        }
+    }
+}
+.play-info{
+    font-size:0.52rem;
+    margin-top:0.2rem;
+    .play-tit{
+        width: 100%;
+        padding:0 4%;
+        display:flex;
+        line-height:1.4rem;
+        .iconfont{
+            color:#999;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        span{
+            flex: 1;
+            vertical-align: middle;
+            &:last-of-type{
+                text-align: right;
+            }
+        }
+    }
+    .play-cont{
+        padding:0.4rem 0 0.4rem 4%;
+        border-bottom: 0.2rem solid #ececec;
+        .cur{
+            .play-num{
+                color:#fff;
+                background:$main-color;
+                border-color:$main-color;
+            }
+            .play-txt{
+                color:$main-color;
+            }
+        }
+    }
+    .play-cont>div{
+        width:25%;
+    }
+    .play-num{
+        color:#666;
+        width:0.8rem;
+        text-align:center;
+        border-radius:50%;
+        line-height:0.8rem;
+        border:1px solid #666;
+        margin:0.3rem 0.2rem 0 0;
+    }
+    .play-txt{
+        width:60%;
+    }
+    .zhi{
+        padding-top:0.3rem;
+    }
+}

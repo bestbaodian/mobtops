@@ -1,0 +1,84 @@
+
+
+.fl{
+    float:left;
+}
+.fr{
+    float:right;
+}
+.header-bar {
+    background: #0084ff;
+    width: 100%;
+    line-height: 1.48rem;
+}
+.header-bar a {
+    width: 10%;
+    color: #fff;
+}
+.header-bar a .iconfont {
+    font-size: 0.72rem;
+}
+.header-bar a.fr .iconfont {
+    font-size: 1.2rem;
+}
+.header-bar p {
+    width: 76%;
+    color: #fff;
+    font-size: 0.72rem;
+    text-align: center;
+}
+.search{
+    width:14rem;
+    padding:0.4rem 0.5rem;
+}
+.search select{
+    float:left;
+    width:4.3rem;
+    padding:0 0.4rem;
+    font-size:0.6rem;
+    text-align:center;
+    background:url(../imgs/b-arrow.png) no-repeat right ;
+}
+.search select:nth-child(2){
+    margin:0 0.4rem;
+}
+.all-cont{
+    background:#f1f1f1;
+    padding-bottom:0.2rem;
+}
+.all-cont li{
+    float:left;
+    width:7.4rem;
+    background:#fff;
+    margin-top:0.2rem;
+}
+.all-cont li:nth-child(even){
+    float:right;
+}
+.all-cont li img{
+    width:7.4rem;
+    height:7.4rem;
+    display:inline-block;
+}
+.sp-info{
+    padding:0 0.4rem 0.2rem;
+}
+.sp-txt{
+    font-size:.48rem;
+    overflow:hidden;
+    display:-webkit-box;
+    -webkit-line-clamp:1;
+    text-overflow:ellipsis;
+    -webkit-box-orient:vertical;
+}
+.price{
+    margin-top:.2rem;
+}
+.price,.sales{
+    color:#e13953;
+    font-size:0.5rem;
+}
+.p-num{
+    color:#e13953;
+    font-size:0.7rem;
+}

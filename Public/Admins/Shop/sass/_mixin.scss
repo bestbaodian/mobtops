@@ -1,0 +1,88 @@
+@charset "utf-8";
+
+/*$*/
+$main-color:#e13953;
+$sec-color:#ffb03f;
+$blcak:#333333;
+$border-grey:#e7e7e7;
+$bg-color:#f9f8f9;
+$grey1:#999999;
+$grey666:#666666;
+$grey999:#999999;
+$grey2:#8c8c8c;
+$white:#fff;
+$main-act:#e13953;
+
+
+$border-bottom:1px solid #f2f2f2;
+$auto-pad:0 4%;
+
+/*rem*/
+@function Rem($px){
+    @return ($px / 50) * 1rem;
+}
+
+/*mixin*/
+@mixin font-els($line){
+    overflow : hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: $line;
+    -webkit-box-orient: vertical;
+}
+
+@mixin textHeight($num){
+    height: $num;
+    line-height: $num;
+}
+
+/*class*/
+@mixin float {
+    &.fl{
+        float: left;
+    }
+    &.fr{
+        float: right;
+    }
+}
+
+@mixin auto-style(){
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+@mixin heightBorder($num){
+    border-bottom:$num solid #f5f5f5;
+}
+@mixin fixed-bottom(){
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+
+/*header*/
+.header-bar{
+    background: $main-color;
+    width: 100%;
+    line-height: 1.48rem;
+    a{
+        width: 10%;
+        color: $white;
+        .iconfont{
+            font-size: Rem(36);
+        }
+        &.fr{
+            .iconfont{
+                font-size: Rem(60);
+            }
+        }
+    }
+    p{
+        width: 76%;
+        color: $white;
+        font-size: Rem(36);
+        text-align: center;
+    }
+}

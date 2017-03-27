@@ -1,0 +1,278 @@
+<extend name="./App/Common/View/default/Base/common.html" />
+<block name="main_content">
+    <include file="./App/Common/View/default/Public/crumb.html" />
+    <div class="mod">
+        <div class="mod-head">
+            <h3>
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="{:U('Mp/Coupon/couponcard')}">活动管理</a>
+                    </li>
+                </ul>
+            </h3>
+        </div>
+        <div class="tab-content mod-content">
+            <div>
+                <a style="padding:2px 10px; font-size:96%; color:#fff; background:#337ab7; border-radius: 5px; border: none;display:inline-block; text-align:center;" href="{:U('')}">新增记录</a>
+                <form action="{:U('Admin/Help/lists')}" method="post">
+                    <if condition="$search neq ' '">
+                        <input type="text" style="width:50%;"  name="search" value="{$search}"  placeholder="请输入搜索信息" class="search">
+                        <else/>
+                        <input type="text" style="width:50%;"  name="search" value="" placeholder="请输入搜索信息" class="search">
+                    </if>
+                    <input type="submit" class="button"  value="搜索" style="padding:1px 10px; font-size:96%; color:#fff; background:#337ab7; border-radius: 5px; border: none;display:inline-block; text-align:center;"/>
+                </form>
+            </div>
+            </br>
+            <style>
+                input[placeholder], [placeholder], *[placeholder] {
+                    color:#778899 !important;
+                }
+                form{margin:0px;display: inline}
+                .search{
+                    width:200px;
+                    height: 25px;
+                    border-radius: 5px;
+                    border: 1px solid #ccc;
+                    padding-left: 10px;
+                    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+                }
+                #select{
+                    padding:;
+                    border-radius: 5px;
+                    border: 1px solid #ccc;
+                    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+                }
+            </style>
+            <div id="showdiv">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <td width="4%" class="ida">选中</td>
+                        <td width="4%" class="idb">序号</td>
+                        <td width="12%" class="headimgurl">头像</td>
+                        <td width="12%" class="nickname">昵称</td>
+                        <td width="10%" class="sex">性别</td>
+                        <td width="16%" class="country">地区</td>
+                        <td width="26%" class="score">积分</td>
+                        <td width="18%" class="money">金钱</td>
+                        <td width="6%" class="idd">操作</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <volist name="data.lists" id="vo" >
+                        <tr>
+                            <td class="cl ida"><input name="id" type="checkbox" value="{$vo.id}" class="checkall"></td>
+                            <td class="idb">{$key+1}</td>
+                            <td class="headimgurl"><img src="{$vo.headimgurl}" width="30px" height="30px"></td>
+                            <td class="nickname">{$vo.nickname}</td>
+                            <td class="sex">
+                                 <if condition="$vo['sex'] eq 1">
+                                    男
+                                    <else/>
+                                    女
+                                </if>
+                            </td>
+                            <td class="country">
+                               {$vo.province}省{$vo.city}市
+                            </td>
+                            <td class="score">
+                                {$vo.score}
+                            </td>
+                            <td class="money">{$vo.money}</td>
+                            <td class="idd">
+                                <a href="javascript:void(0)"><img src=" http://www.mobtop.com.cn/edit.gif" width="12" height="12px">
+                                </a>
+                                <a href="javascript:void(0)"><img src="http://www.mobtop.com.cn/del.gif" width="15" height="15px"></a>
+                            </td>
+                        </tr>
+                    </volist>
+                    </tbody>
+                </table>
+                <input type="hidden" name="field" id="fields" value="{$fieldsData}" />
+                <div class="mod-table-foot">
+                        <span style="margin-left:8px;">
+                            <input type="checkbox" class="check-all">
+                            <div class="quanxuan" style="margin-left:1%; display:inline-block;">全选</div>
+                            <a href="javascript:void(0);" onclick="delall()" style="vertical-align: middle; display:inline-block;">
+                                <img src="http://www.mobtop.com.cn/del.gif" alt=""  style="width:15px; height:20px; display:inline-block; margin:0 0 0 10px;">
+                            </a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:;" class="show_set">设置</a><center><center><center>
+                            <center>
+                                <a href="index.php?s=Admin/Help/lists/p/1/search/{$search}">首页</a>&nbsp;&nbsp;
+                                <a href="index.php?s=Admin/Help/lists/p/{$data.pre}/search/{$search}">上一页</a>&nbsp;&nbsp;
+                                <a href="index.php?s=Admin/Help/lists/p/{$data.next}/search/{$search}">下一页</a>&nbsp;&nbsp;
+                                <a href="index.php?s=Admin/Help/lists/p/{$data.pagesum}/search/{$search}">尾页</a>
+                                &nbsp;&nbsp; 页次:<font color="red">{$data.page}</font>/{$data.pagesum}&nbsp;&nbsp;共有<font color="red">{$data.counts}</font>条记录&nbsp;&nbsp;转到<input type="text" value="{$Think.get.p}" id="p" style="width:20px; height:20px; border:1px solid #a49191">页&nbsp;&nbsp;<button onclick="getPage('#p','{:U("Mp/Coupon/couponcard")}')" style="padding:0; line-height:18px;">GO</button>
+                            </center>
+                        </span>
+                    <div class="page-control"><ul class="pagination pull-right">    </ul></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="show-mask" style="position: fixed;top: 0;display:none;left: 0;bottom: 0;right: 0;background: rgba(51, 51, 51,0.8);z-index: 9999;">
+        <div style="position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);width:700px;background:#fff;padding:20px; border-radius:20px;">
+            <div style="width:100%;margin-bottom:20px;">设置显示模块</div>
+        <span style="display: inline-block; min-width: 120px;">
+            <input type="checkbox" name="showmsg" value="nickname"<?php if(in_array('nickname', $new_fields)){ echo "checked"; } ?>>昵称
+          </span>
+           <span style="display: inline-block; min-width: 120px;">
+            <input type="checkbox" name="showmsg" value="headimgurl"<?php if(in_array('headimgurl', $new_fields)){ echo "checked"; } ?>>头像
+          </span>
+        <span style="display: inline-block; min-width: 120px;">
+            <input type="checkbox" name="showmsg" value="sex"<?php if(in_array('sex', $new_fields)){ echo "checked"; } ?>>性别
+          </span>
+        <span style="display: inline-block; min-width: 120px;">
+            <input type="checkbox" name="showmsg" value="country"<?php if(in_array('country', $new_fields)){ echo "checked"; } ?>>地区
+          </span>
+          <span style="display: inline-block; min-width: 120px;">
+            <input type="checkbox" name="showmsg" value="score"<?php if(in_array('score', $new_fields)){ echo "checked"; } ?> >积分
+          </span>
+          <span style="display: inline-block; min-width: 120px;">
+            <input type="checkbox" name="showmsg" value="money"<?php if(in_array('money', $new_fields)){ echo "checked"; } ?> >金钱
+          </span>
+            <div style="text-align:center; margin-top:20px;">
+                <a href="javascript:;" class="btn btn-primary mask-sure">确认</a>
+                <a href="javascript:;" class="btn btn-primary mask-delete">取消</a>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="script">
+    <script type="text/javascript">
+        $(".check-all").on('ifChecked', function (e)
+        {
+            // alert(1);
+            e.preventDefault();
+
+            $('.table').find(".icheckbox_square-blue").iCheck('check');
+        });
+
+        $(".check-all").on('ifUnchecked', function (e)
+        {
+            // alert(0);
+            e.preventDefault();
+
+            $('.table').find(".icheckbox_square-blue").iCheck('uncheck');
+
+        });
+        function del(obj) {
+            var postUrl = "{:U('')}";
+            if (confirm('"你确定删除吗？"')) {
+                $.post(postUrl, {"ids":obj}, function (data) {
+                    if (data.status == 1) {
+                        //alert('删除成功');
+                        bootAlert('删除成功');
+                        setTimeout(function () {
+                            location.reload();
+                        }, 1500);
+                    } else {
+                        alert('删除失败');
+                    }
+                });
+            }
+            else{
+
+            }
+        }
+        //点击图片显示大图
+        $('.table').on('click','.small',function(){
+            var src = $(this).attr('src');
+            $('.popup-img').show();
+            $('.popup-img').find('img').attr('src',src);
+        });
+        $('.popup-img').on('click',function(){
+            $(this).hide();
+            $(this).find('img').attr('src','');
+        })
+        function gopage(){
+            var page = $("#p").val();
+            var postUrl = "{:U('')}";
+            $.get(postUrl,{'p':page},function(e){
+                if(e){
+                    $("#showdiv").html(e);
+                }
+            });
+        }
+        function delall(){
+            if(confirm('你确定要删除多项吗？')){
+                var id = document.getElementsByName("id");
+                var str = '';
+                var lengths = id.length;
+                for(var i=0;i<lengths;i++){
+                    if(id[i].checked)
+                        str+=id[i].value+',';
+                }
+                var postUrl = "{:U('')}";
+                $.get(postUrl,{'id':str},function(data){
+                    if (data.status == 1) {
+                        bootAlert(data.info);
+                        window.location.href="{:U('')}";
+                    } else {
+                        bootAlert(data.info);
+                    }
+                });
+            }
+        }
+        $(".show_set").click(function() {
+            $('#show-mask').show();
+        });
+        $(".mask-elete").click(function() {
+            $('#show-mask').hide();
+        });
+        $(".mask-delete").click(function() {
+            $('#show-mask').hide();
+        });
+        $(".mask-sure").click(function() {
+            var tablemsg = document.getElementsByName("showmsg");
+            var str = '';
+            var lengths = tablemsg.length;
+            for(var i = 0; i < lengths; i++) {
+                if(tablemsg[i].checked)
+                    str += tablemsg[i].value + ',';
+            }
+            var postUrl = "{:U('Admin/Help/setting')}";
+            $.post(postUrl, {
+                'field': str
+            }, function(data) {
+                window.location.href='index.php?s=/Admin/Help/lists/fields/'+data;
+            });
+        });
+        $(function(){
+            var fields = $("#fields").val();
+            if(fields === ""){
+                return;
+            }else{
+                var classArr = fields.split(",");
+                classArr.unshift('ida','idb','idc','idd');
+                $.each(classArr, function(i, c) {
+                    $('td').each(function() {
+                        if($(this).hasClass(c)) {
+                            $(this).show();
+                        }
+                    })
+                });
+            }
+        });
+        findTd();
+        function findTd() {
+            var href = window.location.href.split("/");
+            var hrefData = href[href.length - 1];
+            if(hrefData == "couponcard" || hrefData === "") {
+                return;
+            } else {
+                var classArr = hrefData.split(",");
+                classArr.unshift('ida','idb','idc','idd');
+                $('td').hide();
+                $.each(classArr, function(i, c) {
+                    $('td').each(function() {
+                        if($(this).hasClass(c)) {
+                            $(this).show();
+                        }
+                    })
+                });
+            }
+        }
+    </script>
+</block>

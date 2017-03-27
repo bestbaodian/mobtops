@@ -1,0 +1,202 @@
+@charset "UTF-8";
+/*颜色*/
+/*rem转换*/
+/*多行文本省略*/
+/*一行文字垂直居中*/
+/*一行文字水平垂直居中*/
+/*清除表单默认样式*/
+/*底部间距*/
+/*底部按钮*/
+/*转为怪异盒模型*/
+/*左右flex布局*/
+body {
+  position: relative;
+  background: #f1f1f1;
+  padding-bottom: 2rem; }
+
+.head {
+  padding: 0 4%;
+  font-size: 0.52rem; }
+  .head .tit {
+    font-size: 0.6rem;
+    line-height: 1.5rem; }
+    .head .tit span {
+      color: #ff595f; }
+  .head .follow {
+    background: #fff;
+    border-radius: 0.2rem;
+    padding: 0 0.3rem;
+    border: 1px solid #ddd; }
+    .head .follow .fl {
+      line-height: 2.3rem; }
+    .head .follow .fr span {
+      line-height: 1rem;
+      vertical-align: middle;
+      display: inline-block; }
+    .head .follow .fr .follow-btn {
+      width: 3rem;
+      color: #fff;
+      margin-top: 0.5rem;
+      text-align: center;
+      line-height: 1.2rem;
+      background: #ff595f;
+      border-radius: 0.1rem; }
+    .head .follow .fr .complete {
+      width: 3rem;
+      margin-top: 0.5rem;
+      text-align: center;
+      color: #ff595f;
+      line-height: 1.2rem;
+      transform: rotate(10deg);
+      border: 1px solid #ff595f; }
+
+.cont-tit {
+  padding: 0 4%;
+  font-size: 0.6rem;
+  line-height: 1.5rem; }
+
+.cont {
+  margin: 0 4%;
+  background: #fff;
+  font-size: 0.52rem;
+  border-radius: 0.2rem;
+  border: 1px solid #ddd; }
+  .cont .items {
+    margin: 0 0.3rem;
+    padding: 0.4rem 0;
+    border-bottom: 1px solid #ddd; }
+    .cont .items .icon {
+      width: 1.6rem;
+      text-align: center;
+      border-radius: 50%;
+      line-height: 1.6rem;
+      margin-right: 0.4rem; }
+      .cont .items .icon .iconfont {
+        color: #fff;
+        height: 1rem;
+        font-size: 0.8rem; }
+    .cont .items .dian {
+      line-height: 1.6rem;
+      background: #ff595f; }
+    .cont .items .qian {
+      padding-top: 0.1rem;
+      line-height: 1.5rem;
+      background: #ead32d; }
+      .cont .items .qian .iconfont {
+        font-size: 0.9rem; }
+    .cont .items .info {
+      width: 84%; }
+      .cont .items .info .item-name {
+        padding: 0 0 0.2rem; }
+      .cont .items .info .item-txt {
+        color: #999;
+        font-size: 0.48rem; }
+  .cont .txt {
+    color: #999;
+    line-height: 1rem;
+    font-size: 0.52rem;
+    padding: 0.4rem 0.3rem; }
+
+.cont-more {
+  padding: 0 4% 0.5rem; }
+  .cont-more img {
+    width: 100%;
+    margin-top: 0.4rem; }
+
+.foot {
+  left: 0;
+  bottom: 0;
+  width: 92%;
+  position: fixed;
+  background: #fff;
+  font-size: 0.6rem;
+  padding: 0.2rem 4%; }
+  .foot .btn {
+    width: 100%;
+    color: #fff;
+    background: #999;
+    line-height: 1.6rem;
+    border-radius: 0.2rem; }
+  .foot .cur {
+    background: #ff595f; }
+
+html, body {
+  width: 100%;
+  height: 100%; }
+
+.mc {
+  top: 0;
+  left: 0;
+  z-index: 99;
+  width: 100%;
+  height: 100%;
+  display: none;
+  position: fixed;
+  background: rgba(0, 0, 0, 0.5); }
+
+.agreement {
+  left: 0;
+  top: 20%;
+  width: 100%;
+  z-index: 999;
+  display: none;
+  position: fixed;
+  background: #fff;
+  font-size: 0.52rem;
+  padding: 0 0 0.4rem; }
+  .agreement .agr-tit {
+    color: #fff;
+    font-size: 0.6rem;
+    text-align: center;
+    line-height: 1.6rem;
+    background: #3ac500;
+    border-bottom: 1px solid #eee; }
+  .agreement .agr-txt {
+    text-indent: 2em;
+    padding: 0.4rem 4%; }
+  .agreement .option {
+    display: flex;
+    justify-content: center; }
+    .agreement .option label {
+      width: 20%; }
+    .agreement .option input {
+      width: 0.6rem;
+      height: 0.6rem;
+      background: url("../imgs/j-no-icon.png") no-repeat;
+      background-size: 100% 100%;
+      background-color: transparent;
+      vertical-align: middle; }
+    .agreement .option input:checked {
+      background: url("../imgs/check-in.png") no-repeat;
+      background-size: 100% 100%;
+      background-color: transparent; }
+
+.info-cont {
+  margin: 0 4%;
+  background: #fff;
+  font-size: 0.52rem;
+  border-radius: 0.2rem;
+  border: 1px solid #ddd; }
+  .info-cont .info-items {
+    margin: 0 0.3rem;
+    line-height: 1.5rem;
+    border-bottom: 1px solid #ddd; }
+    .info-cont .info-items label {
+      width: 20%;
+      display: inline-block;
+      vertical-align: top; }
+    .info-cont .info-items input {
+      width: 78%;
+      background: #fff; }
+    .info-cont .info-items textarea {
+      width: 78%;
+      padding-top: 0.3rem;
+      border: 1px solid #ddd; }
+  .info-cont .textarea {
+    border: 0;
+    margin-top: 0.3rem; }
+
+.qie {
+  display: none; }
+
+/*# sourceMappingURL=j-apply.css.map */

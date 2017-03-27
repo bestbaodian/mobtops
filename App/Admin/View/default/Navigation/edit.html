@@ -1,0 +1,94 @@
+<extend name="./App/Common/View/default/Base/common.html" />
+<block name="main_content">
+<include file="./App/Common/View/default/Public/crumb.html" />
+<div class="mod">
+    <div class="mod-head">
+            <h3>
+                <ul class="nav nav-tabs">
+                    <li class="">
+                        <a href="{:U('Admin/Node/lists')}">控制台</a>
+                    </li>
+                    <li class="">
+                        <a href="{:U('Mp/Mpnode/lists')}">公众号</a>
+                    </li>
+                    <li class="active">
+                        <a href="{:U('Admin/Navigation/lists')}">顶级导航</a>
+                    </li>
+                </ul>
+            </h3>
+        </div>
+    <div class="tab-content mod-content">
+        <if condition="$tip">
+            <div class="alert alert-info tip" role="alert">{$tip}</div>
+        </if>
+        <form method="post" action="{:U('Admin/Navigation/edit')}" class="form-horizontal" role="form">
+                            <div class="form-group" style="margin-left:-57px;">
+                                <label class="col-sm-2 col-xs-3 control-label">导航标题:</label>
+                                <div class="col-sm-9 col-xs-12">
+                                    <input class="form-control" type="text" name="nav_title" required="required" id="name" placeholder="" value="{$data.nav_title}" />
+                                    <span class="help-block" id="sname"></span>
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-left:-57px;">
+                                <label class="col-sm-2 col-xs-3 control-label">文件夹:</label>
+                                <div class="col-sm-9 col-xs-12">
+                                    <input class="form-control" type="text" name="nav_folder" required="required" id="name" placeholder="" value="{$data.nav_folder}" />
+                                    <span class="help-block" id="sname">注释:控制器及方法所在文件夹</span>
+                                </div>
+                            </div>  
+                            <div class="form-group" style="margin-left:-57px;">
+                                <label class="col-sm-2 col-xs-3 control-label">导航路由:</label>
+                                <div class="col-sm-9 col-xs-12">
+                                    <input class="form-control" type="text" name="nav_url" required="required" placeholder="" value="{$data.nav_url}"  />
+                                    <span class="help-block">注释：填写控制器及方法名--例如：Index/index (控制器首字母大写)</span>
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-left:-57px;">
+                                <label class="col-sm-2 col-xs-3 control-label">导航类别:</label>
+                                <div class="col-sm-9 col-xs-12">
+                                    <input class="form-control" type="text" name="nav_class" placeholder="" value="{$data.nav_class}"  />
+                                    <span class="help-block">注释:不是必填项</span>
+                                </div>
+                            </div>
+                        <div class="form-group" style="margin-left:-57px;">
+                            <label class="col-sm-2 col-xs-3 control-label">是否显示:</label>
+                            <div class="col-sm-9 col-xs-12">
+                                <if condition="$data.nav_status eq 1">
+                                <label class="radio-inline">
+                                    <input type="radio" name="nav_status" value="1" checked> 显示
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="nav_status" value="0"> 隐藏
+                                </label>
+                                <else/>
+                                <label class="radio-inline">
+                                    <input type="radio" name="nav_status" value="1"> 显示
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="nav_status" value="0" checked> 隐藏
+                                </label>
+                            </if>
+                            </div>
+                        </div><input type="hidden" name="id" value="{$data.nid}">
+                        <div class="form-group" style="text-align: center">
+                            <input type="submit" value="确认" class="btn btn-primary" style="display: inline-block" />
+                            <input type="reset" value="重置" class="btn btn-primary" style="display: inline-block" />
+                        </div>
+            </div>
+            </form>
+    </div>
+</div>
+</block>
+<script>
+	function checkname(){
+		var name = $("#name").val();
+		var postUrl = "U('Admin/Node/checkname')";
+		$.get(postUrl,{'name':name},function(e){
+			if(e == 1){
+				$("#sname").html('<font color="red">您输入的菜单名不能和主菜单名重复。</font>');
+			}else{
+				$("#sname").html('');
+			}
+		});
+	}
+</script>

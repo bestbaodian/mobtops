@@ -1,0 +1,41 @@
+@charset "utf-8";
+/*上方大标题*/
+.why-choose-warp{
+    margin: 100px 0; 
+}
+.why-choose-warp h2{
+    text-align: center;
+    font-size: 50px;
+    color: #ccb36c;
+}
+.why-choose-warp h2 span{
+    width: 1em;
+    height: 1px;
+    background: #ccb36c;
+    display: inline-block;
+    vertical-align: middle;
+}
+/*下方ul展示*/
+.img-list-show{
+    margin-bottom: 20px;
+}
+.img-list-show li{
+    margin-bottom: 20px;
+}
+.img-list-show li .img-warp{
+    width: 100%;
+    margin-top: 20px;
+}
+.img-list-show li .img-warp img{
+    width: 100%;
+}
+.img-list-show li h3{
+    font-size: 24px;
+    font-weight: normal;
+    margin: 40px 0 20px 0;
+    color: #333333;
+}
+.img-list-show li p{
+    color: #999999;
+    font-size: 16px;
+}

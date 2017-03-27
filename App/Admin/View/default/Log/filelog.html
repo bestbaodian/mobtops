@@ -1,0 +1,47 @@
+
+<extend name="./App/Common/View/default/Base/common.html" />
+<meta http-equiv="refresh" content="2;url=http://www.mobtop.com.cn/index.php?s=/Admin/Index/index">
+<block name="main_content">
+    <include file="./App/Common/View/default/Public/crumb.html" />
+    <div class="mod">
+        <div class="mod-head">
+            <h3>
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="#">文件日志</a>
+                    </li>
+                </ul>
+            </h3>
+        </div>
+        <div class="tab-content mod-content">
+            <if condition="$tip">
+                <div class="alert alert-info tip" role="alert">{$tip}</div>
+            </if>
+            <form method="post" action="" class="form-horizontal" role="form">
+                <div class="form-group no-offset">
+                    <th>
+                        <p>文件日志后期在此开发</p>
+                    </th>
+                </div>
+                <div class="form-group no-offset">
+                    <div class="col-sm-offset-2 col-sm-5 col-xs-8">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</block>
+<script type="text/javascript">
+    onload=function(){
+        setInterval(go, 1000);
+    };
+    var x=3; //利用了全局变量来执行
+    function go(){
+        x--;
+        if(x>0){
+            document.getElementById("sp").innerHTML=3;  //每次设置的x的值都不一样了。
+        }else{
+            location.href='http://www.mobtop.com.cn/index.php?s=/Admin/Index/index';
+        }
+    }
+</script>

@@ -1,0 +1,167 @@
+<extend name="./App/Common/View/default/Base/common.html" />
+<block name="main_content">
+    <include file="./App/Common/View/default/Public/crumb.html" />
+    <div class="mod">
+        <div class="mod-head">
+            <h3>
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="{:U('Workorder/Gongdan/profile')}">工单管理</a>
+                    </li>
+                </ul>
+            </h3>
+        </div>
+        <style>
+        .aw-footer{
+            display:none;
+        }
+            .form-group .col-sm-2 {
+            width: 12%;
+        }
+        
+        .form-group .col-sm-9 {
+            width: 82%!important;
+        }
+        
+        .col-sm-9 #edui1 {
+            width: 100%!important;
+        }
+        </style>
+        <div class="tab-content mod-content">
+            <div class="table-responsive">
+                <div class="remind form-control">
+                    我的工单提醒:<if condition="$mess_data.p_status eq 0"><font color="red">已受理({$mess_data.p_status})</font><elseif condition="$mess_data.p_status eq 1"/><font color="blue">已处理({$mess_data.p_status})</font><elseif condition="$mess_data.p_status eq 2"/><font color="pink">待确认({$mess_data.p_status})</font><elseif condition="$mess_data.p_status eq 3"/><font color="orange">待评价({$mess_data.p_status})</font><else/><font color="green">已完成</font></if>
+                </div>
+                <div class="banner">
+                    <if condition="$mess_data.p_status eq '0'">
+                            <div class="act" style="float:left;">已受理<img src="__PUBLIC__/Admin/img/r-arrow02.png" alt=""></div>
+                            <div style="float:left;">已处理</div>
+                            <div style="float:left;">待您确认</div>
+                            <div style="float:left;">待您评价</div>
+                        <elseif condition="$mess_data.p_status eq '1'"/>
+                            <div class="cur" style="float:left;">已受理<img src="__PUBLIC__/Admin/img/r-arrow01.png" alt=""></div>
+                            <div class="act" style="float:left;">已处理<img src="__PUBLIC__/Admin/img/r-arrow02.png" alt=""></div>
+                            <div style="float:left;">待您确认</div>
+                            <div style="float:left;">待您评价</div> 
+                        <elseif condition="$mess_data.p_status eq '2'"/>
+                            <div class="cur" style="float:left;">已受理<img src="__PUBLIC__/Admin/img/r-arrow01.png" alt=""></div>
+                            <div class="cur" style="float:left;">已处理<img src="__PUBLIC__/Admin/img/r-arrow01.png" alt=""></div>
+                            <div class="act" style="float:left;">待您确认<img src="__PUBLIC__/Admin/img/r-arrow02.png" alt=""></div>
+                            <div style="float:left;">待您评价</div>     
+                        <elseif condition="$mess_data.p_status eq '3'"/>
+                            <div class="cur" style="float:left;">已受理<img src="__PUBLIC__/Admin/img/r-arrow01.png" alt=""></div>
+                            <div class="cur" style="float:left;">已处理<img src="__PUBLIC__/Admin/img/r-arrow01.png" alt=""></div>
+                            <div class="cur" style="float:left;">待您确认<img src="__PUBLIC__/Admin/img/r-arrow01.png" alt=""></div>
+                            <div class="act" style="float:left;">待您评价<img src="__PUBLIC__/Admin/img/r-arrow02.png" alt=""></div>
+                        <else/>
+                            <div class="cur" style="float:left;">已受理<img src="__PUBLIC__/Admin/img/r-arrow01.png" alt=""></div>
+                            <div class="cur" style="float:left;">已处理<img src="__PUBLIC__/Admin/img/r-arrow01.png" alt=""></div>
+                            <div class="cur" style="float:left;">待您确认<img src="__PUBLIC__/Admin/img/r-arrow01.png" alt=""></div>
+                            <div class="act" style="float:left;">待您评价</div>
+                    </if>
+                      
+                </div>
+                <div id="wengti">
+                    <p>工单编号:{$mess_data.profile_order} &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; 提交时间:{$vo.sub_time|date="Y-m-d H:i:s",###} &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; 状态:<if condition="$mess_data.p_status eq 0"><font color="red">已受理</font><elseif condition="$mess_data.p_status eq 1"/><font color="blue">已处理</font><elseif condition="$mess_data.p_status eq 2"/><font color="pink">待确认</font><elseif condition="$mess_data.p_status eq 3"/><font color="orange">待评价</font><else/><font color="green">已完成</font></if>&nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; 附件:<a href="javascript:;" onclick="cha()"><font color="blue">查看</font></a></p>
+                    <p>问题标题:{$mess_data.problem_desc} <input type="hidden" name="fujian" value="{$mess_data.annex}"></p>
+                </div>
+                <div class="commoun gt-cont">
+                    <div class="goutong"><div class="form-control">沟通记录</div></div>
+                    <volist name="chat_data" id="vo">
+                        <div class="gt-list">
+                            <if condition="$vo.p_type eq 1">
+                                <img src="http://www.mobtop.com.cn/admin.jpg" alt="">
+                                <div class="jilu">
+                                    <b>售后工程师:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$vo.update_times|date="Y-m-d H:i:s",###}</b>
+                                    <p><b>{$vo.answers}</b></p>
+                                </div>
+                            <else/>
+                                <img src="{$mess_data.headimg}" alt="">{$mess_data.email}:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$vo.update_times|date="Y-m-d H:i:s",###}
+                                <p>{$vo.answers}</p>
+                            </if>
+                        </div>
+                        <hr style=" height:2px;border:none;border-top:2px dotted #185598;" />
+                    </volist>
+                </div>
+                <!-- <div>
+                    <img src="" alt="">
+                </div> -->
+                <if condition="$mess_data.p_status EGT 3">
+                 <b>已完成(若有其他问题,再提交新工单吧.)</b>
+                <div class="commoun gt-cont" style="overflow-x:hidden;">
+                    <div class="goutong"><div class="form-control">待您评价</div></div>
+                        <form method="post" action="{:U('Workorder/Gongdan/comment')}" class="form-horizontal" role="form" enctype="multipart/form-data">
+                            <div class="form-group" style="">
+                                <label class="col-sm-2 col-xs-3 control-label" style="width:15.5%!important;">你对此工单的评价:</label>
+                                <div class="col-sm-9 col-xs-12" style="margin-top:8px;">
+                                    <input type="radio" name="is_satis" value="1">满意
+                                    <input type="radio" name="is_satis" value="0">不满意
+                                </div>
+                            </div>
+                            <div class="form-group" style="">
+                                <!-- <label class="col-sm-2 col-xs-3 control-label"></label> -->
+                                <div class="col-sm-9 col-xs-12" style="width:100%!important;">
+                                   <textarea name="message" required="required" id="" style="width:92%;height:60px; padding:8px 10px;border-radius:5px; border:1px solid #ddd; color:#778899 !important;margin-left:30px;" placeholder="请输入评价"></textarea>
+                                    <!-- <span class="help-block"></span> -->
+                                </div>
+                            </div><input type="hidden" name="pid" value="{$mess_data.pid}">
+                        <div class="form-group" style="text-align: center">
+                            <input type="submit" value="确认" class="btn btn-primary" style="display: inline-block" />
+                            <input type="reset" value="重置" class="btn btn-primary" style="display: inline-block" />
+                        </div>
+                    </form>
+                </div>
+                    <else/>
+                <div>
+                    <form action="{:U('Workorder/Gongdan/profile_done')}" method="post" class="post">
+                        <input type="hidden" name="p_id" value="{$mess_data.pid}">
+                            <input type="submit" value="确认工单已完成" class="btn btn-primary" style="display: inline-block" />
+                             未解决,<a href="javascript:;" style="color:blue;">继续留言</a>(若有其他问题,确认此工单,再提交新工单)
+                    </form>
+                </div>
+                    <div class="form-group" style="overflow:hidden;margin-top:20px;">
+                        <label class="col-sm-2 col-xs-3 control-label" style="width:90%!important; padding-left:0!important;">
+                            <textarea class="answers" id="" cols="50" rows="1" style="width:100%; border:1px solid #ddd;border-radius:5px; padding:8px 10px;"></textarea>
+                            <span class="help-block"></span>
+                        </label>
+                        <div class="col-sm-9 col-xs-12" style="width:10%!important;text-align:center; margin-top:8px;">
+                        <input type="submit" value="发送" class="btn btn-primary submit"/>
+                    </div>
+                </if>
+                    <!-- <div class="form-group" style="text-align:center;">
+                        <input type="submit" value="确认" class="btn btn-primary submit"/>
+                        <input type="button" value="取消" class="btn btn-primary quxiao" />
+                    </div> -->
+        </div>
+    </div>
+    <div class="popup-img" style="position: fixed;top: 0;left: 0;bottom: 0;right: 0; display: none;background: rgba(51, 51, 51,0.8);z-index: 9999;">
+        <img src="" alt="" style="position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);"/>
+    </div>
+</block>
+<block name="script">
+    <script type="text/javascript">
+        $(".submit").click(function(){
+            var answers = $(".answers").val();
+            // alert(answers);
+            if(answers == ''){
+                bootAlert('你还没有输入任何内容呢,不能提交哦.');
+            }else{
+                var p_id = $("input[name='p_id']").val();
+                var getUrl = "{:U('Workorder/Gongdan/leave_message')}";
+                $.post(getUrl,{'answers':answers,'p_id':p_id},function(e){
+                    $(".answers").val('');
+                    $(".commoun").html(e);
+                });
+            }
+        });
+        function cha(){
+            var annex = $("input[name='fujian']").val();
+            $('.popup-img').show();
+            $('.popup-img').find('img').attr('src', annex);
+        }
+        $('.popup-img').on('click', function() {
+            $(this).hide();
+            $(this).find('img').attr('src', '');
+        })
+    </script>
+</block>

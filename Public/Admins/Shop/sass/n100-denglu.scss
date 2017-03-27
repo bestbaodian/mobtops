@@ -1,0 +1,88 @@
+@charset "utf-8";
+@import "mixin";
+
+.m-total{
+  width: 100%;
+  height: Rem(80);
+  line-height: Rem(80);
+  background: $sec-color;
+  .pal4{
+	color: $white;
+	font-size: Rem(18);
+	.iconfont,p{
+	  float: left;
+	}
+  }
+}
+.m-inputs{
+  font-size: Rem(30);
+  div{
+	width: 100%;
+	height: Rem(120);
+	line-height: Rem(120);
+	border-bottom: $border-bottom;
+	p{
+	  float: left;
+	  font-size: Rem(24);
+	}
+	select{
+	  float: right;
+	  height: Rem(120);
+	  line-height: Rem(30);
+	  width: 70%;
+	  option{
+		text-align: center;
+		font-size: Rem(30);
+	  }
+	}
+	input{
+	  float: right;
+	  height: Rem(120);
+	  line-height: Rem(30);
+	  width: 78%;
+	  font-size: Rem(30);
+	  &.yzm{
+		width: 43%;
+		float: left;
+	  }
+	}
+	.get-yzm{
+	  background: $sec-color;
+	  color: $white;
+	  display: inline-block;
+	  @include textHeight(Rem(60));
+	  padding: 0 Rem(6);
+	  border-radius: Rem(10);
+	}
+  }
+  input[type=submit]{
+	width: 100%;
+	height:Rem(80);
+	display: block;
+	background: $main-color;
+	color: $white;
+	font-size: Rem(32);
+	margin-top: Rem(98);
+	&:active{
+	  background: $main-act;
+	}
+  }
+  .more-link{
+	border-bottom: none;
+	a{
+	  font-size: Rem(24);
+	  .iconfont{
+		font-size: Rem(24);
+	  }
+	  &.fl{
+		color: $main-color;
+	  }
+	  &.fr{
+		color: $grey1;
+	  }
+	  &:active{
+		color: $main-act;
+	  }
+	}
+  }
+}

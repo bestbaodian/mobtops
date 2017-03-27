@@ -1,0 +1,59 @@
+@charset "UTF-8";
+/*$*/
+/*rem*/
+/*mixin*/
+/*class*/
+/*header*/
+.header-bar {
+  background: #e13953;
+  width: 100%;
+  line-height: 1.48rem; }
+  .header-bar a {
+    width: 10%;
+    color: #fff; }
+    .header-bar a .iconfont {
+      font-size: 0.72rem; }
+    .header-bar a.fr .iconfont {
+      font-size: 1.2rem; }
+  .header-bar p {
+    width: 76%;
+    color: #fff;
+    font-size: 0.72rem;
+    text-align: center; }
+
+/*验证码*/
+.m-phone-num {
+  background: #f9f8f9;
+  height: 1.88rem;
+  font-size: 0.56rem; }
+  .m-phone-num p {
+    line-height: 1.88rem; }
+  .m-phone-num span {
+    padding: 0.08rem 0.4rem;
+    background: #e13953;
+    color: #fff;
+    border-radius: 0.4rem; }
+
+.m-inps div {
+  width: 100%;
+  height: 2.4rem;
+  line-height: 2.4rem;
+  border-bottom: 1px solid #f2f2f2; }
+  .m-inps div p {
+    float: left;
+    font-size: 0.48rem; }
+  .m-inps div input {
+    float: right;
+    height: 2.4rem;
+    line-height: 0.6rem;
+    width: 78%;
+    font-size: 0.6rem; }
+.m-inps input[type=submit] {
+  width: 100%;
+  height: 1.72rem;
+  margin-top: 1.96rem;
+  background: #e13953;
+  color: #fff;
+  font-size: 0.6rem; }
+
+/*# sourceMappingURL=n002-yzm.css.map */

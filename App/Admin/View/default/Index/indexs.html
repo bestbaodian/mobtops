@@ -1,0 +1,64 @@
+<meta charset="utf-8">
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/jsapi.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/corechart.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/jquery.gvChart-1.0.1.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/jquery.ba-resize.min.js"></script>
+
+<script type="text/javascript">
+    gvChartInit();
+    $(document).ready(function(){
+        $('#myTable5').gvChart({
+            chartType: 'PieChart',
+            gvSettings: {
+                vAxis: {title: 'No of players'},
+                hAxis: {title: 'Month'},
+                width: 600,
+                height: 350
+            }
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    gvChartInit();
+    $(document).ready(function(){
+        $('#myTable1').gvChart({
+            chartType: 'PieChart',
+            gvSettings: {
+                vAxis: {title: 'No of players'},
+                hAxis: {title: 'Month'},
+                width: 600,
+                height: 350
+            }
+        });
+    });
+</script>
+<table id='myTable5'>
+    <caption>图表统计</caption>
+    <thead>
+    <tr>
+        <th></th>
+        <th>超级管理员</th>
+        <th>系统管理员</th>
+        <th>公众号管理员</th>
+        <th>网站管理员</th>
+        <th>视频管理员</th>
+        <th>企信管理员</th>
+        <th>支付管理员</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+
+        <th>{$data['admin'][0]['count(*)']}</th>
+        <td>{$data['system'][0]['count(*)']}</td>
+        <td>{$data['mp'][0]['count(*)']}</td>
+        <td>{$data['wangzhan'][0]['count(*)']}</td>
+        <td>{$data['video'][0]['count(*)']}</td>
+        <td>{$data['qixin'][0]['count(*)']}</td>
+        <td>{$data['payment'][0]['count(*)']}</td>
+    </tr>
+    </tbody>
+</table>

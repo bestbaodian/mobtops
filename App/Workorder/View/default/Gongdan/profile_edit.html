@@ -1,0 +1,114 @@
+<extend name="./App/Common/View/default/Base/common.html" />
+<block name="main_content">
+    <include file="./App/Common/View/default/Public/crumb.html" />
+    <script src="__PUBLIC__/Admin/css/jquery.minicolors.min.js"></script>
+    <link rel="stylesheet" href="__PUBLIC__/Admin/css/jquery.minicolors.css" />
+    <style>     
+        .form-group .col-sm-2 {
+            width: 12%;
+        }
+        
+        .form-group .col-sm-9 {
+            width: 82%!important;
+        }
+        
+        .col-sm-9 #edui1 {
+            width: 100%!important;
+        }
+    </style>
+    <div class="mod">
+        <div class="mod-head">
+            <h3>
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="{:U('Workorder/Gongdan/profile')}">工单管理</a>
+                    </li>
+                </ul>
+            </h3>
+        </div>
+        <div class="tab-content mod-content">
+            <if condition="$tip">
+                <div class="alert alert-info tip" role="alert">{$tip}</div>
+            </if>
+            <p style="font-size:10px;color:red;">温馨提示,您所提交的工单问题类型的服务时间为:星期一~星期五 9:30~18:00(除法定节假日),我们会在工作日时间及时处理,请您耐心等待,感谢您的大力支持,谢谢!</p>
+            <form method="post" action="{:U('Workorder/Gongdan/profile_edit')}" class="form-horizontal" role="form" enctype="multipart/form-data">
+                    <div class="form-group" style=" ">
+                        <label class="col-sm-2 col-xs-3 control-label"><font color="red">*</font>优先级:</label>
+                        <div class="col-sm-9 col-xs-12" style="margin-top:8px;">
+                            <if condition="$mess_data.priority eq 1">
+                                    <input type="radio" name="priority" value="1" checked="checked">紧急
+                                    <input type="radio" name="priority" value="0">一般
+                                <else/>
+                                    <input type="radio" name="priority" value="1">紧急
+                                    <input type="radio" name="priority" value="0" checked="checked">一般
+                            </if>
+                            
+                        </div>
+                    </div>
+                    <div class="form-group" style="">
+                        <label class="col-sm-2 col-xs-3 control-label"><font color="red">*</font>问题描述:</label>
+                        <div class="col-sm-9 col-xs-12">
+                           <textarea name="problem_desc" required="required" id="" style="width:100%;height:200px; padding:8px 10px;border-radius:5px; border:1px solid #ddd; color:#778899 !important;" placeholder="若提交密码或AccessKeys,请通过'机密方式添加',并在问题处理完毕后及时修改.">{$mess_data.problem_desc}</textarea>
+                            <span class="help-block">请写问题描述</span>
+                        </div>
+                    </div>
+                    <div class="form-group" style="">
+                        <label class="col-sm-2 col-xs-3 control-label"><div style="margin-right:10px;">机密信息</div><div>(非必填项):</div></label>
+                        <div class="col-sm-9 col-xs-12">
+                            <textarea name="secret_mess" id="" style="width:100%;height:200px; padding:8px 10px; border-radius:5px; border:1px solid #ddd; color:#778899 !important;" placeholder="请在此处填写实例名,账号,密码等机密信息,提交后,机密信息将做加密处理">{$mess_data.secret_mess}</textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 col-xs-3 control-label"><font color="red">*</font>手机号:</label>
+                        <div class="col-sm-9 col-xs-12">
+                                <input class="form-control" type="text" name="pphone" required="required" id="name" placeholder="" value="{$mess_data.pphone}" />
+                            <span class="help-block" id=""></span>
+                        </div>
+                    </div>        
+                <!-- <div class="form-group" style=" ">
+                    <label class="col-sm-2 col-xs-3 control-label"><font color="red">*</font>接收短信提醒:</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <input type="radio" name="note_remind" value="0">任何时间
+                        <input type="radio" name="note_remind" value="1">每日9:00~18:00
+                        <input type="radio" name="note_remind" value="2">从不接收
+                        <span class="help-block"></span>
+                    </div>
+                </div> -->
+                <div class="form-group" style=" ">
+                    <label class="col-sm-2 col-xs-3 control-label"><font color="red">*</font>邮箱:</label>
+                    <div class="col-sm-9 col-xs-12">
+                            <input class="form-control" type="text" name="pemail" required="required" id="name" placeholder="" value="{$mess_data.pemail}" />
+                        <span class="help-block"></span>
+                    </div>
+                </div>
+                <div class="form-group" style=" ">
+                    <label class="col-sm-2 col-xs-3 control-label"><font color="red">*</font>附件标题:</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <input class="form-control" type="text" name="annex_title" required="required" id="name" placeholder="" value="{$mess_data.annex_title}" />
+                        <span class="help-block"></span>
+                    </div>
+                </div>
+                <div class="form-group" style="">
+                    <label class="col-sm-2 col-xs-3 control-label">上传附件:</label>
+                    <div class="col-sm-9 col-xs-12" ng-invoker="context.bind();">
+                        <div class="input-group ">
+                            <input name="annex" class="form-control webuploader-input" value="{$mess_data.annex}" type="text">
+                            <span class="input-group-btn">
+                        <button class="btn btn-default webuploader-btn" type="button" data-toggle="modal" data-target="#modal-wechat-webuploader" style="height: 34px; width:100%;">选择图片</button>
+                    </span>
+                        </div>
+                        <div class="input-group " style="margin-top:.5em;">
+                            <img src="{$mess_data.annex}" data-nopic="/Public/Mp/img/nopic.jpg" class="img-responsive img-thumbnail webuploader-picture" width="150">
+                            <em class="close" style="position:absolute; top: 0px; right: -14px;" title="删除这张图片">×</em>
+                        </div>
+                        <!-- <span class="help-block">可上传3个附件每个附件大小不得超过2M。附件支持的格式有：'jpg', 'bWorkorder', 'png', 'gif','txt','rar','zip','doc','docx','ini','conf','eml'</span> -->
+                    </div>
+                    <input type="hidden" name="pid" value="{$mess_data.pid}">
+                </div>
+                <div class="form-group" style="text-align: center">
+                    <input type="submit" value="确认" class="btn btn-primary" style="display: inline-block" />
+                    <input type="reset" value="重置" class="btn btn-primary" style="display: inline-block" />
+                </div>
+        </div>
+    </div>
+</block>

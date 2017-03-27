@@ -1,0 +1,333 @@
+<extend name="./App/Common/View/default/Base/common.html"/>
+<block name="main_content">
+    <include file="./App/Common/View/default/Public/crumb.html"/>
+    <style>
+        input[placeholder], [placeholder], *[placeholder] {
+            color: #778899 !important;
+        }
+        form {
+            margin: 0px;
+            display: inline;
+        }
+        .search {
+            width: 200px;
+            height: 25px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            padding-left: 10px;
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+        }
+        
+        #select {
+            padding:;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+        }
+        .set-mask {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 700px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        .search-items{
+            height:50px;
+        }
+        .search-items td{
+            /*line-height:50px!important;*/
+            vertical-align: middle!important;
+        }
+        .search-items td img{
+            vertical-align: middle!important;
+        }
+        #shop-list-mask .mask-warp{
+            overflow: hidden;
+            width: 780px;
+            height: 515px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+
+            margin-top: -260px;
+            margin-left: -310px;
+            background: #fff;
+            border-radius: 10px;
+        }
+    </style>
+    <!--外层容器-->
+    <div class="mod">
+        <!--header容器-->
+        <div class="mod-head">
+            <h3>
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="">公共弹框</a>
+                    </li>
+                </ul>
+            </h3>
+        </div>
+        <!--header容器 end-->
+        <!--content容器-->
+        <div class="tab-content mod-content">
+              <div id="showdiv">
+                   <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th style="width:5%;">序号</th>
+                                <th style="width:15%;">弹框名称</th>
+                                <th style="width:78%;">功能</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="width:5%;">1</td>
+                                    <td style="width:15%;"> 
+                                       商品引用
+                                    </td>
+                                    <td style="width:78%;"> 
+                                            <a style="padding:2px 10px; font-size:96%; color:#fff; background:#337ab7; border-radius: 5px; border: none;display:inline-block; text-align:center;"
+                                               id="addLog">新增记录</a>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;商品详细信息弹框
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:5%;">2</td>
+                                    <td style="width:15%;"> 
+                                       粉丝引用
+                                    </td>
+                                    <td style="width:78%;"> 
+                                        <a style="padding:2px 10px; font-size:96%; color:#fff; background:#337ab7; border-radius: 5px; border: none;display:inline-block; text-align:center;" class="pf">新增记录</a>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;粉丝详细信息弹框
+                                    </td>
+                                </tr>      
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    <!--弹窗  商品信息 -->
+    <div id="shop-list-mask" style="display: none;">
+        <div class="mask-warp">
+            <div class="shop-list-warp-header clearfix" style="width:100%;">
+                <p class="float-l level-1" style="line-height:30px;">选择商品</p>
+                <div class="float-l search-warp level-1 clearfix" style="width:80%;">
+                    <input type="text" style="float:left;width:80%;height:28px!important;padding:0 10px!important;margin-right:10px; line-height:28px;" name="" id="sear" value=""
+                           placeholder="请输入商品名称">
+                    <a href="javascript:;" class="btn sou btn-primary" style="float:left;line-height:20px;">搜索</a>
+                </div>
+                <div class="float-r level-1 delete">
+                    <img src="http://www.mobtop.com.cn/del.gif" alt="">
+                </div>
+            </div>
+            <div class="choose-content" id="div1" style="border-top:0!important;height:430px!important;padding:0 10px;">
+                <div class="shop-list-warp-body">
+                    <table class="table table-container table-condensed">
+                        <thead>
+                        <tr class="">
+                            <td width="8%">序号</td>
+                            <td width="5%">图片</td>
+                            <td width="47%">商品</td>
+                            <td width="10%">价格</td>
+                            <td width="10%">库存</td>
+                            <td width="10%">销量</td>
+                            <td width="10%">操作</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <foreach name="data.lists" item="val">
+                                <tr class="search-items">
+                                    <td >{$key+1}</td>
+                                    <td ><img src="{$val['sg_img_url']}" width="30px" height="30px" alt="" data-id="{$val['sg_id']}"></td>
+                                    <td class="name" >{$val['sg_name']}</td>
+                                    <td >{$val['sg_price']}</td>
+                                    <td >{$val['sgs_total_stock']}</td>
+                                    <td >{$val['sg_sales']}</td>
+                                    <td >
+                                        <a href="#" class="goods-choose btn btn-primary" data-id="{$val['sg_id']}">选取</a>
+                                    </td>
+                                </tr>
+                            </foreach>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="shop-list-warp-footer" style="padding:0!important;height:36px!important;line-height:
+                36px!important;">
+                    <div class="float-l" style="text-align:center;width:100%;">
+                        <span class="first-page" onclick="page(1)">首页</span>
+                        <span class="prev-page" onclick="page({$data.pre})">上一页</span>
+                        <span class="next-page" onclick="page({$data.next})">下一页</span>
+                        <span class="last-page" onclick="page({$data.pagesum})">尾页</span>
+                        <span>页数：<em class="red">{$data.page}</em>/{$data.pagesum}</span>
+                        <span>共有<em class="red">{$data.counts}</em>条记录</span>
+                    </div>
+                    <div class="float-l"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--弹窗 商品信息 end-->
+
+
+    <!-- 粉丝用户 弹框 start -->
+    <div id="shop-list-mask" class="only-give">
+        <div class="mask-warp">
+            <div class="shop-list-warp-header clearfix">
+                <p class="float-l level-1" style="line-height:30px;">选择用户</p>
+                <div class="float-l search-warp level-1 clearfix" style="width:80%;">
+                    <input type="text" style="float:left;width:80%;height:28px!important;padding:0 10px!important;margin-right:10px; line-height:28px;" name="" id="sears" value="" placeholder="请输入用户名">
+                    <a href="javascript:;" class="btn sou1 btn-primary" style="float:left;line-height:20px;">搜索</a>
+                </div>
+                <div class="float-r level-1 delete">
+                    <img src="http://www.mobtop.com.cn/del.gif" alt="">
+                </div>
+            </div>
+            <div class="choose-content" id="div2" style="border-top:0!important;height:430px!important;padding:0 10px;">
+                <div class="shop-list-warp-body">
+                    <table class="table table-container table-condensed">
+                        <thead>
+                        <tr class="">
+                            <td width="8%">ID</td>
+                            <td width="16%">头像</td>
+                            <td width="37%">姓名</td>
+                            <td width="7%">性别</td>
+                            <td width="22%">时间</td>
+                            <td width="10%">积分</td>
+                            <td width="10%">操作</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <foreach name="arr.lists" item="val">
+                                <tr class="search-items">
+                                    <td >{$key+1}</td>
+                                    <td ><img src="{$val['headimgurl']}" width="30px" height="30px" alt="" data-id="{$val['id']}"></td>
+                                    <td class="name" >{$val['nickname']}</td>
+                                    <td >
+                                        <if condition="$val.sex eq 1">
+                                            <span class="show"><font color="green">男</font></span>
+                                            <else/>
+                                            <span class="show"><font color="red">女</font></span>
+                                        </if>
+                                    </td>
+                                    <td >{$val['subscribe_time']|date="Y-m-d H:i:s",###}</td>
+                                    <td >{$val['score']}</td>
+                                    <td >
+                                        <a href="#" class="goods-choose btn btn-primary" data-id="{$val['id']}">选取</a>
+                                    </td>
+                                </tr>
+                            </foreach>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="shop-list-warp-footer" style="padding:0!important;height:36px!important;line-height:
+                36px!important;">
+                    <div class="float-l" style="text-align:center;width:100%;">
+                        <span class="first-page" onclick="pages(1)">首页</span>
+                        <span class="prev-page" onclick="pages({$arr.pre})">上一页</span>
+                        <span class="next-page" onclick="pages({$arr.next})">下一页</span>
+                        <span class="last-page" onclick="pages({$arr.pagesum})">尾页</span>
+                        <span>页数：<em class="red">{$arr.page}</em>/{$arr.pagesum}</span>
+                        <span>共有<em class="red">{$arr.counts}</em>条记录</span>
+                    </div>
+                    <div class="float-l"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 粉丝用户弹框  end -->
+</block>
+<block name="script">
+    <!--弹出层前端模版 end-->
+    <script type="text/javascript">
+        /*
+         *  注意：此js只是商品详情信息
+         *  弹出层使用须知
+         *  依赖结构：HTML
+         *  弹窗事件绑定在新增记录按钮上，id为 addLog
+         */
+        (function () {
+            var addLog = $('#addLog');
+            var mask = $('#shop-list-mask');
+            var maskContent = $('.mask-warp');
+            //定义方法对象
+            var initFunction = {
+                showMask: function () {
+                    page(1);
+                    mask.show();
+                },
+                hideMask: function () {
+                    mask.hide();
+                }
+            };
+            //展开弹出层
+            addLog.click(function () {
+                initFunction.showMask();
+            });
+            //关闭弹出层
+            mask.click(initFunction.hideMask);
+            maskContent.find('.delete').click(function () {
+                initFunction.hideMask();
+            });
+            //阻止默认事件
+            maskContent.click(function () {
+                return false;
+            });
+        })();
+        //弹框分页
+         function page(p) {
+            var getUrl = "{:U('Admin/Help/phpcodes')}";
+            $.get(getUrl, {
+                'p': p
+            }, function (e) {
+                 $("#div1").html(e);
+            });
+        }
+        $(".sou").click(function(){
+            var sear = $("#sear").val();
+            var getUrl = "{:U('Admin/Help/phpcodes')}";
+            $.get(getUrl,{'sear':sear},function(e){
+                $("#div1").html(e);
+            });
+        });  
+    </script>
+    <script>
+    /*
+    *粉丝弹框信息展示
+    */
+     $('#showdiv').on('click', '.pf', function () {
+            fatherId = null;
+            fatherId = $(this).parents('tr').find('.idssss').val();
+            pages(1);
+            $('.only-give').show();
+        });
+     $('.only-give').click(function () {
+            $(this).hide();
+        });
+     $('.only-give .mask-warp').click(function () {
+            return false;
+     });
+     $('.only-give .delete').click(function () {
+            $('.only-give').hide();
+     });
+      //弹框分页
+      function pages(p) {
+            var getUrl = "{:U('Admin/Help/phpcodefan')}";
+            $.get(getUrl, {
+                'p1': p
+            }, function (e) {
+                 $("#div2").html(e);
+            });
+        }
+        $(".sou1").click(function(){
+            var sears = $("#sears").val();
+            var getUrl = "{:U('Admin/Help/phpcodefan')}";
+            $.get(getUrl,{'sears':sears},function(e){
+                $("#div2").html(e);
+            });
+        });  
+    </script>
+</block>

@@ -1,0 +1,176 @@
+<extend name="./App/Common/View/default/Base/common.html" />
+<block name="main_content">
+    <include file="./App/Common/View/default/Public/crumb.html" />
+    <div class="mod">
+        <div class="mod-head">
+            <h3>
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="{:U('payapi_list')}">接口管理</a>
+                    </li>
+                </ul>
+            </h3>
+        </div>
+        <div class="tab-content mod-content">
+            <div class="table-responsive">
+                <div>
+                    <a style="padding:0px 10px; font-size:96%; color:#fff; background:#337ab7; border-radius: 5px; border: none;display:inline-block; text-align:center;" id="jilu" href="{:U('payapi_add')}">新增记录</a>
+                    <form action="" method="POST">
+                    <if condition="$search neq ' '">
+                        <input type="text"  name="search" value="{$search}" placeholder="请输入服务商" class="search">
+                    <else/>
+                        <input type="text"  name="search" value="" placeholder="请输入服务商" class="search">
+                    </if>
+                    <input type="submit" class="button"  value="搜索" style="padding:1px 10px; font-size:96%; color:#fff; background:#337ab7; border-radius: 5px; border: none;display:inline-block; text-align:center;"/>
+                    </form>
+                </div>                <!--公众号搜索功能-->
+                <style>
+                     #jilu{
+                        font-size: 13px;
+                        line-height: 25px;
+                    }
+                    input[placeholder], [placeholder], *[placeholder] {
+                    color:#778899 !important;
+                    } 
+                    form{margin:0px;display: inline}
+                    .search{
+                            width:200px;
+                            height: 25px;
+                            border-radius: 5px;
+                            border: 1px solid #ccc;
+                            padding-left: 10px;
+                            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+                        }
+                    #select{
+                            border-radius: 5px;
+                            border: 1px solid red;
+                        }     
+                </style>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th style="width:5%;">选中</th>
+                        <th style="width:5%;">序号</th>
+                        <th style="width:12%;">日期</th>
+                        <th style="width:8%;">接口类别</th>
+                        <th style="width:15%;">服务商</th>
+                        <th style="width:22%;">网址</th>
+                        <th style="width:15%;">产品名称</th>
+                        <!-- <th>签约公司</th> -->
+                        <th style="width:8%;">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <volist name="data['lists']" id="vo" key="k">
+                        <tr>
+                            <td class="cl"><input name="id" type="checkbox" value="{$vo.id}" class="checkall"></td>
+                            <td>{$k}</td>
+                            <td>{$vo.time|date="Y-m-d H:i",###}</td>
+                            <td>支付接口</td>
+                            <td><a href="{:U('payapi_info',array('id'=>$vo['id']))}">{$vo.c_name}</a></td>
+			         		<td><a href="http://{$vo.website}" target="_blank">{$vo.website}</a></td>
+							<td>{$vo.p_name}</td>
+			         		<!-- <td>{$vo.q_name}</td> -->
+                            <td>
+                                <a href="{:U('payapi_edit',array('id'=>$vo['id']))}"><img src='http://www.mobtop.com.cn/edit.gif' width='12' height='12px'/></a>&nbsp;&nbsp;
+                                <a href="javascript:;" onclick="del({$vo.id})"><img src='http://www.mobtop.com.cn/del.gif' width='15' height='15px'/></a>
+                            </td>
+                        </tr>
+                    </volist>
+                    </tbody>
+                </table>
+                <div class="mod-table-foot">
+                    <span style="margin-left:8px;">
+                        <input type="checkbox" class="check-all">
+                        <div class="quanxuan" style="margin-left:2%; display:inline-block;">全选</div>
+                        <a href="javascript:void(0);" onclick="delall()" style="vertical-align: middle; display:inline-block;">
+                            <img src="http://www.mobtop.com.cn/del.gif" alt=""  style="width:15px; height:20px; display:inline-block; margin:0 0 0 10px;">
+                        </a>
+                        <center>
+                            <a href="index.php?s=/Admin/Message/payapi_list/p/1/search/{$search}">首页</a>&nbsp;&nbsp;
+                            <a href="index.php?s=/Admin/Message/payapi_list/p/{$data.pre}/search/{$search}">上一页</a>&nbsp;&nbsp;
+                            <a href="index.php?s=/Admin/Message/payapi_list/p/{$data.next}/search/{$search}">下一页</a>&nbsp;&nbsp;
+                            <a href="index.php?s=/Admin/Message/payapi_list/p/{$data.pagesum}/search/{$search}">尾页</a>
+                            &nbsp;&nbsp; 页次:<font color="red">{$data.page}</font>/{$data.pagesum}&nbsp;&nbsp;共有<font color="red">{$data.counts}</font>条记录&nbsp;&nbsp;转到<input type="text" value="{$Think.get.p}" id="p" style="width:20px; height:20px; border:1px solid #a49191">页&nbsp;&nbsp;<button onclick="getPage('#p','{:U("Admin/Message/payapi_list")}')" style="padding:0; line-height:18px;">GO</button>
+                        </center>
+                    </span>
+                    <div class="page-control"><ul class="pagination pull-right"></ul></div>
+                </div>
+                <input type="hidden" name="__hash__" value="5786ea04b995bc596bb908419e9d38eb_21e697ebb3336580cc76eafc7ebda4a6" /></form>
+                <div class="mod-table-foot">
+                    <span class="pull-left"></span><div class="page-control"><ul class="pagination pull-right"></ul></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="script">
+    <script type="text/javascript">
+        function del(obj) {
+            var postUrl = "{:U('payapi_delete')}";
+            if (confirm('你确定删除吗？')) {
+                $.post(postUrl, {"id":obj}, function (data) {
+                    if (data.status == 1) {
+                        bootAlert(data.info, 'success');
+                        setTimeout(function () {
+                            location.reload();
+                        }, 1500);
+                    } else {
+                        bootAlert(data.info);
+                    }
+                });
+            }
+            else{
+
+            }
+        }
+        var tableFristText = $('.table-title-text');
+        tableFristText.each(function(i,elem){
+            var sl = "...";
+            var html = "";
+            if($(elem).html().length >4){
+                html = $(elem).html().slice(0,4) + sl;
+            }else {
+                html = $(elem).html();
+            }
+            $(elem).html(html);
+        });
+
+        function delall() {
+            if(confirm('你确定要删除多项吗？')) {
+                var id = document.getElementsByName("id");
+                var str = '';
+                var lengths = id.length;
+                for(var i = 0; i < lengths; i++) {
+                    if(id[i].checked)
+                        str += id[i].value + ',';
+                }
+                var postUrl = "{:U('payapi_delAll')}";
+                $.get(postUrl, {
+                    'id': str
+                }, function(data) {
+                    if(data.status == 1) {
+                        bootAlert(data.info);
+                        setTimeout(function() {
+                            location.reload();
+                        }, 1500);
+                    } else {
+                        bootAlert(data.info);
+                    }
+                });
+            }
+        }
+
+        $(".check-all").on('ifChecked', function(e) {
+            e.preventDefault();
+            $('.table').find(".icheckbox_square-blue").iCheck('check');
+        });
+
+
+        $(".check-all").on('ifUnchecked', function(e) {
+            e.preventDefault();
+            $('.table').find(".icheckbox_square-blue").iCheck('uncheck');
+
+        });
+    </script>
+</block>

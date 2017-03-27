@@ -1,0 +1,162 @@
+<extend name="./App/Common/View/default/Base/common.html" />
+<block name="main_content">
+    <include file="./App/Common/View/default/Public/crumb.html" />
+    <div class="mod">
+        <div class="mod-head">
+            <h3>
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="#">安全设置</a>
+                    </li>
+                </ul>
+            </h3>
+        </div>
+        <div class="tab-content mod-content">
+            <div class="table-responsive" style="overflow-x:hidden;">         <!--公众号搜索功能-->
+                <div id="msg">
+                <div id="showdiv">
+                    <div id="">
+                        <div style="width:400px;margin:20px auto;" class="clearfix">
+                            <div style="float:left;">
+                                <if condition="$data.headimg eq ' '">
+                                    <img src="__PUBLIC__/Mp/img/nopic.jpg" data-nopic="__PUBLIC__/Mp/img/nopic.jpg" style="boder:1px red solid;" class="img-responsive img-thumbnail webuploader-picture" width="150">
+                                    <else/>
+                                    <img src="{$data.headimg}" style="border-radius:10px" width="150px;" height="150px;" alt="">
+                                </if>
+                                <p><a href="javascript:;" style="margin-left: 45px;" onclick="update_img()"><button>修改头像</button></a></p>
+                            </div>
+                            <div style="float:left;margin:30px 0 40px 40px;">
+                                <p style="margin-bottom:10px;">登录账号:&nbsp;&nbsp;{$data.username}</p>
+                                <p style="margin-bottom:10px;">账号ID:&nbsp;&nbsp;{$data.id}</p>
+                                <p style="margin-bottom:10px;">注册时间:&nbsp;&nbsp;{$data.register_time|date="Y-m-d H:i:s",###}</p>
+                            </div>
+                        </div>
+                <form method="post" action="{:U('Mp/User/change_password')}" class="form-horizontal" onsubmit="return submits(this)" enctype="multipart/form-data" role="form">
+                    <div class="form-group" style="margin-left:-57px; display:none" id="showimg">
+                        <input type="hidden" id="is_img" value="0">
+                        <label class="col-sm-2 col-xs-3 control-label clearfix" style="text-align: right">产品图片：</label>
+                        <div class="col-sm-9 col-xs-12" ng-invoker="context.bind();">
+                            <div class="input-group ">
+                                <input name="headimg" class="form-control webuploader-input" value="" width="200" type="text">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default webuploader-btn" type="button" data-toggle="modal" data-target="#modal-wechat-webuploader" style="height: 34px;">选择图片</button> 
+                                </span>
+                                <span class="input-group-btn btn-primary" style="border-radius:5px;"> 
+                                    <a href="javascript:;" class="btn" style="color:#fff;margin-right:0;" onclick="sub_img()">确认修改</a>
+                                </span>
+                            </div>
+                            <div class="input-group " style="margin-top:.5em;">
+                                <img src="__PUBLIC__/Mp/img/nopic.jpg" data-nopic="__PUBLIC__/Mp/img/nopic.jpg" class="img-responsive img-thumbnail webuploader-picture" width="150">
+                                <em class="close" style="position:absolute; top: 0px; right: -14px;" title="删除这张图片">×</em>
+                            </div>
+                           
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-left:-57px;">
+                        <label class="col-sm-2 col-xs-3 control-label">原密码:</label>
+                        <div class="col-sm-9 col-xs-12">
+                            <input class="form-control" type="password" name="old_pass" placeholder="请输入旧密码" onblur="check_oldpassword()"/>
+                            <span class="help-block" id="apass"></span>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-left:-57px;">
+                        <label class="col-sm-2 col-xs-3 control-label">新密码:</label>
+                        <div class="col-sm-9 col-xs-12">
+                            <input class="form-control" type="password" name="new_pass" placeholder="请输入新密码" onkeyup="check_newpassword()" value="" />
+                            <span class="help-block" id="bpass"></span>
+                        </div>
+                    </div>   
+                    <div class="form-group" style="margin-left:-57px;">
+                        <label class="col-sm-2 col-xs-3 control-label">确认密码:</label>
+                        <div class="col-sm-9 col-xs-12">
+                            <input class="form-control" type="password" name="confirm_pass" placeholder="确认密码" onkeyup="check_true()" value=""  />
+                            <span class="help-block" id="cpass"></span>
+                        </div>
+                    </div>
+                    <div class="form-group" style="text-align: center">
+                            <input type="submit" value="确认" class="btn btn-primary" style="display: inline-block" />
+                            <input type="reset" value="重置" class="btn btn-primary" style="display: inline-block" />
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="script">
+    <script type="text/javascript">
+    // 
+    
+         function check_oldpassword(){
+            var old_password = $("input[name='old_pass']").val();
+            // alert(old_password);
+            var postUrl = "{:U('Mp/User/check_oldpassword')}";
+            $.post(postUrl,{'old_password':old_password},function(elem){
+                if(elem.status == 1){
+                    $("#apass").html('<font color="red">'+elem.info+'</font>');
+                    return true;
+                }else{
+                    $("#apass").html('<font color="red">'+elem.info+'</font>');
+                    return false;
+                }
+            });
+         }
+         function check_newpassword(){
+            var new_password = $("input[name='new_pass']").val();
+            var lengths = new_password.length;
+            if(new_password == ''){
+                $("#bpass").html('<font color="red">密码不能为空</font>');
+                return false;
+            }else{
+                if(lengths>=6 && lengths<=20){
+                    $("#bpass").html('<font color="red">格式正确</font>');
+                    return true;
+                }else{
+                    $("#bpass").html('<font color="red">密码长度需在6~20位之间</font>');
+                    return false;
+                }
+            }
+         }
+         function check_true(){
+            var new_password = $("input[name='new_pass']").val();
+            var check_password = $("input[name='confirm_pass']").val();
+            if(new_password!=check_password){
+                $("#cpass").html('<font color="red">确认密码与新密码输入不一致</font>');
+                return false;
+            }else{
+                $("#cpass").html('<font color="red">正确</font>');
+                return true; 
+            }
+         }
+         // function submits(){
+         //    // return true;
+         //    // if( check_oldpassword() && check_newpassword() && check_true() ){
+         //    //     return true;
+         //    // }else{
+         //    //     return false;
+         //    // }
+         // }
+         function update_img(){
+            var is_img = $("#is_img").val();
+            if(is_img == 0){
+                $("#showimg").show();
+                $("#is_img").val(1);
+            }else{
+                $("#showimg").hide();
+                $("#is_img").val(0);
+            }
+         }
+         function sub_img(){
+            var headimg = $("input[name='headimg']").val();
+            var postUrl = "{:U('Mp/User/update_img')}";
+            $.post(postUrl,{'headimg':headimg},function(e){
+                if(e.status == 1){
+                    window.location.href="{:U('Mp/User/own_mess')}";
+                }else{
+                    alert(e.info);
+                }
+            });
+         }
+    </script>
+</block>

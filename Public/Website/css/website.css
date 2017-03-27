@@ -1,0 +1,46 @@
+@charset "utf-8";
+
+/*网站样式*/
+#msg .config-model-warp{
+    width: 100%;
+}
+.config-model-warp .model-items{
+    float: left;
+    min-width: 20%;
+    text-align: center;
+}
+.config-model-warp .model-items a{
+    width: 80px !important;
+    height: auto;
+    margin: 10px auto;
+    text-align: center;
+}
+.config-model-warp .model-items div{
+    width: 70px;
+    height: 70px;
+    text-align: center;
+    line-height: 70px;
+    border-radius: 10px;
+    margin:0 auto;
+}
+.config-model-warp .model-items div img{
+    width: 40px;
+    height: 40px;
+    margin-top: 15px;
+}
+
+.config-model-warp .model-items p{
+    margin: 20px 0 !important;
+}
+.color-zi{
+    background: slateblue;
+}
+.color-huang{
+    background: #ffb65a;
+}
+.color-lan{
+    background: deepskyblue;
+}
+.color-hong{
+    background: firebrick;
+}

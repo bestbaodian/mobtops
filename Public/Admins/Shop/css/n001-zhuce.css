@@ -1,0 +1,84 @@
+/*$*/
+/*rem*/
+/*mixin*/
+/*class*/
+/*header*/
+.header-bar {
+  background: #e13953;
+  width: 100%;
+  line-height: 1.48rem; }
+  .header-bar a {
+    width: 10%;
+    color: #fff; }
+    .header-bar a .iconfont {
+      font-size: 0.72rem; }
+    .header-bar a.fr .iconfont {
+      font-size: 1.2rem; }
+  .header-bar p {
+    width: 76%;
+    color: #fff;
+    font-size: 0.72rem;
+    text-align: center; }
+
+/*m-total*/
+.m-total {
+  width: 100%;
+  height: 1.6rem;
+  line-height: 1.6rem;
+  background: #ffb03f; }
+  .m-total .pal4 {
+    color: #fff;
+    font-size: 0.36rem; }
+    .m-total .pal4 .iconfont, .m-total .pal4 p {
+      float: left; }
+
+.m-inputs {
+  font-size: 0.6rem; }
+  .m-inputs div {
+    width: 100%;
+    height: 2.4rem;
+    line-height: 2.4rem;
+    border-bottom: 1px solid #f2f2f2; }
+    .m-inputs div p {
+      float: left;
+      font-size: 0.48rem; }
+    .m-inputs div select {
+      float: right;
+      height: 2.4rem;
+      line-height: 0.6rem;
+      width: 70%; }
+      .m-inputs div select option {
+        text-align: center;
+        font-size: 0.6rem; }
+    .m-inputs div input {
+      float: right;
+      height: 2.4rem;
+      line-height: 0.6rem;
+      width: 78%;
+      font-size: 0.6rem; }
+      .m-inputs div input.yzm {
+        width: 43%;
+        float: left; }
+    .m-inputs div .get-yzm {
+      background: #ffb03f;
+      color: #fff;
+      display: inline-block;
+      height: 1.2rem;
+      line-height: 1.2rem;
+      padding: 0 0.12rem;
+      border-radius: 0.2rem; }
+  .m-inputs input[type=submit] {
+    width: 100%;
+    height: 1.6rem;
+    display: block;
+    background: #e13953;
+    color: #fff;
+    font-size: 0.64rem;
+    margin-top: 1.96rem; }
+  .m-inputs .warming {
+    width: 100%;
+    color: #999999;
+    font-size: 0.48rem;
+    margin-top: 0.8rem; }
+
+/*# sourceMappingURL=n001-zhuce.css.map */

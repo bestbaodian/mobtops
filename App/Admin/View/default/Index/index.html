@@ -1,0 +1,214 @@
+<extend name="./App/Common/View/default/Base/common.html" />
+<block name="style">
+<style type="text/css">
+.mod-body table tbody td{
+    text-align: left; !important;
+}
+td{
+    font-size: 12px;
+}
+
+</style>
+</block>
+<script type="text/javascript">
+    gvChartInit();
+    $(document).ready(function(){
+        $('#myTable5').gvChart({
+            chartType: 'PieChart',
+            gvSettings: {
+                vAxis: {title: 'No of players'},
+                hAxis: {title: 'Month'},
+                width: 600,
+                height: 350
+            }
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    gvChartInit();
+    $(document).ready(function(){
+        $('#myTable1').gvChart({
+            chartType: 'PieChart',
+            gvSettings: {
+                vAxis: {title: 'No of players'},
+                hAxis: {title: 'Month'},
+                width: 600,
+                height: 350
+            }
+        });
+    });
+</script>
+<block name="main_content">
+<div class="row mod-echat-info">
+    <div class="col-md-6">
+        <div class="mod">
+            <div class="mod-head">
+                <h3>
+                    <span class="pull-left">框架信息</span>
+                </h3>
+            </div>
+            <div class="tab-content mod-content">
+                <table class="table table-striped">
+                    <tbody>
+						<tr>
+                            <td>服务器Ip：101.201.196.201</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>操作系统：支持windows、Linux系统</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>运行环境：Apache/2.4.10(Win32)、 OpenSSL/1.0.1i mod_fcgid(2.3.9)</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>数据库版本：MySQL版本V5.5.40以上</td>              
+                        </tr>
+                        <tr>
+                            <td>ThinkPHP版本：V3.2.3以上</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>魔派MobTop框架版本：V1.0</td>
+                            <td></td>
+                        </tr>
+						 <tr>
+                            <td>当前网站语言：UTF-8简体中文</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>数据库日期：2016年10月31日13:10:20&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="index.php?s=/Mp/Index/clear_cache"><span style="color: blue;font-weight: bold;">清理缓存</span></a></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>最后更新系统版本时间：2016年10月31日13:10:20&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)"><span style="color: blue;font-weight: bold;">检查更新并在线升级</span></a>&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)"><span style="color: blue;font-weight: bold;">升级数据库</span></a></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>你的帐号顶级域名:&nbsp;<span style="color: red;font-weight: bold;">whui360.com</span>&nbsp;&nbsp;登录名：&nbsp;<span style="color: red;font-weight: bold;">admin</span></span>&nbsp;&nbsp;默认密码：&nbsp;<span style="color: red;font-weight: bold;">123456</span></td>
+                            <td></td>
+                        </tr>
+                        			 <tr>
+                                                     <td>你的程序版本为：魔派MobTop多用户营销管理系统&nbsp;&nbsp;&nbsp;&nbsp;<a href="index.php?s=/Admins/Login/login">登录</a></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="mod">
+            <div class="mod-head">
+                <h3>
+                    <span class="pull-left">产品信息</span>
+                </h3>
+            </div>
+            <div class="tab-content mod-content">
+                <table class="table table-striped">
+                    <tbody>
+                        <tr>
+                            <td>总策划:&nbsp;&nbsp;<a href="http://whui360.com/" target="_blank">魔派MobTop</a></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>研发团队:&nbsp;&nbsp;魔派MobTop研发部</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>贡献者:&nbsp;&nbsp;魔派MobTop研发部、产品部、视觉部等部门</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>官方网址:&nbsp;&nbsp;<a href="http://www.MobTop.com.cn" target="_blank">http://www.MobTop.com.cn</a></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        
+        <div class="mod">
+            <div class="mod-head">
+                <h3>
+                    <span class="pull-left"><a href="javascript:void(0)">公告中心</a></span>
+                </h3>
+                <a style="float:right;color:blue;line-height:35.2px;margin-right:25px;" href="{:U('Mp/Content/content')}">[更多...]</a>
+            </div> 
+                <div class="tab-content mod-content">
+                <table class="table table-striped">
+                    <tbody>
+                        <volist name="affiche_data" id="vo">
+                            <tr>
+                                <td><a href="{:U('Admin/Content/content_mess',array('cid'=>$vo['cid']))}" style="color:blue;">{$vo.affiche_title}</a></td>
+                            </tr>
+                        </volist>
+                    </tbody>
+                </table>
+            </div>   
+        </div>
+        <div class="mod">
+            <div class="mod-head">
+                <h3>
+                    <span class="pull-left">图表信息</span>
+                </h3>
+            </div>
+            <div class="tab-content mod-content">
+                <div class="table" id="charts-pie" style="width: 100%; height: 400px;">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+    <script type="text/javascript" src="__PUBLIC__/Admin/js/echarts.js"></script>
+    <script>
+        var myChart = echarts.init(document.getElementById('charts-pie'));
+        option = {
+            title : {
+                text: '管理员帐号分类',
+                subtext: '统计数据来自本站',
+                x:'center'
+            },
+            tooltip : {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                data: ['超级管理员','系统管理员','公众号管理员','网站管理员','视频管理员','企信管理员','支付管理员']
+            },
+            series : [
+                {
+                    name: '帐号统计',
+                    type: 'pie',
+                    radius : '55%',
+                    center: ['50%', '60%'],
+                    data:[
+                        {value:{$data['admin'][0]['count(*)']}, name:'超级管理员'},
+                        {value:{$data['system'][0]['count(*)']}, name:'系统管理员'},
+                        {value:{$data['mp'][0]['count(*)']}, name:'公众号管理员'},
+                        {value:{$data['wangzhan'][0]['count(*)']}, name:'网站管理员'},
+                        {value:{$data['video'][0]['count(*)']}, name:'视频管理员'},
+                        {value:{$data['qixin'][0]['count(*)']}, name:'企信管理员'},
+                        {value:{$data['payment'][0]['count(*)']}, name:'支付管理员'}
+                    ],
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+        myChart.setOption(option);
+    </script>
+</block>
+

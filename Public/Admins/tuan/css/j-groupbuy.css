@@ -1,0 +1,91 @@
+@charset "UTF-8";
+/*颜色*/
+/*rem转换*/
+/*多行文本省略*/
+/*一行文字垂直居中*/
+/*一行文字水平垂直居中*/
+/*清除表单默认样式*/
+/*底部间距*/
+/*底部按钮*/
+/*转为怪异盒模型*/
+/*左右flex布局*/
+.nav {
+  background: #fff;
+  font-size: 0.52rem;
+  border-bottom: 1px solid #ddd; }
+  .nav a {
+    width: 25%;
+    float: left;
+    text-align: center;
+    line-height: 1.4rem; }
+    .nav a .b-line {
+      width: 0.4rem;
+      height: 0.12rem;
+      margin-left: 45%;
+      border-radius: 0.06rem; }
+  .nav .cur {
+    color: #ff595f; }
+    .nav .cur .b-line {
+      background: #ff595f; }
+
+.cont {
+  display: block;
+  background: #fff;
+  padding: 0.4rem 4%;
+  margin-bottom: 0.2rem; }
+  .cont .cont-title {
+    font-size: 0.52rem;
+    color: #ff595f;
+    margin-top: 0.4rem;
+    padding-top: 0.3rem;
+    border-top: 1px solid #ddd; }
+  .cont .shop-pic {
+    display: flex; }
+    .cont .shop-pic .imgSrc {
+      flex: 0 0 4rem;
+      width: 4rem;
+      height: 3.4rem; }
+    .cont .shop-pic .shop-info {
+      flex: 1;
+      padding-left: 0.4rem;
+      font-size: 0.52rem; }
+      .cont .shop-pic .shop-info .shop-name {
+        margin-bottom: 0.2rem; }
+      .cont .shop-pic .shop-info .shop-price {
+        color: #ff595f;
+        margin-bottom: 0.4rem; }
+        .cont .shop-pic .shop-info .shop-price .rmb {
+          font-size: 0.72rem; }
+        .cont .shop-pic .shop-info .shop-price .old-price {
+          color: #999999;
+          text-decoration: line-through;
+          margin-left: 0.4rem; }
+        .cont .shop-pic .shop-info .shop-price .fr {
+          color: #333333; }
+    .cont .shop-pic .group {
+      display: flex;
+      justify-content: flex-start; }
+      .cont .shop-pic .group p {
+        margin-left: 0.4rem;
+        color: #999999;
+        font-size: 0.48rem; }
+    .cont .shop-pic .group-icon {
+      display: flex;
+      border: 1px solid #ff595f;
+      justify-content: flex-start;
+      font-size: 0.48rem;
+      border-radius: 0.1rem;
+      width: 2.8rem;
+      overflow: hidden; }
+      .cont .shop-pic .group-icon .icon-l {
+        flex: 0 0 0.8rem;
+        text-align: center;
+        color: #ffffff;
+        background: #ff595f; }
+      .cont .shop-pic .group-icon .icon-r {
+        flex: 1;
+        color: #ff595f;
+        background: #ffffff;
+        text-align: center; }
+
+/*# sourceMappingURL=j-groupbuy.css.map */

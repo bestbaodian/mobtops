@@ -1,0 +1,151 @@
+@charset "utf-8";
+@import "mixin";
+
+.nav-list{
+  width: 100%;
+  height: Rem(76);
+  overflow: hidden;
+  border-bottom: Rem(10) solid $border-grey;
+  .list-warp{
+	width: 100%!important;
+	height: Rem(76);
+	line-height: Rem(76);
+	font-size: 0;
+	a{
+	  font-size: Rem(26);
+	  //padding: 0 Rem(24);
+	  position: relative;
+		width:25%;
+		text-align: center;
+	  &.act{
+		color: $main-color;
+		font-weight: bold;
+		.bdline{
+		  display: block;
+		}
+	  }
+	  .line{
+		display: block;
+		width: 1px;
+		height: Rem(22);
+		position: absolute;
+		top:50%;
+		right: 0;
+		margin-top: Rem(-11);
+		background: $border-grey;
+	  }
+	  .bdline{
+		width: Rem(20);
+		height: Rem(6);
+		background: $main-color;
+		position: absolute;
+		bottom: 0;
+		left: 50%;
+		margin-left: Rem(-10);
+		display: none;
+	  }
+	}
+  }
+}
+/*商品列表*/
+.shop-lists{
+  padding:Rem(20) 4% Rem(10);
+  border-bottom: Rem(10) solid $border-grey;
+}
+
+.lists-header{
+  width: 100%;
+  font-size: Rem(26);
+  padding: 0 0 0.4rem 0;
+  border-bottom: 1px solid $border-grey;
+  .now-type{
+	font-size: Rem(24);
+	color: $main-color;
+  }
+}
+
+/*items*/
+.items{
+  min-height: Rem(140);
+  padding: Rem(26) 0;
+  position: relative;
+  border-bottom: 1px solid $border-grey;
+  .items-check{
+	position: absolute;
+	left: Rem(-64);
+	top:Rem(50);
+  }
+  .pic{
+	width: Rem(150);
+	height: Rem(112);
+	& img{
+	  width: Rem(150);
+	  height: Rem(160);
+	}
+  }
+  .items-right{
+	width: 70%;
+	min-height: Rem(140);
+	margin-left: Rem(26);
+  }
+}
+
+/*item-con-head*/
+.item-con-header {
+  & h4{
+	width: 80%;
+	font-size: Rem(26);
+	font-weight: normal;
+	@include font-els(2);
+  }
+  & .items-num{
+	color: $grey2;
+	font-size: Rem(26);
+  }
+}
+/*item-con-middle*/
+.items-middle{
+  font-size: Rem(24);
+  color: $grey999;
+  margin-top: Rem(20);
+}
+
+/*item-con-footer*/
+.items-footer{
+  span{
+	vertical-align: bottom;
+  }
+  .item-footer-money{
+	font-size: Rem(26);
+	color: $main-color;
+  }
+  .item-footer-oldmoney{
+	color: $grey999;
+	margin-left: Rem(30);
+  }
+  .text{
+	font-size: Rem(26);
+	color: $grey2;
+  }
+}
+/*lists-footer*/
+.lists-footer{
+  padding-top: Rem(10);
+  font-size: Rem(24);
+  .footer-btn{
+	padding: Rem(10) Rem(16);
+	border-radius: Rem(30);
+	margin-left: Rem(30);
+  }
+  .wait-pay{
+	color: $white;
+	background: $main-color;
+  }
+  .delete-pay{
+	color: $grey666;
+	border: 1px solid $border-grey;
+  }
+  p{
+
+  }
+}

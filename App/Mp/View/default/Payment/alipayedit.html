@@ -1,0 +1,175 @@
+<extend name="./App/Common/View/default/Base/common.html" />
+<block name="main_content">
+    <include file="./App/Common/View/default/Public/crumb.html" />
+    <div class="mod">
+        <div class="mod-head">
+            <h3>
+                <ul class="nav nav-tabs">
+                    <li class="">
+                        <a href="{:U('Payment/alipaylist')}">支付宝信息展示</a>
+                    </li>
+                    <li class="">
+                        <a href="{:U('Payment/alipay')}">支付宝配置</a>
+                    </li>
+                    <li class="">
+                        <a href="{:U('Game/Index/zhifubao')}">支付宝信息调用</a>
+                    </li>
+                </ul>
+            </h3>
+        </div>
+        <style>
+            .col-sm-2{
+                text-align:right;
+            }
+            .choose-box{
+                position: absolute;
+                top: -20%;
+                left: -20%;
+                display: block;
+                width: 140%;
+                height: 140%;
+                margin: 0px;
+                padding: 0px;
+                background: rgb(255, 255, 255) none repeat scroll 0% 0%;
+                border: 0px none; opacity: 0;
+            }
+           .list-items{
+               margin-right: 20px;
+           }
+            .more-size{
+                margin-bottom: 10px;
+            }
+            .form-group .col-sm-2{
+                width:11%!important;
+            }
+            .form-group .col-sm-9{
+                width:82%!important;
+            }
+            .col-sm-9 #edui1{
+                width:100%!important;
+            }
+        </style>
+        <div class="tab-content mod-content clearfix"> 
+            <form action="{:U('Mp/Payment/alipayupdate')}" method="POST" enctype="multipart/form-data">
+                            <input type="hidden" name="id" value="{$res['id']}">
+               <div class="form-group clearfix" style="">
+                    <label class="col-sm-2 col-xs-3 control-label clearfix" style="">合作身份者id:</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <input class="form-control" type='text' name="partner" value="{$res.partner}" >
+                    </div>
+                </div>
+                 <div class="form-group clearfix" style="">
+                    <label class="col-sm-2 col-xs-3 control-label clearfix" style="">收款支付宝账号:</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <input class="form-control" type='text' name="seller_email" value="{$res.seller_email}" >
+                    </div>
+                </div>
+                <div class="form-group clearfix" style="">
+                    <label class="col-sm-2 col-xs-3 control-label clearfix" style="">安全检验码:</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <input class="form-control" type='text' name="key" value="{$res.key}">
+                    </div>
+                </div>
+                <div class="form-group clearfix" style="text-align: center">
+                    <input class="btn btn-primary" id="submit" value="确  认" type="submit">
+                    <input class="btn btn-primary"  type="reset" value='重 置'/>
+                </div>
+            </form>
+        </div>
+    </div>
+</block>
+<block name="script">
+    <script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.all.js"></script>
+    <script type="text/javascript">
+        var ue = UE.getEditor('post-content',{
+            toolbars: [
+                ['fullscreen', 'source', 'undo', 'redo','bold', 'italic', 'underline','fontborder', 'strikethrough', '|','simpleupload', 'insertimage','emotion','link','unlink', '|', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote','searchreplace', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc'],
+                ['inserttable','insertrow', 'insertcol','mergeright', 'mergedown','deleterow', 'deletecol','splittorows','splittocols', 'splittocells','deletecaption','inserttitle', 'mergecells', 'deletetable','insertparagraphbeforetable', 'paragraph','fontsize','fontfamily']
+            ],
+            initialFrameHeight:200,
+            initialFrameWidth:600,
+            zIndex:100
+        });
+
+        var moreTypeChoose = $('#more-type-choose');
+        moreTypeChoose.hide();
+        $('.choose-box').on('ifChecked', function (e){
+            var val = $(this).val();
+            if(val == 1){
+                moreTypeChoose.slideDown();
+            }else{
+                moreTypeChoose.slideUp();
+            }
+
+        });
+
+        var choosePay = $('.choose-pay');
+        choosePay.on('change',function(){
+
+            var value = $(this).val();
+            $('.choose-pay-type').hide();
+            
+                if(value != 1){
+                    $('.zhf').show();
+                    $('.dianlei').hide();
+                }else{
+                    $('.zhf').show();
+                    $('.dianlei').show();
+                }
+                $(this).find('input[type="number"]').val("");
+            
+        })
+
+        //优惠类型修改
+        var cheapType = $('.cheaper-type');
+        $('.che-type').on('change',function(){
+            if($(this).val() === '1'){
+                cheapType.each(function(){
+                    if($(this).attr('data-type') === 'dazhe'){
+                        $(this).show();
+                    }else {
+                        $(this).hide();
+                    }
+                })
+            }else {
+                cheapType.each(function(){
+                    if($(this).attr('data-type') === 'jiage'){
+                        $(this).show();
+                    }else {
+                        $(this).hide();
+                    }
+                })
+            }
+        })
+
+        //默认执行一次
+        cheType($('.moren-che-type').val());
+        function cheType(value){
+            if(value === '1'){
+                cheapType.each(function(){
+                    if($(this).attr('data-type') === 'dazhe'){
+                        $(this).show();
+                    }else {
+                        $(this).hide();
+                    }
+                })
+            }else {
+                cheapType.each(function(){
+                    if($(this).attr('data-type') === 'jiage'){
+                        $(this).show();
+                    }else {
+                        $(this).hide();
+                    }
+                })
+            }
+        }
+
+        $('.yhj').change(function(){
+            var yj = $('.y_price').val();
+            var zhk = $('.yhj').val();
+            var zhh = yj*(zhk/10);
+            $('.yhh').val(zhh); 
+        });
+    </script>
+</block>

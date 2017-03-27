@@ -1,0 +1,40 @@
+<html>
+	<body>
+		<table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>用户名</th>
+                        <th>昵称</th>
+                        <th>邮箱</th>
+                        <th>用户角色</th>
+                        <th>注册时间</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <volist name="data.lists" id="vo" key="k">
+                        <tr>
+                            <td>{$k}</td>
+                            <td>{$vo.username}</td>
+          			         		<td>{$vo.nickname}</td>
+          							    <td>{$vo.email}</td>
+          			         		<td>{$vo.callback_name}</td>
+          			         		<td>{$vo.register_time}</td>
+                            <td>
+                                <!-- <a class="btn btn-success btn-sm icon-edit" href="{:U('Admin/User/edit',array('id'=>$vo['id']))}">编辑</a><a class="btn btn-danger btn-sm icon-delete" href="#" onclick="del({$vo['id']})">删除</a> -->
+                                <a href="{:U('Admin/User/edit',array('id'=>$vo['id']))}"><img src='http://www.mobtop.com.cn/edit.gif' width='12px' height='12px'/></a>&nbsp;&nbsp;
+                                <a href="{:U('Admin/User/delete',array('id'=>$vo['id']))}"><img src='http://www.mobtop.com.cn/del.gif' width='15px' height='15px'/></a>
+                            </td>
+                        </tr>
+                    </volist>
+                    </tbody>
+                </table>
+        <input type="hidden" name="__hash__" value="5786ea04b995bc596bb908419e9d38eb_21e697ebb3336580cc76eafc7ebda4a6" />
+                <div class="mod-table-foot">
+                    <span><center>{$data.str}&nbsp;&nbsp; 页次:<font color="red">{$data.page}</font>/{$data.pagesum}&nbsp;&nbsp;共有<font color="red">{$data.counts}</font>条记录&nbsp;&nbsp;转到<input type="text" id="p" style="width:20px; height:20px; border:1px solid #a49191;">页&nbsp;&nbsp;<button onclick="gopage()">GO</button></center>
+                    </span>              
+                    <div class="page-control"><ul class="pagination pull-right">    </ul></div>            
+                </div>
+	</body>
+</html>

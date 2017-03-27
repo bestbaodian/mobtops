@@ -1,0 +1,219 @@
+@charset "UTF-8";
+/*颜色*/
+/*rem转换*/
+/*多行文本省略*/
+/*一行文字垂直居中*/
+/*一行文字水平垂直居中*/
+/*清除表单默认样式*/
+/*底部间距*/
+/*底部按钮*/
+/*转为怪异盒模型*/
+/*左右flex布局*/
+body,
+html {
+  width: 100%;
+  height: 100%; }
+
+.sui-warpper {
+  width: 100%;
+  height: 93%;
+  position: relative; }
+
+.footer-submit {
+  width: 100%;
+  height: 7%;
+  background: #ff595f;
+  display: table; }
+  .footer-submit a {
+    color: #fff;
+    display: table-cell;
+    width: 100%;
+    height: 100%;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 0.72rem; }
+
+.page-group,
+.page {
+  background: #fff; }
+
+.header-warpper {
+  width: 100%; }
+
+.cont .cont-title {
+  font-size: 0.6rem;
+  color: #ff595f;
+  padding: 0.4rem 0.6rem; }
+.cont .shop-pic {
+  display: flex;
+  padding: 0 0.6rem 0.6rem 0.6rem;
+  border-bottom: 0.2rem solid #ececec; }
+  .cont .shop-pic .imgSrc {
+    flex: 0 0 4rem;
+    width: 4rem;
+    height: 3.4rem; }
+  .cont .shop-pic .shop-info {
+    flex: 1;
+    padding-left: 0.4rem;
+    font-size: 0.52rem; }
+    .cont .shop-pic .shop-info .shop-name {
+      margin-bottom: 0.2rem; }
+    .cont .shop-pic .shop-info .shop-price {
+      color: #ff595f;
+      margin-bottom: 0.4rem; }
+      .cont .shop-pic .shop-info .shop-price .rmb {
+        font-size: 0.72rem; }
+      .cont .shop-pic .shop-info .shop-price .old-price {
+        color: #999999;
+        text-decoration: line-through;
+        margin-left: 0.4rem; }
+      .cont .shop-pic .shop-info .shop-price .fr {
+        color: #333333; }
+  .cont .shop-pic .group {
+    display: flex;
+    justify-content: flex-start; }
+    .cont .shop-pic .group p {
+      margin-left: 0.4rem;
+      color: #999999;
+      font-size: 0.48rem; }
+  .cont .shop-pic .group-icon {
+    display: flex;
+    border: 1px solid #ff595f;
+    justify-content: flex-start;
+    font-size: 0.48rem;
+    border-radius: 0.1rem;
+    width: 2.8rem;
+    overflow: hidden; }
+    .cont .shop-pic .group-icon .icon-l {
+      flex: 0 0 0.8rem;
+      text-align: center;
+      color: #ffffff;
+      background: #ff595f; }
+    .cont .shop-pic .group-icon .icon-r {
+      flex: 1;
+      color: #ff595f;
+      background: #ffffff;
+      text-align: center; }
+
+.group-info-warpper {
+  padding: 0.4rem 0.6rem;
+  border-bottom: 0.2rem solid #ececec; }
+  .group-info-warpper .info-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.6rem; }
+    .group-info-warpper .info-header .pay-num span {
+      color: #ff595f;
+      font-weight: 700; }
+  .group-info-warpper .info-range {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.8rem 0.4rem;
+    font-size: 0.6rem; }
+    .group-info-warpper .info-range .range {
+      flex: 1;
+      padding: 0 0.4rem; }
+      .group-info-warpper .info-range .range .range-backgroud {
+        width: 100%;
+        height: 0.8rem;
+        background: #ececec;
+        border-radius: 10px;
+        position: relative; }
+        .group-info-warpper .info-range .range .range-backgroud .range-line {
+          width: 0%;
+          height: 0.8rem;
+          border-radius: 10px;
+          background: #ff595f;
+          position: absolute;
+          left: 0;
+          top: 0;
+          transition: all .2s linear; }
+        .group-info-warpper .info-range .range .range-backgroud .insert-content {
+          background: #ff595f;
+          color: #ffffff;
+          position: absolute;
+          padding: 0.2rem;
+          border-radius: 0.2rem;
+          top: 1.2rem;
+          left: 0%;
+          transform: translateX(-50%);
+          transition: all .2s linear; }
+          .group-info-warpper .info-range .range .range-backgroud .insert-content .num {
+            position: relative; }
+            .group-info-warpper .info-range .range .range-backgroud .insert-content .num .triangle {
+              position: absolute;
+              top: -0.4rem;
+              left: 50%;
+              transform: translateX(-50%);
+              width: 0;
+              height: 0;
+              border-bottom: 0.4rem solid #ff595f;
+              border-left: 0.4rem solid transparent;
+              border-right: 0.4rem solid transparent; }
+  .group-info-warpper .user-info {
+    width: 100%;
+    margin-top: 2rem;
+    overflow-x: auto; }
+    .group-info-warpper .user-info .infos-list {
+      display: flex;
+      justify-content: flex-start; }
+      .group-info-warpper .user-info .infos-list .info-item {
+        flex: 0 0 2.4rem;
+        position: relative;
+        margin-right: 0.4rem; }
+        .group-info-warpper .user-info .infos-list .info-item img {
+          width: 2.4rem;
+          height: 2.4rem;
+          border-radius: 50%; }
+        .group-info-warpper .user-info .infos-list .info-item span {
+          position: absolute;
+          top: 0;
+          right: 0;
+          font-size: 0.48rem;
+          color: #fff;
+          background: #ff595f;
+          padding: 0.1rem 0.2rem;
+          border-radius: 50%; }
+
+.play-info {
+  font-size: 0.52rem;
+  margin-top: 0.2rem; }
+  .play-info .play-tit {
+    width: 100%;
+    padding: 0 4%;
+    display: flex;
+    line-height: 1.4rem; }
+    .play-info .play-tit .iconfont {
+      color: #999;
+      display: inline-block;
+      vertical-align: middle; }
+    .play-info .play-tit span {
+      flex: 1;
+      vertical-align: middle; }
+      .play-info .play-tit span:last-of-type {
+        text-align: right; }
+  .play-info .play-cont {
+    padding: 0.4rem 0 0.4rem 4%;
+    border-bottom: 0.2rem solid #ececec; }
+    .play-info .play-cont .cur .play-num {
+      color: #fff;
+      background: #ff595f;
+      border-color: #ff595f; }
+    .play-info .play-cont .cur .play-txt {
+      color: #ff595f; }
+  .play-info .play-cont > div {
+    width: 25%; }
+  .play-info .play-num {
+    color: #666;
+    width: 0.8rem;
+    text-align: center;
+    border-radius: 50%;
+    line-height: 0.8rem;
+    border: 1px solid #666;
+    margin: 0.3rem 0.2rem 0 0; }
+  .play-info .play-txt {
+    width: 60%; }
+  .play-info .zhi {
+    padding-top: 0.3rem; }
+
+/*# sourceMappingURL=n-006-ddinfo.css.map */

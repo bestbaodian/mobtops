@@ -1,0 +1,94 @@
+/*$*/
+/*rem*/
+/*mixin*/
+/*class*/
+/*header*/
+.header-bar {
+  background: #e13953;
+  width: 100%;
+  line-height: 1.48rem; }
+  .header-bar a {
+    width: 10%;
+    color: #fff; }
+    .header-bar a .iconfont {
+      font-size: 0.72rem; }
+    .header-bar a.fr .iconfont {
+      font-size: 1.2rem; }
+  .header-bar p {
+    width: 76%;
+    color: #fff;
+    font-size: 0.72rem;
+    text-align: center; }
+
+.m-user-center {
+  width: 92%;
+  height: 4.88rem;
+  background: url("../imgs/j-hyk-bj.png") no-repeat;
+  background-size: cover;
+  padding: 0 4%; }
+  .m-user-center .head-pic {
+    float: left;
+    width: 24%;
+    height: 4.88rem;
+    text-align: center;
+    position: relative; }
+    .m-user-center .head-pic img {
+      width: 2.44rem;
+      height: 2.44rem;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-top: -1.22rem;
+      margin-left: -1.22rem; }
+  .m-user-center .head-text {
+    float: left;
+    width: 75%;
+    height: 4.88rem;
+    padding-top: 1.8rem;
+    box-sizing: border-box; }
+    .m-user-center .head-text .user, .m-user-center .head-text .jf {
+      font-size: 0.48rem;
+      color: #fff; }
+    .m-user-center .head-text .iconfont {
+      color: #fff;
+      margin-top: 0.4rem; }
+    .m-user-center .head-text p {
+      font-size: 0.48rem;
+      color: #fff; }
+      .m-user-center .head-text p span {
+        float: right; }
+
+/*m-user-icons*/
+.m-user-icons {
+  margin-top: 0.8rem;
+  border-bottom: 12px solid #f5f5f5; }
+  .m-user-icons h4 {
+    padding: 0 4%;
+    font-size: 0.56rem;
+    border-left: 4px solid #e13953; }
+
+.user-fn-list {
+  width: 92%;
+  padding: 0 4%;
+  line-height: 1.6rem;
+  border-bottom: 0.2rem solid #f5f5f5; }
+  .user-fn-list li {
+    border-bottom: 1px solid #e7e7e7; }
+    .user-fn-list li:last-of-type {
+      border-bottom: none; }
+  .user-fn-list div {
+    font-size: 0.56rem;
+    padding-left: 1.12rem;
+    position: relative; }
+    .user-fn-list div img {
+      width: 0.6rem;
+      height: 0.54rem;
+      position: absolute;
+      left: 0;
+      top: 0.52rem; }
+    .user-fn-list div span {
+      float: right; }
+    .user-fn-list div .iconfont {
+      color: #9f9f9f; }
+
+/*# sourceMappingURL=n300-grzx.css.map */

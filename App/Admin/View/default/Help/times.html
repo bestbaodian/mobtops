@@ -1,0 +1,27 @@
+<extend name="./App/Common/View/default/Base/common.html"/>
+<block name="main_content">
+    <include file="./App/Common/View/default/Public/crumb.html"/>
+    <!--外层容器-->
+    <div class="mod">
+        <!--header容器-->
+        <div class="mod-head">
+            <h3>
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="">时间插件</a>
+                    </li>
+                </ul>
+            </h3>
+        </div>
+      <!-- 时间 start -->
+               <div class="form-group clearfix" style="">
+					<label class="col-sm-2 col-xs-3 control-label clearfix" style="text-align: right">时间：</label>
+					<div class="col-sm-9 col-xs-12">
+						<div class="input-group" style="width:400px; float:left;">
+                            <input class="form-control date-input flatpickr" data-enable-time='true' data-time_24hr='true' style="background:#fff; display:inline-block!important;" type='text' name="yu_time" value="{$re['sg_describe']}" placeholder="" required>
+                            <span class="input-group-addon"><i class="iconfont fa fa-calendar"></i></span>
+                        </div>
+					</div>
+				</div>
+		<!-- 时间 stop -->
+</block>

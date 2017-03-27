@@ -1,0 +1,152 @@
+<extend name="./App/Common/View/default/Base/common.html" />
+<block name="main_content">
+<include file="./App/Common/View/default/Public/crumb.html" />
+<div class="mod">
+    <div class="mod-head">
+            <h3>
+                <ul class="nav nav-tabs">
+                    <li class="">
+                        <a href="{:U('Admin/Node/lists')}">控制台</a>
+                    </li>
+                    <li class="active">
+                        <a href="{:U('Mp/Mpnode/lists')}">公众号</a>
+                    </li>
+                </ul>
+            </h3>
+        </div>
+    <div class="tab-content mod-content">
+        <if condition="$tip">
+            <div class="alert alert-info tip" role="alert">{$tip}</div>
+        </if>
+        <form method="post" action="{:U('Mp/Mpnode/edit_pro')}" class="form-horizontal" role="form">
+                            <div class="form-group" style="margin-left:-57px;">
+                            <label class="col-sm-2 col-xs-3 control-label" style="margin:-7px 0 0 -43px;">归属节点:</label>
+                            <div class="col-sm-9 col-xs-12">
+                                <select name="pid" id="">
+                                    <if condition="$par_name neq ''">
+                                        <option value="" selected="selected" disabled="disabled">{$par_name}</option>
+                                    <else/>
+                                         <option value="" selected="selected" disabled="disabled">顶级节点</option>
+                                    </if>
+                                </select>
+                                <span class="help-block"></span>
+                            </div>
+                            <div class="form-group" style="margin-left:-57px;">
+                                <label class="col-sm-2 col-xs-3 control-label">节点名称:</label>
+                                <div class="col-sm-9 col-xs-12">
+                                    <input class="form-control" type="text" name="name" id="name" placeholder="" value="{$name}" disabled="disabled"/>
+                                    <span class="help-block" id="sname"></span>
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-left:-57px;">
+                                <label class="col-sm-2 col-xs-3 control-label">文件夹:</label>
+                                <div class="col-sm-9 col-xs-12">
+                                    <input class="form-control" type="text" name="folder" id="name" placeholder="" disabled="disabled" value="{$folder}" />
+                                    <span class="help-block" id="sname"></span>
+                                </div>
+                            </div>    
+                            <div class="form-group" style="margin-left:-57px;">
+                                <label class="col-sm-2 col-xs-3 control-label">节点路由:</label>
+                                <div class="col-sm-9 col-xs-12">
+                                        <input class="form-control" type="text" name="url" placeholder="" value="{$url}" disabled="disabled" />
+                                    <span class="help-block">注释：填写控制器及方法名--例如：Index/index（控制器首字母大写） | 顶级节点为：javascript:;</span>
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-left:-57px;">
+                                <label class="col-sm-2 col-xs-3 control-label">属性图标:</label>
+                                <div class="col-sm-9 col-xs-12">
+                                    <input class="form-control" type="text" name="class" placeholder="" value="{$class}" disabled="disabled" />
+                                    <span class="help-block">例如：icon icon-job，子集节点不用填写</span>
+                                </div>
+                            </div> 
+                        <div class="form-group" style="margin-left:-57px;">
+                                <label class="col-sm-2 col-xs-3 control-label">节点类型:</label>
+                                <div class="col-sm-9 col-xs-12">
+                                    <if condition="$type eq 0">
+                                        <label class="radio-inline">
+                                            <input type="radio" name="type" value="0" checked disabled="disabled"> 模块
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="type" value="1" disabled="disabled"> 应用                                
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="type" value="2" disabled="disabled"> 方法                                
+                                        </label>
+                                    <elseif condition="$type eq 1"/>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="type" value="0" disabled="disabled"> 模块
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="type" value="1" checked disabled="disabled"> 应用                                
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="type" value="2" disabled="disabled"> 方法                                
+                                        </label>
+                                    <else/>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="type" value="0" disabled="disabled"> 模块
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="type" value="1" disabled="disabled"> 应用                                
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="type" value="2" checked disabled="disabled"> 方法                                
+                                        </label>
+                                    </if>                             
+                                    <!-- <span class="help-block"></span> -->
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-left:-57px;">
+                                <label class="col-sm-2 col-xs-3 control-label">显示类型:</label>
+                                <div class="col-sm-9 col-xs-12">
+                                    <if condition="$status eq 1">
+                                        <label class="radio-inline">
+                                            <input type="radio" name="status" value="1" checked disabled="disabled"> 导航显示                                
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="status" value="2" disabled="disabled"> 菜单显示                                
+                                        </label>
+                                    <else/>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="status" value="1" disabled="disabled"> 导航显示                                
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="status" value="2" checked disabled="disabled"> 菜单显示                                
+                                        </label>
+                                    </if>                               
+                                    <!-- <span class="help-block"></span> -->
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-left:-57px;">
+                            <label class="col-sm-2 col-xs-3 control-label">是否显示:</label>
+                            <div class="col-sm-9 col-xs-12">
+                                <if condition="$is_show eq 1">
+                                        <label class="radio-inline">
+                                          <input type="radio" name="is_show" value="1" checked disabled="disabled"> 显示
+                                      </label>
+                                      <label class="radio-inline">
+                                          <input type="radio" name="is_show" value="0" disabled="disabled"> 隐藏
+                                      </label>
+                                <else/>
+                                    <label class="radio-inline">
+                                          <input type="radio" name="is_show" value="1" disabled="disabled"> 显示
+                                      </label>
+                                      <label class="radio-inline">
+                                          <input type="radio" name="is_show" value="0" checked disabled="disabled"> 隐藏
+                                      </label>
+                              </if>
+                              <!-- <span class="help-block"></span> -->
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-left:-57px;">
+                            <div class="col-sm-9 col-xs-12 col-sm-offset-2" style="text-align: center">
+                                <a href="{:U('Mp/Mpnode/lists')}"><input type="button" value="返回" class="btn btn-primary" /></a>
+                                <a href="{:U('Mp/Mpnode/edit',array('id'=>$id))}"><input type="button" value="修改" class="btn btn-primary" /></a>
+                            </div>
+                        </div>
+
+            </div>
+        <input type="hidden" name="__hash__" value="9554d1d1b2b1aba94084ad271ac05e6a_2a17f68789adcdaeeea1fb25dfafcb19" /></form>
+    </div>
+</div>
+</block>

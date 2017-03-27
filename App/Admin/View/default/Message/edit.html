@@ -1,0 +1,141 @@
+<extend name="./App/Common/View/default/Base/common.html" />
+<block name="main_content">
+    <include file="./App/Common/View/default/Public/crumb.html" />
+        <style>
+            .choose-box{
+                position: absolute;
+                top: -20%;
+                left: -20%;
+                display: block;
+                width: 140%;
+                height: 140%;
+                margin: 0px;
+                padding: 0px;
+                background: rgb(255, 255, 255) none repeat scroll 0% 0%;
+                border: 0px none; opacity: 0;
+            }
+           .list-items{
+               margin-right: 20px;
+           }
+            .more-size{
+                margin-bottom: 10px;
+            }
+            .form-group .col-sm-2{
+                width:11%!important;
+            }
+            .form-group .col-sm-9{
+                width:82%!important;
+            }
+            .col-sm-9 #edui1{
+                width:100%!important;
+            }
+            .txt{
+                width:100%;
+                padding: 6px 12px;
+                min-height:34px;
+                max-height:auto;
+                border:1px solid #ccc;
+                border-radius: 5px;
+            }
+        </style>
+        <div class="mod">
+            <div class="mod-head">
+                <h3>
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a href="{:U('message_list')}">接口管理</a>
+                        </li>
+                    </ul>
+                </h3>
+            </div>
+            <div class="tab-content mod-content clearfix">
+                <form action="" method="POST" enctype="multipart/form-data">
+                <input type="hidden" value="{$data['id']}" name="id">
+                    <div class="form-group clearfix" style="">
+                        <label class="col-sm-2 col-xs-3 control-label clearfix" style="text-align: right">接口类别：</label>
+                        <div class="col-sm-9 col-xs-12">
+                            <select name="j_name" class="form-control">
+                                <foreach name="node" item="vo" >
+                                <option value="{$vo.id}" <if condition="$vo.id eq $data['j_name']">selected<else /></if>>{$vo.name}</option>
+                                </foreach>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group clearfix choose-pay-type all" data-type="0" style="">
+                        <label class="col-sm-2 col-xs-3 control-label clearfix"  style="text-align: right">服务商：</label>
+                        <div class="col-sm-9 col-xs-12">
+                            <input class="form-control" type='text' name="c_name" value="{$data['c_name']}">
+                        </div>
+                    </div>
+                    <div class="form-group clearfix choose-pay-type all" data-type="0" style="">
+                        <label class="col-sm-2 col-xs-3 control-label clearfix"  style="text-align: right">产品名称：</label>
+                        <div class="col-sm-9 col-xs-12">
+                            <input class="form-control" type='text' name="p_name" value="{$data['p_name']}">
+                        </div>
+                    </div>
+                    <div class="form-group clearfix choose-pay-type none" data-type="2">
+                        <label class="col-sm-2 col-xs-3 control-label clearfix" style="text-align: right">网址：</label>
+                        <div class="col-sm-9 col-xs-12">
+                            <input class="form-control" type='text' name="website" value="{$data['website']}">
+                        </div>
+                    </div>
+                   <div class="form-group clearfix choose-pay-type none" data-type="2">
+                        <label class="col-sm-2 col-xs-3 control-label clearfix" style="text-align: right">API：</label>
+                        <div class="col-sm-9 col-xs-12">
+                            <script id="post-content" name="q_name" class="q_name" type="text/plain">{$data.q_name}</script>
+                        </div>
+                    </div>
+                    <div class="form-group clearfix choose-pay-type none" data-type="2">
+                        <label class="col-sm-2 col-xs-3 control-label clearfix" style="text-align: right">说明：</label>
+                        <div class="col-sm-9 col-xs-12">
+                            <input class="form-control" type='text' name="content" value="{$data.content}">
+                        </div>
+                    </div>
+                    <div class="form-group clearfix" style="text-align: center">
+                        <input class="btn btn-primary" value="确  认" type="submit">
+                        <input class="btn btn-primary"  type="reset" value='重 置'/>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="script">
+<block name="script">
+    <script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.all.js"></script>
+    <script type="text/javascript">
+        var ue = UE.getEditor('post-content', {
+            toolbars: [
+                ['fullscreen', 'source', 'undo', 'redo', 'bold', 'italic', 'underline', 'fontborder', 'strikethrough', '|', 'simpleupload', 'insertimage', 'emotion', 'link', 'unlink', '|', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'searchreplace', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc'],
+                ['inserttable', 'insertrow', 'insertcol', 'mergeright', 'mergedown', 'deleterow', 'deletecol', 'splittorows', 'splittocols', 'splittocells', 'deletecaption', 'inserttitle', 'mergecells', 'deletetable', 'insertparagraphbeforetable', 'paragraph', 'fontsize', 'fontfamily']
+            ],
+            initialFrameHeight: 200,
+            initialFrameWidth: 600,
+            zIndex: 100
+        });
+$(function(){
+    $('.clearfix choose-pay-type').on('input', function(){
+        var text = $(this).val()
+        $('.txt').html(text);
+    });
+    // $("#submit").click(function(){
+    //     var j_name = $("#j_name").val();
+    //     var c_name = $("input[name='c_name']").val();
+    //     var p_name = $("input[name='p_name']").val();
+    //     var website = $("input[name='website']").val();
+    //     var id = $("input[name='id']").val();
+    //     var q_name = $(".q_name").html();
+    //     var content = $(".content").html();
+    //     var postUrl = "{:U('Admin/Message/edit')}";
+    //     $.post(postUrl,{'j_name':j_name,'c_name':c_name,'p_name':p_name,'website':website,'q_name':q_name,'content':content,'id':id},function(e){
+    //         if(e.status == 1){
+    //             window.location.href='index.php?s=/Admin/Message/'+e.url;
+    //         }else{
+    //             alert('操作失败!');
+    //         }
+    //     });
+    // });
+})
+</script>
+</block>

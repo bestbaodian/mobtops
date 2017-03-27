@@ -1,0 +1,141 @@
+<extend name="./App/Common/View/default/Base/common.html" />
+<block name="main_content">
+    <include file="./App/Common/View/default/Public/crumb.html" />
+    <div class="mod">
+        <div class="mod-head">
+            <h3>
+                <ul class="nav nav-tabs">
+                    <li class="">
+                        <a href="{:U('Mp/Eatery/dishesEveryweek',array('dishes_type'=>0))}">早餐</a>
+                    </li>
+                    <li class="">
+                        <a href="{:U('Mp/Eatery/dishesEveryweek',array('dishes_type'=>1))}">午餐</a>
+                    </li>
+                    <li class="">
+                        <a href="{:U('Mp/Eatery/dishesEveryweek',array('dishes_type'=>2))}">晚餐</a>
+                    </li>
+                    <li class="active">
+                        <a href="{:U('Mp/Eatery/dishes_history')}">历史菜单</a>
+                    </li>
+                </ul>
+            </h3>
+        </div>
+        <div class="tab-content mod-content">
+            <div class="table-responsive">
+                <div>
+                    <form action="{:U('Mp/Eatery/dishes_history')}" method="post">
+                    时间:<input type="text"  name="start_time" value="{$start_time}" placeholder="起始时间" class="search date-input ">至<input type="text"  name="end_time" value="{$end_time}" placeholder="结束时间" class="search date-input" >
+                    <select name="dishes_type">
+                        <option class="search_type" value="">请选择</option>
+                        <option class="search_type" value="0">早餐</option>
+                        <option class="search_type" value="1">午餐</option>
+                        <option class="search_type" value="2">晚餐</option>
+                    </select>
+                    <input type="submit" class="button"  value="搜索" style="padding:1px 10px; font-size:96%; color:#fff; background:#337ab7; border-radius: 5px; border: none;display:inline-block; text-align:center;"/>
+                    </form> 
+                </div>
+                <style>
+                    input[placeholder], [placeholder], *[placeholder] {
+                        color:#778899 !important;
+                    }
+                    form{margin:0px;display: inline}
+                    .search{
+                            width:200px;
+                            height: 25px;
+                            border-radius: 5px;
+                            border: 1px solid #ccc;
+                            padding-left: 10px;
+                            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+                        }
+                    #select{
+                            border-radius: 5px;
+                            border: 1px solid red;
+                        }
+                </style>               <!--公众号搜索功能-->
+                <div id="showdiv">
+                <div id="msg">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th style="width:5%;text-align:center;">序号</th>
+                        <th style="width:5%;text-align:center;">图片</th>
+                        <th style="width:55%;padding-left:2%;">菜品名称</th>
+                        <th style="width:15%;">创建时间</th>
+                        <th style="width:15%;">更新时间</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <volist name="data.lists" key="k" id="vo">
+                        <tr>
+                            <td style="text-align:center;">{$k}</td>
+                            <td style="text-align:center;"><img src="{$vo.dishes_img}" class="small" width="20" height="20"></td>
+                            <td style="padding-left:2%;">{$vo.dishes_name}</td>
+                            <td>{$vo.dcreate_time|date="Y-m-d H:i:s",###}</td>
+                            <td>
+                                <if condition="$vo.dupdate_time eq ''">
+                                    -
+                                    <else/>
+                                    {$vo.dupdate_time|date="Y-m-d H:i:s",###}
+                                </if>
+                            </td>
+                        </tr>
+                    </volist>
+                    </tbody>
+                </table>
+                </div>
+                </div>
+                    <div class="mod-table-foot">
+                       <span style="margin-left:8px;">
+                        <center>
+                            <a href="index.php?s=/Mp/Eatery/dishes_history/p/1/dishes_type/{$dishes_type}/search/{$search}">首页</a>&nbsp;&nbsp;
+                            <a href="index.php?s=/Mp/Eatery/dishes_history/p/{$data.pre}/dishes_type/{$dishes_type}/search/{$search}">上一页</a>&nbsp;&nbsp;
+                            <a href="index.php?s=/Mp/Eatery/dishes_history/p/{$data.next}/dishes_type/{$dishes_type}/search/{$search}">下一页</a>&nbsp;&nbsp;
+                            <a href="index.php?s=/Mp/Eatery/dishes_history/p/{$data.pagesum}/dishes_type/{$dishes_type}/search/{$search}">尾页</a>
+                            &nbsp;&nbsp; 页次:<font color="red">{$data.page}</font>/{$data.pagesum}&nbsp;&nbsp;共有<font color="red">{$data.counts}</font>条记录&nbsp;&nbsp;转到<input type="text" id="p" style="width:20px; height:20px; border:1px solid #a49191">页&nbsp;&nbsp;<button onclick="gopage()" style="padding:0; line-height:18px;">GO</button>
+                            </center>
+                        </span>
+                        <div class="page-control"><ul class="pagination pull-right">    </ul></div>
+                    </div>
+                    <input type="hidden" id="dishes_type" value="{$dishes_type}">
+            </div>
+        </div>
+    </div>
+<div class="popup-img" style="position: fixed;top: 0;left: 0;bottom: 0;right: 0; display: none;background: rgba(51, 51, 51,0.8);z-index: 9999;">
+        <img src="" alt="" style="position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);"/>
+    </div>
+</block>
+<block name="script">
+    <script type="text/javascript">
+    $(".search_type").each(function(){
+        var dishes_type = $("#dishes_type").val();
+        if(dishes_type == $(this).val()){
+          $(this).attr('selected','selected');
+        }
+      });
+        //设置日期选择器
+        $('.date-input').each(function() {
+            $(this).flatpickr({
+                // minDate: new Date()
+            });
+        });
+        var dishes_type = $("#dishes_type").val();
+        $(".vals").each(function(){
+           alert($(this).val); 
+       })
+        function gopage(){
+            var page = $("#p").val();
+            window.location.href='index.php?s=/Mp/Eatery/dishes_history/p/'+page;
+        }
+        //点击图片显示大图
+        $('.table').on('click','.small',function(){
+            var src = $(this).attr('src');
+            $('.popup-img').show();
+            $('.popup-img').find('img').attr('src',src);
+        });
+        $('.popup-img').on('click',function(){
+            $(this).hide();
+            $(this).find('img').attr('src','');
+        })
+    </script>
+</block>
+

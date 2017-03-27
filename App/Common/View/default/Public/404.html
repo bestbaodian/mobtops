@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html> 
+	<head>
+		<meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
+		<title>请稍候...</title>
+		<script type="text/javascript" src="__PUBLIC__/Common/js/jquery.js"></script>
+			<!--弹出层-->
+	    <link rel="stylesheet" href="__PUBLIC__/Mp/js/x0popup.min.css">
+	    <script src="__PUBLIC__/Mp/js/x0popup.min.js"></script>
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:400;}
+			html,body{
+				height:100%;
+			}
+			body{background:#fff;color:#1c2837;font:normal 15px arial, verdana, tahoma, sans-serif;position:relative;text-align: center;}
+			a{color:#284b72;}
+			a:hover{color:#528f6c;text-decoration:underline;}
+			.aw-error-box{width:400px;max-width:400px;position: absolute;top:30%;left:50%;margin-left:-200px;}
+			.aw-error-box .mod-head{position: relative;margin-bottom: 15px;padding-left: 10px;line-height:50px;}
+			.aw-error-box .mod-head .icon-bubble{font-size: 60px;color: #66b7ff;}
+			.aw-error-box .mod-head .icon-i{position:absolute;left:15px;top:4px;font-size: 50px;color: #fff;}
+			.aw-error-box .mod-body{padding:40px;background-color: #ebebeb;border-radius: 10px;line-height:30px;text-align: center;}
+			.mod-body img{
+				width:60px;
+				height:60px;
+			}
+			@media (max-width:640px) {
+	   			.aw-error-box{padding:0 20px;}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="aw-error-box">
+			<div class="mod-head">
+				<i class="icon icon-bubble"></i>
+				<i class="icon icon-i"></i>
+			</div>
+		</div>
+		<script>
+			$(function(){
+				x0p({
+			        title:'404' ,
+			        text: '页面未找到~',
+			        animationType: "slideDown",
+			        icon: 'error',
+			        buttons: [],
+			        callback:function(){},
+			        autoClose: 1500
+			    });
+			    setTimeout(function(){
+			    	var URL = "{$jumpUrl}";
+			    	URL = URL.replace(/&amp;/g,'&');
+			    	window.location = URL;
+			    },1500);
+			});
+		</script>
+	</body>
+</html>

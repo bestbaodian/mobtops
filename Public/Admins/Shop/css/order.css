@@ -1,0 +1,642 @@
+#sui-warp{
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.fl{
+    float:left;
+}
+.fr{
+    float:right;
+}
+.user-address-chooose{
+    padding:0.5rem 0.5rem 0;
+}
+.location-border{
+    width: 100%;
+    height: .1rem;
+    background: url("../imgs/location-border.png") repeat-x top center;
+}
+.cont{
+    padding:0.2rem 0.5rem 0;
+}
+.cont .cont-title{
+    font-size: .5rem;
+}
+.cont .cont-title .iconfont{
+    font-size: .5rem;
+    color: #e13953;
+}
+.address{
+    width:100%;
+    display:block;
+    padding-bottom: .5rem;
+    border-bottom:1px solid #ececec;
+}
+.address .no-address{
+    font-size:0.5rem;
+}
+.address .top{
+    font-size:0.5rem;
+}
+.add{
+    color:#999;
+    font-size: 0.5rem;
+}
+.arrow{
+    width:0.5rem;
+    height:0.5rem;
+    margin-top:0.2rem;
+    display:inline-block;
+}
+.shop-pic{
+    padding:0.5rem 0;
+    border-bottom:1px solid #ececec;
+}
+.shop-pic img{
+    width:3rem;
+    height:2.24rem;
+    margin-right:0.5rem;
+    display:inline-block;
+}
+.shop-price .fl{
+    color:#e13953;
+}
+.shop-info{
+    width:75%;
+}
+.shop-name{
+    width:10.5rem;
+    font-size:0.6rem;
+    display:block;
+    white-space:nowrap; 
+    overflow:hidden; 
+    text-overflow:ellipsis;
+}
+.spe{
+    color:#999;
+    font-size:0.52rem;
+}
+.shop-price{
+    color:#999;
+    font-size:0.5rem;
+}
+.rmb{
+    font-size:0.6rem;
+}
+.spe-list{
+    font-size:0.6rem;
+    padding:0.6rem 0;
+}
+.num{
+    border-bottom:1px solid #ececec;
+}
+.num img{
+    width:0.7rem;
+    height:0.7rem;
+    display:inline-block;
+    vertical-align:middle;
+}
+.num input{
+    width:3.4rem;
+    height:1rem;
+    margin:0 0.4rem;
+    text-align:center;
+    border:1px solid #ececec;
+}
+.num .fl{
+    margin-top:0.1rem;
+}
+.f-arrow{
+    width:0.5rem;
+    height:0.5rem;
+    margin-left:0.2rem;
+    vertical-align:middle;
+}
+.shop-price .fr{
+    margin-top:0.1rem;
+}
+.spe-list .fr{
+    color:#999;
+}
+.message{
+    font-size:.5rem;
+    padding:0.2rem 0.5rem 0.2rem 0.5rem;
+    border-top:0.2rem solid #ececec;
+    border-bottom:0.2rem solid #ececec;
+}
+.message-tit{
+    line-height:1rem;
+}
+.message-cont{
+    width:100%;
+    margin-bottom: .2rem;
+    padding:0.3rem 4%;
+    border:1px solid #ececec;
+    border-radius: .2rem;
+}
+.price{
+    font-size:0.5rem;
+    padding:0.4rem 0.5rem;
+    /*border-top:0.2rem solid #ececec;*/
+}
+.price>div{
+    line-height:1.2rem;
+}
+.price .fr{
+    color:#999;
+    font-size:0.5rem;
+}
+.price .jg{
+    color:#e13953;
+}
+.price .total{
+    font-size:0.6rem;
+}
+.price .frei-rmb{
+    font-size:0.6rem;
+}
+.send-message{
+    font-size:.5rem;
+    padding:0.2rem 0.5rem;
+    border-top:0.2rem solid #ececec;
+}
+.send-message>div{
+    line-height:1.2rem;
+}
+.send-message .fr{
+    color:#999;
+    font-size:0.5rem;
+}
+.send-message .jg{
+    position: relative;
+}
+.send-message .jg select{
+    width: 4.5rem;
+    text-align: right;
+    font-size: .5rem;
+    background: #fff;
+    height: 1rem;
+}
+.send-message .jg select option{
+    width: 100%;
+    text-align: center;
+}
+.send-message .jg select .iconfont{
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: #999;
+}
+.send-message .total{
+    font-size:0.6rem;
+}
+.send-message .frei-rmb{
+    font-size:0.6rem;
+}
+.send-message .fapiap-taitou{
+    width: 100%;
+}
+.send-message .fapiap-taitou input{
+    padding: 0.3rem 4%;
+    border: 1px solid #ececec;
+    width: 90%;
+    margin-bottom: .4rem;
+    border-radius: .2rem;
+}
+.discount{
+    font-size:.5rem;
+    padding:0.3rem 0.5rem 0.3rem 0.5rem;
+    border-bottom:0.2rem solid #ececec;
+}
+.discount .discount-item{
+    line-height: 1.2rem;
+}
+.discount .discount-item .tips{
+    padding: .1rem .2rem;
+    font-size: .48rem;
+    color: #fff;
+    background: #e13953;
+    border-radius: .1rem;
+}
+.discount .discount-item input[type="checkbox"]{
+    vertical-align: middle;
+    margin-top: -.1rem;
+}
+footer{
+    left:0;
+    bottom:0;
+    width:100%;
+    height:2rem;
+    position:fixed;
+    background:#333;
+    z-index: 9999;
+}
+footer>div{
+    color:#fff;
+    font-size:0.6rem;
+    padding-left:0.5rem;
+    display:inline-block;
+    line-height:2rem;
+}
+.zj{
+    color:#e13953;
+    font-size:0.7rem;
+}
+.sub{
+    color:#fff;
+    height:2rem;
+    width:4.8rem;
+    font-size:0.6rem;
+    background:#e13953;
+}
+html,body{
+    width:100%;
+    height:100%;
+    background: #fff;
+}
+
+/*地址弹框*/
+.mc{
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    display: none;
+    position:fixed;
+    background: rgba(0, 0, 0, 0.5);
+}
+.add-tk{
+    width:100%;
+    display: none;
+    font-size:0.6rem;
+    background:#f1f1f1;
+    position: fixed;
+    bottom: 0;
+    height:16rem;
+    padding-bottom:2rem;
+    z-index:11499;
+}
+.tk-tit{
+    width:100%;
+    background: #fff;
+    padding:0.5rem 0;
+    text-align:center;
+}
+.qx{
+    top:0.6rem;
+    right:0.5rem;
+    width:0.6rem;
+    height:0.6rem;
+    position:absolute;
+}
+.add-tk ul{
+    height: 16rem;
+    overflow-y: auto;
+    padding-bottom: 5rem;
+}
+.add-tk li{
+    background: #fff;
+    padding:0.5rem 4% 0 .5rem;
+    margin-top: .2rem;
+    border-top:1px solid #f1f1f1;
+}
+.add-top>div{
+    display:inline-block;
+    vertical-align:middle;
+}
+.add-top .name{
+    max-width:50%;
+    margin-right:0.5rem;
+    display:inline-block;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+.add-top{
+    position:relative;
+}
+.radio{
+    top:0;
+    right:0;
+    width:0.8rem;
+    height:0.8rem;
+    position:absolute;
+    background:url('../imgs/j-no-icon.png');
+    background-size:100% 100%;
+}
+.radio:checked{
+    top:0;
+    right:0;
+    width:0.8rem;
+    height:0.8rem;
+    position:absolute;
+    background:url('../imgs/check-in.png');
+    background-size:100% 100%;
+}
+.dizhi{
+    padding:0.3rem 0;
+}
+.bot{
+    border-top:1px solid #f1f1f1;
+}
+.bot span{
+    width:49.8%;
+    background: #fff;
+    text-align:center;
+    line-height:1.4rem;
+    display:inline-block;
+}
+.bianji{
+    border-right:1px solid #f1f1f1;
+}
+.news-push{
+    left:0;
+    bottom:-1rem;
+    width:100%;
+    color:#fff;
+    height:2.6rem;
+    position:fixed;
+    text-align:center;
+    line-height:1.6rem;
+    background:#e13953;
+    border-bottom:1rem solid #fff;
+}
+
+/*.page-group{
+    display: none;
+    font-size:0.6rem;
+    top:20%!important;
+    height:80%!important;
+}*/
+.page-group,page{
+    background: #fff;
+}
+.edit-tk{
+    width:100%;
+    display:none;
+    font-size:0.6rem;
+    background:#f1f1f1;
+    position: fixed;
+    bottom: 0;
+    background: #fff;
+    z-index:11499;
+}
+.content{
+    background: #fff;
+}
+.edit-tk form{
+    
+}
+.edit-tit{
+    padding:0.5rem 0;
+    background: #fff;
+    text-align:center;
+    position: relative;
+    border-bottom:1px solid #f1f1f1;
+}
+.edit-tk input{
+    width:100%;
+    padding:0 4%;
+    line-height:1.6rem;
+    border-bottom:1px solid #f1f1f1;
+}
+.edit-tk a.sub{
+    width:100%;
+    padding:0 4%;
+    line-height:1.6rem;
+    text-align: center;
+    color: #fff;
+}
+.edit-tk form{
+    background: #fff;
+}
+.set-moren{
+    background:#fff;
+    padding:0.4rem 4%;
+    border-top:8px solid #f1f1f1;
+}
+.set-moren .moren{
+    padding:0;
+    width:0.8rem;
+    height:0.8rem;
+    background:url('../imgs/j-no-icon.png');
+    background-size:100% 100%;
+}
+.set-moren .moren:checked{
+    padding:0;
+    width:0.8rem;
+    height:0.8rem;
+    background:url('../imgs/check-in.png');
+    background-size:100% 100%;
+}
+.tk-sub{
+    width:100%;
+    color:#fff;
+    height:1.6rem;
+    /*margin-top:1rem;*/
+    font-size:0.6rem;
+    background: #e13953;
+}
+.push-add{
+    display:none;
+    font-size:0.6rem;
+    position: fixed;
+    bottom: 0;
+    background: #fff;
+    z-index:11499;
+}
+.push-add input{
+    width:100%;
+    padding:0 4%;
+    line-height:1.6rem;
+    border-bottom:1px solid #f1f1f1;
+}
+.push-add a.sub{
+    width:100%;
+    padding:0 4%;
+    line-height:1.6rem;
+    text-align: center;
+    color: #fff;
+}
+/*优惠券样式*/
+.coupon-msak{
+    background: rgba(50,50,50,0.8);
+    z-index: 10000;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    display: none;
+}
+.coupon-choose-warpper{
+    width: 100%;
+    background: #fff;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+.coupon-choose-header{
+     width: 100%;
+    background: #fff;
+    text-align: center;
+    position: relative;
+}
+.coupon-choose-header p{
+    padding: 0.5rem 0;
+    font-size: .52rem;
+}
+.coupon-choose-header p img{
+    position: absolute;
+    right: .5rem;
+    top: .5rem;
+}
+.coupon-choose-content{
+    padding: 4%;
+    height: 16rem;
+    overflow-y: auto;
+}
+.coupon-choose-content .coupon-item{
+    background: #e13953;
+    width: 100%;
+    border-radius: .2rem;
+    margin-bottom: .6rem;
+    position: relative;
+    
+}
+.coupon-choose-content .coupon-item{
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    align-content: center;
+    justify-content: space-between;
+    font-size: .56rem;
+    color: #fff;
+}
+.coupon-choose-content .coupon-item div{
+    color: #fff;
+}
+.coupon-choose-content .used{
+    background: #eee;
+    color: #999;
+}
+.coupon-choose-content .used a,.coupon-choose-content .used div{
+    color: #999;
+}
+.coupon-item:before,.coupon-item:after{
+    width: .4rem;
+    height: .4rem;
+    background: #fff;
+    position: absolute;
+    content: " "
+}
+.coupon-item:before{
+    border-radius: 0 0 50% 50%;
+    top: 0;
+    left:74%;
+}
+.coupon-item:after{
+    border-radius: 50% 50% 0 0;
+    bottom: 0;
+    left:74%;
+}
+.coupon-item .item-left{
+    flex: 0 0 75%;
+}
+.coupon-item .item-right{
+    flex: 1;
+    text-align: center;
+    border-left: 2px dashed rgba(255,255,255,0.3);
+    position: relative;
+}
+.coupon-item .item-right span{
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.coupon-item .item-right .check-in{
+    width: .6rem;
+    height: .6rem;
+    margin-bottom: -3px;
+    border: 1px solid #fff;
+}
+.coupon-item .item-right .check-in:checked{
+    border: none;
+    background: url("../imgs/radio-checked.png") no-repeat;
+    background-size: 0.6rem 0.6rem;
+}
+.used .item-right{
+    border-left: 2px dashed rgba(153, 153, 153, 0.3);
+}
+.coupon-item .small-text{
+    font-size: .52rem;
+    padding: 0 .4rem;
+    margin-top: .1rem;
+}
+.coupon-item .small-text:last-of-type{
+    margin-bottom: .5rem;
+}
+.small-text span,.small-text strong{
+    margin-left: .2rem;
+}
+.small-text strong{
+    font-size: 30px;
+    font-weight: 700;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

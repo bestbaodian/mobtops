@@ -1,0 +1,81 @@
+<extend name="./App/Common/View/default/Base/common.html" />
+<block name="main_content">
+<include file="./App/Common/View/default/Public/crumb.html" />
+<style>
+    
+            .form-group .col-sm-2{
+                width:14%!important;
+            }
+            .form-group .col-sm-9{
+                width:80%!important;
+            }
+            .col-sm-9 #edui1{
+                width:100%!important;
+            }
+</style>
+<div class="mod">
+   <div class="mod-head">
+            <h3>
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="{:U('Admin/Option/lists')}">添加选项</a>
+                    </li>
+                </ul>
+            </h3>
+        </div>
+    <div class="tab-content mod-content">
+                 <form method="post" action="{:U('Admin/Option/edit_pro')}" class="form-horizontal" role="form">
+                    <div class="form-group" style="margin-left:-57px;">
+                        <label class="col-sm-2 col-xs-3 control-label">选项名称:</label>
+                        <div class="col-sm-9 col-xs-12">
+                            <input class="form-control" type="text" name="option_name" id="name" placeholder="" value="{$data.pname}"/>
+                            <span class="help-block" id="sname"></span>
+                        </div>
+                    </div>
+                     <!--
+                    <div class="form-group" style="margin-left:-57px;">
+                        <label class="col-sm-2 col-xs-3 control-label">单选选项:</label>
+                        <div class="col-sm-9 col-xs-12">
+                            <if condition="$data.radio eq ''">
+                                <input class="form-control" type="text" name="radio" placeholder="请输入单选名称，以'-'相隔" />
+                            <else/>
+                                <input class="form-control" type="text" name="radio" placeholder="请输入单选名称，以'-'相隔" value="{$data.radio}-"/>
+                            </if>
+                            <span class="help-block">注释：请输入单选名称，以'-'相隔</span>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-left:-57px;">
+                        <label class="col-sm-2 col-xs-3 control-label">多选选项:</label>
+                        <div class="col-sm-9 col-xs-12">
+                            <if condition="$data.checkbox eq ''">
+                                <input class="form-control" type="text" name="checkbox" placeholder="请输入复选名称，以'-'相隔" />
+                            <else/>
+                                <input class="form-control" type="text" name="checkbox" placeholder="请输入复选名称，以'-'相隔" value="{$data.checkbox}-"/>
+                            </if>
+                            <span class="help-block">注释：请输入复选名称，以'-'相隔</span>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-left:-57px;">
+                        <label class="col-sm-2 col-xs-3 control-label">选项列表:</label>
+                        <div class="col-sm-9 col-xs-12">
+                            <if condition="$data.select eq ''">
+                                <input class="form-control" type="text" name="select" placeholder="请输入选项列表名称，以'-'相隔" />
+                            <else/>
+                                <input class="form-control" type="text" name="select" placeholder="请输入选项列表名称，以'-'相隔" value="{$data.select}-"/>
+                            </if>
+                            <span class="help-block">注释：请输入选项列表名称，以'-'相隔</span>
+                        </div>
+                    </div>
+                     -->
+                    <div class="form-group" style="margin-left:-57px;">
+                        <div class="col-sm-9 col-xs-12 col-sm-offset-2" style="text-align: center">
+                            <input type="submit" value="修改" class="btn btn-primary" />
+<!--                            <a href="{:U('Admin/Option/lists')}"><input type="button" value="返回" class="btn btn-primary" /></a>-->
+                            <input type="hidden" name="id" value="{$id}">
+                            <a href="{:U('Admin/Option/lists')}"><input type="button" value="返回" class="btn btn-primary" /></a>
+                        </div>
+                    </div>
+                <input type="hidden" name="__hash__" value="9554d1d1b2b1aba94084ad271ac05e6a_2a17f68789adcdaeeea1fb25dfafcb19" /></form>
+    </div>
+</div>
+</block>

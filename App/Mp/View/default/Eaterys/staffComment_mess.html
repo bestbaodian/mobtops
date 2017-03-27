@@ -1,0 +1,305 @@
+<extend name="./App/Common/View/default/Base/common.html" />
+<block name="main_content">
+    <include file="./App/Common/View/default/Public/crumb.html" />
+    <div class="mod">
+        <div class="mod-head">
+            <h3>
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="{:U('Mp/Eatery/staffComment')}">员工评价</a>
+                    </li>
+                </ul>
+            </h3>
+        </div>
+        <div class="tab-content mod-content">
+            <div class="table-responsive">
+                <style>
+                    input[placeholder], [placeholder], *[placeholder] {
+                        color:#778899 !important;
+                    }
+                    /*form{margin:0px;display: inline}*/
+                    .search{
+                            width:200px;
+                            height: 25px;
+                            border-radius: 5px;
+                            border: 1px solid #ccc;
+                            padding-left: 10px;
+                            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+                        }
+                    #select{
+                            border-radius: 5px;
+                            border: 1px solid red;
+                        }
+                        #choose-star{
+                            margin:0 10px;
+                        }
+                        #choose-star .red{
+                            color: #f00;
+                        }
+                        #choose-star i{
+                            display: inline-block;
+                            font-size: 22px;
+                            color: #eee;
+                            font-style: normal;
+                            cursor: pointer;
+                        }
+                        .a{
+                            padding: 6px 12px;
+                            font-size: 14px;
+                            font-weight: normal;
+                            line-height: 1;
+                            color: #555;
+                            text-align: center;
+                            background-color: #eee;
+                            border: 1px solid #ccc;
+                            border-radius: 4px;
+                        }
+                        .input-group-items {
+                            margin-top: 20px;
+                        }
+                        .input-group-items input{
+                            width: 24%;
+                            height: 26px;
+                            line-height: 26px;
+                            border: 1px solid #ccc;
+                            border-radius: 5px 0 0 5px;
+                            float: left;
+                            border-right: 0;
+                        }
+                        .input-group-items span{
+                             float: left;
+                             width: 40px;
+                             height: 26px;
+                             line-height: 26px;
+                             text-align: center;
+                             color: #555;
+                             border: 1px solid #ccc;
+                             border-radius:0 5px 5px 0;
+                             background-color: #eee;
+                             border-left: none;
+                        }
+                        .float-r{
+                            width:24%;
+                        }
+                        .all{
+                            color:#fff;
+                            width:60px;
+                            float:left;
+                            border-radius:5px;
+                            margin-right:18px; 
+                            text-align:center;
+                        }
+                        .all a{
+                            color:#fff;
+                        }
+                </style>               <!--公众号搜索功能-->
+                <div id="showdiv">
+                <div id="msg">
+                    <div class="food-message clearfix">
+                        <div class="float-l" style="width:60%;">
+                            <p style="font-size:16px;padding:10px 0;">菜品名称: <span style="margin-left:20px;">{$dishes_data.dishes_name}</span></p>
+                            <div class='clearfix'>
+                                <p style="" class="float-l">菜品图片:</p>
+                                <div class="floa-l"><img src="{$dishes_data.dishes_img}" class="small" width="80" height="80" style="margin-left:20px;"></div>
+                            </div>
+                        </div>
+                        <form action="{:U('Mp/Eatery/staffComment_mess')}" method="post">
+                        <div class="float-r">
+                            <div class=''>
+                                <div class="clearfix">
+                                    <p class="float-l">评星</p>
+                                     <div id="choose-star" class="float-l">
+                                        <i data-id="1" class="red">★</i>
+                                        <i data-id="2" class="">★</i>
+                                        <i data-id="3" class="">★</i>
+                                        <i data-id="4" class="">★</i>
+                                        <i data-id="5" class="">★</i>
+                                    </div>
+                                    <input type="hidden" name="dishes_star" value="1" id="star-now-id">
+                                    <input type="hidden" name="did" value="{$dishes_data.did}">
+                                    <input type="submit" class="btn btn-primary" value="搜索">
+                                    <input type="hidden" id="dishes_star" value="{$dishes_star}">
+                                </div>
+                                <div class="clearfix">
+                                    <div class="input-group-items clearfix">
+                                        <p class="btn-primary all" style="">
+                                            <a href="javascript:;" onclick="quan()">全部</a>
+                                        </p>
+                                        <input style="text-align:center;" type="text" value="{$count}">
+                                        <span >人</span>        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </form>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th style="width:5%;">选中</th>
+                            <th style="width:5%;">序号</th>
+                            <th style="width:15%;">评价时间</th>
+                            <th style="width:10%;">评星</th>
+                            <th style="width:60%;">评价详情</th>
+                            <th style="width:8%;">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <volist name="data.lists" key="k" id="vo">
+                            <tr>
+                                <td style=""><input type="checkbox" name="id" class="checks" value="{$vo.c_id}"></td>
+                                <td style="">{$k}</td>
+                                <td>{$vo.comment_time|date="Y-m-d H:i:s",###}</td>
+                                <td>
+                                <if condition="$vo.dishes_star eq 5">
+                                        <font style="font-size:15px; color:red;">★★★★★</font>
+                                    <elseif condition="$vo.dishes_star eq 4"/>
+                                        <font style="font-size:15px; color:red;">★★★★</font>
+                                    <elseif condition="$vo.dishes_star eq 3"/>
+                                        <font style="font-size:15px; color:red;">★★★</font>
+                                    <elseif condition="$vo.dishes_star eq 2"/>
+                                        <font style="font-size:15px; color:red;">★★</font>
+                                    <elseif condition="$vo.dishes_star eq 1"/>
+                                        <font style="font-size:15px; color:red;">★</font>
+                                    <else/>
+                                    暂时还没有评价
+                                </if>   
+                                </td>
+                                <td>{$vo.dishes_comment}</td>
+                                <td>
+                                    <a href="javascript:void(0);" onclick="del({$vo.c_id})"><img src="__ROOT__/del.gif" alt="" width='15px' height='15px'></a>
+                                </td>
+                            </tr>
+                        </volist>
+                        </tbody>
+                    </table>
+                </div>
+                </div>
+                    <div class="mod-table-foot">
+                       <span style="margin-left:8px;"><input type="checkbox" class="check-all"><div class="quanxuan" style="margin-left:2%; display:inline-block;">全选</div><a href="javascript:void(0);" onclick="delall()" style="vertical-align: middle; display:inline-block;"><img src="__ROOT__/del.gif" alt=""  style="width:15px; height:20px; display:inline-block; margin:0 0 0 10px;"></a>
+                        <center>
+                            <a href="index.php?s=/Mp/Eatery/staffComment_mess/p/1/did/{$dishes_data.did}/dishes_star/{$dishes_star}">首页</a>&nbsp;&nbsp;
+                            <a href="index.php?s=/Mp/Eatery/staffComment_mess/p/{$data.pre}/did/{$dishes_data.did}/dishes_star/{$dishes_star}">上一页</a>&nbsp;&nbsp;
+                            <a href="index.php?s=/Mp/Eatery/staffComment_mess/p/{$data.next}/did/{$dishes_data.did}/dishes_star/{$dishes_star}">下一页</a>&nbsp;&nbsp;
+                            <a href="index.php?s=/Mp/Eatery/staffComment_mess/p/{$data.pagesum}/did/{$dishes_data.did}/dishes_star/{$dishes_star}">尾页</a>
+                            &nbsp;&nbsp; 页次:<font color="red">{$data.page}</font>/{$data.pagesum}&nbsp;&nbsp;共有<font color="red">{$data.counts}</font>条记录&nbsp;&nbsp;转到<input type="text" id="p" style="width:20px; height:20px; border:1px solid #a49191">页&nbsp;&nbsp;<button onclick="gopage()" style="padding:0; line-height:18px;">GO</button>
+                            </center>
+                        </span>
+                        <div class="page-control"><ul class="pagination pull-right">    </ul></div>
+                    </div>
+            </div>
+        </div>
+    </div>
+<div class="popup-img" style="position: fixed;top: 0;left: 0;bottom: 0;right: 0; display: none;background: rgba(51, 51, 51,0.8);z-index: 9999;">
+        <img src="" alt="" style="position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);"/>
+    </div>
+</block>
+<block name="script">
+    <script type="text/javascript"> 
+        function del(obj) {
+            var postUrl = "{:U('Mp/Eatery/staffComment_mess_dele')}";
+                if (confirm('你确定要删除吗？')) {
+                    $.post(postUrl, {"c_id":obj}, function (data) {
+                        if (data.status == 1) {
+                            bootAlert(data.info);
+                            location.reload();
+                        } else {
+                            bootAlert(data.info);
+                        }
+                    });
+                }
+            }
+        var tableFristText = $('.table-title-text');
+        tableFristText.each(function(i,elem){
+            var sl = "...";
+            var html = "";
+            if($(elem).html().length >4){
+                html = $(elem).html().slice(0,4) + sl;
+            }else {
+                html = $(elem).html();
+            }
+            $(elem).html(html);
+        });
+       $(".check-all").on('ifChecked', function (e)
+        {
+            // bootAlert(1);
+            e.preventDefault();
+
+            $('.table').find(".icheckbox_square-blue").iCheck('check');
+        });
+
+        $(".check-all").on('ifUnchecked', function (e)
+        {
+            // bootAlert(0);
+            e.preventDefault();
+
+            $('.table').find(".icheckbox_square-blue").iCheck('uncheck');
+
+        });
+        function delall(){
+            if(confirm('你确定要删除多项吗？')){
+                var id = document.getElementsByName("id");
+                // bootAlert(own_id.length);
+                var str = '';
+                var lengths = id.length;
+                for(var i=0;i<lengths;i++){  
+                    if(id[i].checked)  
+                    str+=id[i].value+',';   
+                }
+                // bootAlert(str);
+                var postUrl = "{:U('Mp/Eatery/staffComment_mess_delall')}";
+                $.post(postUrl,{'c_id':str},function(data){
+                    if (data.status == 1) {
+                        bootAlert(data.info);
+                        location.reload();
+                    } else {
+                        bootAlert(data.info);
+                    }
+                });
+            }
+        }
+        function gopage(){
+            var page = $("#p").val();
+            var did = $("input[name='did']").val();
+            var dishes_star = $("#dishes_star").val();
+            window.location.href='index.php?s=/Mp/Eatery/staffComment_mess/p/'+page+'/did/'+did+'/dishes_star/'+dishes_star;
+        }
+        //点击图片显示大图
+        $(".small").click(function(){
+            var src = $(this).attr('src');
+            $('.popup-img').show();
+            $('.popup-img').find('img').attr('src',src);
+        });
+        $('.popup-img').on('click',function(){
+            $(this).hide();
+            $(this).find('img').attr('src','');
+        })
+
+        $('#choose-star').on('click',"i",function(){
+            var is = $('#choose-star i');
+            // alert(is);
+            var data = $(this).attr('data-id');
+            is.removeClass('red');
+            is.each(function(i,e){
+                if(i<parseFloat(data)){
+                    $(e).addClass('red');
+                }
+            })
+            $('#star-now-id').val(data);
+        })
+        $(function(){
+            var is = $('#choose-star i');
+            var data = $("#dishes_star").val();
+            is.removeClass('red');
+            is.each(function(i,e){
+                if(i<parseFloat(data)){
+                    $(e).addClass('red');
+                }
+            })
+        });
+        function quan(){
+            var did = $("input[name='did']").val();
+            window.location.href='index.php?s=/Mp/Eatery/staffComment_mess/did/'+did;
+        }
+    </script>
+</block>

@@ -1,0 +1,323 @@
+<extend name="./App/Common/View/default/Base/common.html" />
+<block name="main_content">
+    <include file="./App/Common/View/default/Public/crumb.html" />
+    <script src="__PUBLIC__/Admin/css/jquery.minicolors.min.js"></script>
+    <link rel="stylesheet" href="__PUBLIC__/Admin/css/jquery.minicolors.css" />
+    <style>     
+        .form-group .col-sm-2 {
+            width: 12%;
+        }
+        
+        .form-group .col-sm-9 {
+            width: 82%!important;
+        }
+        
+        .col-sm-9 #edui1 {
+            width: 100%!important;
+        }
+    </style>
+        <div class="mod-head">
+        <h3>
+        	<include file="./App/Common/View/default/Public/navigation.html" />
+        </h3>
+    </div>
+        <div class="tab-content mod-content">
+            <if condition="$tip">
+                <div class="alert alert-info tip" role="alert">{$tip}</div>
+            </if>
+            <form method="post" action="{:U('')}" class="form-horizontal" role="form" enctype="multipart/form-data">                   
+                    <div class="form-group">
+                        <label class="col-sm-2 col-xs-3 control-label"><font color="red"></font>网站名称：</label>
+                        <div class="col-sm-9 col-xs-12">
+                            <input class="form-control" type="text" name="pphone" required="required" id="name" placeholder="微汇" />
+                            <span class="help-block" id=""></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 col-xs-3 control-label"><font color="red"></font>网站标题：</label>
+                        <div class="col-sm-9 col-xs-12">
+                            <input class="form-control" type="text" name="pphone" required="required" id="name" placeholder="" value="微汇是全球最大微信公众服务平台(微信营销，微信支付，微信打印，微会员，微餐饮，微酒店，微WIFI，微商城，微店" />
+                            <span class="help-block" id=""></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 col-xs-3 control-label"><font color="red"></font>网址LOGO：</label>
+                        <div class="col-sm-9 col-xs-12">
+                            <input class="form-control" type="text" name="pphone" required="required" id="name" placeholder="" value="http://wh.whui360.com/uploads/a/admin/a/c/7/c/thumb_55545aaf854b81.png" />
+                            <span class="help-block" id=""></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 col-xs-3 control-label"><font color="red"></font>网站地址：</label>
+                        <div class="col-sm-9 col-xs-12">
+                            <input class="form-control" type="text" name="pphone" required="required" id="name" placeholder="" value="http://wh.whui360.com" />
+                            <span class="help-block" id=""></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 col-xs-3 control-label"><font color="red"></font>网址二维码：</label>
+                        <div class="col-sm-9 col-xs-12">
+                            <input class="form-control" type="text" name="pphone" required="required" id="name" placeholder="" value="http://wh.whui360.com/uploads/a/admin/5/7/f/7/thumb_5554aee223ee5.jpg" />
+                            <span class="help-block" id=""></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 col-xs-3 control-label"><font color="red"></font>机器人名称：</label>
+                        <div class="col-sm-9 col-xs-12">
+                            <input class="form-control" type="text" name="pphone" required="required" id="name" placeholder="" value="小薇" />
+                            <span class="help-block" id=""></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 col-xs-3 control-label"><font color="red"></font>手机号:</label>
+                        <div class="col-sm-9 col-xs-12">
+                            <input class="form-control" type="text" name="pphone" required="required" id="name" placeholder="" value="{$arr.phone}" />
+                            <span class="help-block" id=""></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 col-xs-3 control-label"><font color="red"></font>key：</label>
+                        <div class="col-sm-9 col-xs-12">
+                            <input class="form-control" type="text" name="pphone" required="required" id="name" placeholder="" value="333c73420b178e32a945caec4ebfca07" />
+                            <span class="help-block" id=""></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 col-xs-3 control-label"><font color="red"></font>应用ID：</label>
+                        <div class="col-sm-9 col-xs-12">
+                            <input class="form-control" type="text" name="pphone" required="required" id="name" placeholder="" value="wxe4360a4467673c7c" />
+                            <span class="help-block" id=""></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 col-xs-3 control-label"><font color="red"></font>应用密钥：</label>
+                        <div class="col-sm-9 col-xs-12">
+                            <input class="form-control" type="text" name="pphone" required="required" id="name" placeholder="" value="e806b93a3ddde4f47d9a7efc07ce703c" />
+                            <span class="help-block" id=""></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 col-xs-3 control-label"><font color="red"></font>顶级域名：</label>
+                        <div class="col-sm-9 col-xs-12">
+                            <input class="form-control" type="text" name="pphone" required="required" id="name" placeholder="" value="whui360.com" />
+                            <span class="help-block" id=""></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 col-xs-3 control-label"><font color="red"></font>注册后级别：</label>
+                        <div class="col-sm-9 col-xs-12">
+                            <select name="reg_groupid">
+                                    <option value="1" selected>试用版</option><option value="2" >基础版</option><option value="3" >专业版</option><option value="4" >高级版</option><option value="5" >行业版</option>      </select>
+                            <span class="help-block" id=""></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 col-xs-3 control-label"><font color="red"></font>注册后使用天数：</label>
+                        <div class="col-sm-9 col-xs-12">
+                            <input class="form-control" type="text" name="pphone" required="required" id="name" placeholder="" value="7" />
+                            <span class="help-block" id=""></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 col-xs-3 control-label"><font color="red"></font>网站备案：</label>
+                        <div class="col-sm-9 col-xs-12">
+                            <input class="form-control" type="text" name="pphone" required="required" id="name" placeholder="" value="京ICP备05026690号" />
+                            <span class="help-block" id=""></span>
+                        </div>
+                    </div>
+                <div class="form-group">
+                        <label class="col-sm-2 col-xs-3 control-label"><font color="red"></font>站长QQ：：</label>
+                        <div class="col-sm-9 col-xs-12">
+                            <input class="form-control" type="text" name="pphone" required="required" id="name" placeholder="" value="180256122" />
+                            <span class="help-block" id=""></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 col-xs-3 control-label"><font color="red"></font>站长手机：</label>
+                        <div class="col-sm-9 col-xs-12">
+                            <input class="form-control" type="text" name="pphone" required="required" id="name" placeholder="" value="010-51298869" />
+                            <span class="help-block" id=""></span>
+                        </div>
+                    </div>
+                  <div class="form-group">
+                        <label class="col-sm-2 col-xs-3 control-label"><font color="red"></font>地图选择：</label>
+                        <div class="col-sm-9 col-xs-12">
+                           <input type="radio" name="baidu_map" value="1"  /> 百度地图
+                            <input type="radio" name="baidu_map" value="0" checked /> 高德地图
+                            <span style="color:red;">建议使用高德地图</span>
+                        </div>
+                    </div>
+                <div class="form-group">
+                        <label class="col-sm-2 col-xs-3 control-label"><font color="red"></font>百度地图API：</label>
+                        <div class="col-sm-9 col-xs-12">
+                            <input class="form-control" type="text" name="pphone" required="required" id="name" placeholder="" value="7" />
+                            <span class="help-block" id=""></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 col-xs-3 control-label"><font color="red"></font>站长Email：</label>
+                        <div class="col-sm-9 col-xs-12">
+                            <input class="form-control" type="text" name="pphone" required="required" id="name" placeholder="" value="csy518@whui360.com" />
+                            <span class="help-block" id=""></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 col-xs-3 control-label"><font color="red"></font>网站关键词：</label>
+                        <div class="col-sm-9 col-xs-12">
+                            <input class="form-control" type="text" name="pphone" required="required" id="name" placeholder="" value="" />
+                            <span class="help-block" id=""></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 col-xs-3 control-label"><font color="red"></font>网站描述：</label>
+                        <div class="col-sm-9 col-xs-12">
+                            <input class="form-control" type="text" name="pphone" required="required" id="name" placeholder="" value="微汇是全球最大微信公众服务平台" />
+                            <span class="help-block" id=""></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 col-xs-3 control-label"><font color="red"></font>统计代码：</label>
+                        <div class="col-sm-9 col-xs-12">
+                            <input class="form-control" type="text" name="pphone" required="required" id="name" placeholder="" value="北京泰和志新科技发展有限公司" />
+                            <span class="help-block" id=""></span>
+                        </div>
+                    </div>
+                
+                <div class="form-group" style="text-align: center">
+                    <input type="submit" value="确认" class="btn btn-primary" style="display: inline-block" />
+                    <input type="reset" value="重置" class="btn btn-primary" style="display: inline-block" />
+                </div>
+        </div>
+</block>
+<script>
+var table_name = new Array();
+var table_count = 0;
+$(function(){
+	$("input[name='secret']").blur(function(){
+		var appid = $("input[name='appid']").val();
+		var secret = $("input[name='secret']").val();
+		if(appid != '' || secret != ''){
+			$.ajax({
+				type:"POST",
+				url:"/index.php?g=System&m=Site&a=appajax",
+				dataType:"json",
+				data:{
+					appid:appid,
+					appsecret:secret
+				},
+				success:function(data){
+					if(data.error == 1){
+						alert('您填的appid和appsecret并不是认证后的服务号！');
+						$("input[name='appid']").val('');
+						$("input[name='secret']").val('');
+					}else if(data.error == 2){
+						alert('您填的appid和appsecret不正确！');
+						$("input[name='appid']").val('');
+						$("input[name='secret']").val('');
+					}
+				}
+			});
+		}
+	});
+	$("form").submit(function () {
+		var appid = $("input[name='appid']").val();
+		var secret = $("input[name='secret']").val();
+		if(appid == '' && secret == ''){
+			return true;
+		}else if(appid == '' || secret == ''){
+			alert('您填的appid和appsecret不正确！');
+			$("input[name='appid']").val('');
+			$("input[name='secret']").val('');
+			return false;
+		}
+	});
+	
+	$('.fancybox').fancybox({
+		helpers:{
+			overlay:{
+				closeClick:false
+			}
+		}
+	});
+	
+	$.ajax({
+		type:"POST",
+		url:"/index.php?g=System&m=Site&a=mysqlajax",
+		dataType:"json",
+		data:{
+			type:'table_name'
+		},
+		success:function(data){
+			table_name = data.table_name;
+			table_count = data.table_count;
+			$("#youhuasql").click(function(){
+				$("#info").html('');
+				$('.fancybox-close').hide();
+				var j = 0;
+				for(i=0;i<table_count;i++){
+					$.ajax({
+						type:"POST",
+						url:"/index.php?g=System&m=Site&a=mysqlajax",
+						dataType:"json",
+						data:{
+							type:'youhuasql',
+							table_name:table_name[i]
+						},
+						success:function(data){
+							$('.fancybox-close').hide();
+							j++;
+							if(j == table_count){
+								$('.fancybox-close').show();
+								$("#info").prepend("<span class='h1'>优化完成</span><br>"+(j)+".优化表名:"+data.Table+"...优化结果:"+data.Msg_text+"...<br>");
+							}else{
+								$('.fancybox-close').hide();
+								$("#info").prepend((j)+".优化表名:"+data.Table+"...优化结果:"+data.Msg_text+"...<br>");
+							}
+						}
+					});
+				}
+			});
+			$("#xiufusql").click(function(){
+				$("#info").html('');
+				$('.fancybox-close').hide();
+				var j = 0;
+				for(i=0;i<table_count;i++){
+					$.ajax({
+						type:"POST",
+						url:"/index.php?g=System&m=Site&a=mysqlajax",
+						dataType:"json",
+						data:{
+							type:'xiufusql',
+							table_name:table_name[i]
+						},
+						success:function(data){
+							$('.fancybox-close').hide();
+							j++;
+							if(j == table_count){
+								$('.fancybox-close').show();
+								$("#info").prepend("<span class='h1'>修复完成</span><br>"+(j)+".修复表名:"+data.Table+"...修复结果:"+data.Msg_text+"...<br>");
+							}else{
+								$('.fancybox-close').hide();
+								$("#info").prepend((j)+".修复表名:"+data.Table+"...修复结果:"+data.Msg_text+"...<br>");
+							}
+						}
+					});
+				}
+			});
+		}
+	});
+});
+function randomString(length) {
+	var chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz'.split('');
+	    
+	if (! length) {
+		length = Math.floor(Math.random() * chars.length);
+	}	    
+	var str = '';
+	for (var i = 0; i < length; i++) {
+		str += chars[Math.floor(Math.random() * chars.length)];
+	}
+	$('.encryption .key').html(str);
+	$('.encryption-edit input').val(str);
+}
+</script>

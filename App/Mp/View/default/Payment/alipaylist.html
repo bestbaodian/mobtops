@@ -1,0 +1,117 @@
+<extend name="./App/Common/View/default/Base/common.html" />
+<block name="main_content">
+    <include file="./App/Common/View/default/Public/crumb.html" />
+    <div class="mod">
+        <div class="mod-head">
+            <h3>
+                <ul class="nav nav-tabs">
+                    <li class="">
+                        <a href="{:U('Payment/alipaylist')}">支付宝信息展示</a>
+                    </li>
+                    <li class="">
+                        <a href="{:U('Payment/alipay')}">支付宝配置</a>
+                    </li>
+                    <li class="">
+                        <a href="{:U('Game/Index/zhifubao')}">支付宝信息调用</a>
+                    </li>
+                </ul>
+            </h3>
+        </div>
+        <div class="tab-content mod-content">
+            <div class="table-responsive">
+                <div id="showdiv">
+                <div id="msg">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                                <th style="width:5%;">选中</th>
+                                <th style="width:5%;">序号</th>
+                                <th style="width:24%;">日期</th>
+                                <th style="width:24%;">合作者身份ID</th>
+                                <th style="width:22%;"><span>收款支付宝账号</span></th>
+                                <th style="width:2%;">安全检验码</th> 
+                                <th style="width:0%;">操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <volist name="data" key="k" id="vo">
+                                <tr>
+                                    <td style="width:5%;"><input type="checkbox" name="id" class="checks" value="{$vo.id}"></td>
+                                    <td style="width:5%;">{$k}</td>
+                                    <td style="width:24%;">{$vo['time']|date="Y年m月d日",###}</td>
+                                    <td class="pic-td" style="width:24%; position:relative;">
+                                        {$vo['partner']}
+                                    </td>
+                                    <td style="width:22%;"><span id="{$vo['id']}">{$vo['seller_email']}</span></td>  
+                                    <td style="width:2%;">{$vo['key']}</span></td>
+                                   <td style="width:0%;">
+                                        <a href="{:U('Payment/alipayedit',array('id'=>$vo['id']))}"><img src=" http://www.mobtop.com.cn/edit.gif" width="12" height="12px"></a>&nbsp;&nbsp;&nbsp;<a href="#" onclick="del({$vo['id']})"><img src="http://www.mobtop.com.cn/del.gif" width="15" height="15px"></a>
+                                    </td>  
+                                </tr>
+                            </volist>
+                    </tbody>
+                </table>
+                </div>
+                </div></form>
+            </div>
+        </div>
+    </div>
+    <div class="popup-img" style="position: fixed;top: 0;left: 0;bottom: 0;right: 0; display: none;background: rgba(51, 51, 51,0.8);z-index: 9999;">
+        <img src="" alt="" style="position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);"/>
+    </div>
+</block>
+<block name="script">
+    <script type="text/javascript">
+        function del(obj) {
+            var postUrl = "{:U('Payment/alipaydel')}";
+                if (confirm('你确定要删除吗？')) {
+                    $.post(postUrl, {"id":obj}, function (data) {
+                        console.log(data);
+                        if (data == 1) {
+                             alert('删除成功!');
+                             window.location.reload();
+                        } else {
+                            bootAlert(data.info);
+                        }
+                    });
+                }
+            }
+        var tableFristText = $('.table-title-text');
+        tableFristText.each(function(i,elem){
+            var sl = "...";
+            var html = "";
+            if($(elem).html().length >4){
+                html = $(elem).html().slice(0,4) + sl;
+            }else {
+                html = $(elem).html();
+            }
+            $(elem).html(html);
+        });
+        $(".check-all").on('ifChecked', function (e)
+        {
+            // bootAlert(1);
+            e.preventDefault();
+
+            $('.table').find(".icheckbox_square-blue").iCheck('check');
+        });
+
+        $(".check-all").on('ifUnchecked', function (e)
+        {
+            // bootAlert(0);
+            e.preventDefault();
+
+            $('.table').find(".icheckbox_square-blue").iCheck('uncheck');
+
+        });
+        //点击图片显示大图
+        $('.table').on('click','.small',function(){
+            var src = $(this).attr('src');
+            $('.popup-img').show();
+            $('.popup-img').find('img').attr('src',src);
+        });
+        $('.popup-img').on('click',function(){
+            $(this).hide();
+            $(this).find('img').attr('src','');
+        })
+    </script>
+</block>

@@ -1,0 +1,91 @@
+
+
+
+.fl{
+    float:left;
+}
+.fr{
+    float:right;
+}
+.header-bar {
+    background: #0084ff;
+    width: 100%;
+    /*height: 2.225rem;*/
+    line-height: 2.225rem;
+}
+.header-bar a {
+    width: 10%;
+    color: #fff;
+}
+.header-bar a .iconfont {
+    font-size: 0.9rem;
+}
+.header-bar a.fr .iconfont {
+    font-size: 1.5rem;
+}
+.header-bar p {
+    width: 76%;
+    color: #fff;
+    font-size: 0.9rem;
+    text-align: center;
+}
+.cont{
+    padding:0.2rem 0.5rem 0;
+}
+.tit{
+    font-size:0.56rem;
+    line-height:1.6rem;
+    border-bottom:1px solid #ececec;
+}
+
+.shop-pic{
+    padding:0.5rem 0;
+    border-bottom:1px solid #ececec;
+}
+.shop-pic img{
+    width:3rem;
+    height:2.24rem;
+    margin-right:0.52rem;
+    display:inline-block;
+}
+.shop-info{
+    width:73%;
+}
+.shop-name{
+    width:100%;
+    font-size:0.6rem;
+    display:block;
+    white-space:nowrap; 
+    overflow:hidden; 
+    text-overflow:ellipsis;
+}
+.shop-price{
+    color:#e13953;
+    font-size:0.52rem;
+    margin-top:0.6rem;
+}
+.rmb{
+    color:#e13953;
+    font-size:0.6rem;
+}
+.des{
+    width:90%;
+    font-size:0.56rem;
+    padding:0.4rem 5%;
+    margin-top:0.4rem;
+    border:1px solid #ccc;
+}
+.sub{
+    left:0;
+    bottom:0;
+    color:#fff;
+    width:100%;
+    height:1.8rem;
+    position:fixed;
+    font-size:0.6rem;
+    background:#e13953;
+}
+.zx-cont li{
+    font-size:0.56rem;
+    padding:0.4rem 0;
+}

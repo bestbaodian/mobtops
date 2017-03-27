@@ -1,0 +1,53 @@
+<extend name="./App/Common/View/default/Base/common.html" />
+<block name="main_content">
+<include file="./App/Common/View/default/Public/crumb.html" />
+<div class="mod">
+    <div class="mod-head">
+            <h3>
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="{:U('Admin/Branch/lists')}">部门管理</a>
+                    </li>
+                    <!-- <li class="">
+                        <a href="#">抽奖商品</a>
+                    </li> -->
+                </ul>
+            </h3>
+        </div>
+    <div class="tab-content mod-content">
+        <if condition="$tip">
+            <div class="alert alert-info tip" role="alert">{$tip}</div>
+        </if>
+                 <form method="post" action="{:U('Admin/Branch/edit_pro')}" class="form-horizontal" role="form">
+                    <div class="form-group" style="margin-left:-57px;">
+                        <label class="col-sm-2 col-xs-3 control-label">序号:</label>
+                        <div class="col-sm-9 col-xs-12">
+                            <input class="form-control" type="text" name="" placeholder="" value="{$order}" disabled/>
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-left:-57px;">
+                        <label class="col-sm-2 col-xs-3 control-label">部门名称:</label>
+                        <div class="col-sm-9 col-xs-12">
+                            <input class="form-control" type="text" name="branch_name" id="name" placeholder="" value="{$branch_name}" />
+                            <span class="help-block" id="sname"></span>
+                        </div>
+                    </div>   
+                    <div class="form-group" style="margin-left:-57px;">
+                        <label class="col-sm-2 col-xs-3 control-label">备注:</label>
+                        <div class="col-sm-9 col-xs-12">
+                            <input class="form-control" type="text" name="content" placeholder="" value="{$content}"  />
+                            <span class="help-block"></span>
+                            <input type="hidden" name="id" value="{$id}">
+                        </div>
+                    </div>
+                     <div class="form-group" style="text-align: center">
+                         <input type="submit" value="修改" class="btn btn-primary center-block ajax-post" style="display: inline-block"/>
+                         <input type="reset" value="恢复" class="btn btn-primary" style="display: inline-block"/>
+                     </div>
+s
+            </div>
+        <input type="hidden" name="__hash__" value="9554d1d1b2b1aba94084ad271ac05e6a_2a17f68789adcdaeeea1fb25dfafcb19" /></form>
+    </div>
+</div>
+</block>

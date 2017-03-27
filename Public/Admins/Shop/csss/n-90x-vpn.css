@@ -1,0 +1,211 @@
+@charset "UTF-8";
+/*$*/
+/*主色调*/
+/*次级色调*/
+/*点选颜色*/
+/*黑色*/
+/*底部1px横线*/
+/*底部10px*/
+/*rem计算*/
+/*mixin*/
+/*padding*/
+/*n行文字溢出隐藏*/
+/*单行文字垂直居中*/
+/*清除表单默认样式*/
+/*一行flex*/
+/*列表flex*/
+body {
+  background: #fff;
+}
+
+.sm-ui-warp {
+  width: 100%;
+  height: 56%;
+  position: relative;
+}
+.sm-ui-warp .page-group, .sm-ui-warp .content {
+  background: #fff;
+}
+
+.sm-ui-grad {
+  height: 71%;
+}
+
+.selector-warp {
+  padding: 0.8rem 1rem;
+  border-bottom: 0.2rem solid #f5f5f5;
+}
+.selector-warp .four-link-selector {
+  width: 100%;
+  height: 1.44rem;
+  border: 1px solid #d5d5d5;
+  font-size: 0.56rem;
+  text-indent: 1em;
+}
+.selector-warp .go-selector-link {
+  text-align: center;
+  display: block;
+  width: 100%;
+  height: 1.56rem;
+  line-height: 1.56rem;
+  background: #e13953;
+  color: #fff;
+  font-size: 0.64rem;
+  margin-top: 0.8rem;
+}
+.selector-warp .go-selector-link:active {
+  background: #ba2c42;
+}
+
+.select-over-header {
+  padding: 1rem 0 0 0;
+}
+.select-over-header .get-count {
+  width: 100%;
+  border-left: 0.12rem solid #e13953;
+  font-size: 0.6rem;
+  padding: 0 1rem;
+  font-weight: normal;
+  margin-bottom: 0.6rem;
+  height: 0.88rem;
+  line-height: 0.88rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+.select-over-header .get-count .red-blod {
+  color: #e13953;
+}
+
+.randar-table-warp .table-header {
+  width: 100%;
+  height: 1.48rem;
+  line-height: 1.48rem;
+  padding: 0 1rem;
+  background: #f2f2f2;
+  font-size: 0.48rem;
+}
+.randar-table-warp .table-header div.fl {
+  height: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.select-over-body {
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+.select-over-body .select-over-body-item {
+  width: 100%;
+  height: 2.12rem;
+  line-height: 2.12rem;
+  border-bottom: 1px solid #e7e7e7;
+  font-size: 0.54rem;
+  color: #999999;
+}
+.select-over-body .select-over-body-item .name-s .user-img {
+  width: 1.2rem;
+  height: 2.12rem;
+  line-height: 2.12rem;
+  margin-right: 0.2rem;
+  position: relative;
+}
+.select-over-body .select-over-body-item .name-s .user-img img {
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 20rem;
+  position: absolute;
+  top: 50%;
+  margin-top: -0.6rem;
+}
+.select-over-body .select-over-body-item .name-s .user-text {
+  width: 62%;
+  height: 2.12rem;
+  line-height: 2.12rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.id-s {
+  width: 30%;
+  margin-right: 2%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  text-align: left;
+}
+
+.name-s {
+  width: 30%;
+  margin-right: 2%;
+  text-align: left;
+}
+
+.type-s {
+  width: 20%;
+  margin-right: 2%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  text-align: left;
+}
+
+.address-s {
+  width: 13%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  text-align: left;
+}
+
+.recruit-show-warp {
+  width: 100%;
+  padding: 0 1rem;
+  box-sizing: border-box;
+  margin-top: 0.4rem;
+}
+.recruit-show-warp li {
+  padding: 0.4rem 0;
+  border-bottom: 1px solid #e7e7e7;
+}
+.recruit-show-warp li:last-of-type {
+  border-bottom: 1px solid transparent;
+}
+.recruit-show-warp .img-warp {
+  width: 26%;
+  padding-top: 0.16rem;
+}
+.recruit-show-warp .img-warp img {
+  width: 3rem;
+  height: 3rem;
+}
+.recruit-show-warp .message-warp {
+  width: 74%;
+}
+.recruit-show-warp .message-header {
+  font-size: 0.48rem;
+  color: #8c8c8c;
+}
+.recruit-show-warp .message-header .message-user {
+  font-size: 0.68rem;
+  color: #333333;
+}
+.recruit-show-warp .message-con {
+  font-size: 0.48rem;
+}
+
+/*# sourceMappingURL=n-90x-vpn.css.map */

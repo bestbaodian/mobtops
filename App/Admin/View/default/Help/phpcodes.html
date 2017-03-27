@@ -1,0 +1,99 @@
+<style>
+        input[placeholder], [placeholder], *[placeholder] {
+            color: #778899 !important;
+        }
+        form {
+            margin: 0px;
+            display: inline;
+        }
+        .search {
+            width: 200px;
+            height: 25px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            padding-left: 10px;
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+        }
+        
+        #select {
+            padding:;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+        }
+        .set-mask {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 700px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        .search-items{
+            height:50px;
+        }
+        .search-items td{
+            /*line-height:50px!important;*/
+            vertical-align: middle!important;
+        }
+        .search-items td img{
+            vertical-align: middle!important;
+        }
+        #shop-list-mask .mask-warp{
+            overflow: hidden;
+            width: 780px;
+            height: 515px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+
+            margin-top: -260px;
+            margin-left: -310px;
+            background: #fff; 
+            border-radius: 10px;
+        }
+    </style>
+<div class="shop-list-warp-body">
+	<table class="table table-container table-condensed">
+		<thead>
+		<tr class="" >
+			<td width="8%">序号</td>
+			<td width="5%">图片</td>
+			<td width="47%">商品</td>
+			<td width="10%">价格</td>
+			<td width="10%">库存</td>
+			<td width="10%">销量</td>
+			<td width="10%">操作</td>
+		</tr>
+		</thead>
+		<tbody>
+		<foreach name="data.lists" item="val">
+			<tr class="search-items">
+				<td>{$key+1}</td>
+				<td><img src="{$val['sg_img_url']}" width="30px" height="30px" alt="" data-id="{$val['sg_id']}"></td>
+				<td class="name">{$val['sg_name']}</td>
+				<td>{$val['sg_price']}</td>
+				<td>{$val['sgs_total_stock']}</td>
+				<td>{$val['sg_sales']}</td>
+				<td>
+					<a href="#" class="goods-choose btn btn-primary" onclick="xuan({$val.sg_id})">选取</a>
+				</td>
+			</tr> 
+		</foreach>
+        </tbody>
+	</table>
+</div>
+<div class="shop-list-warp-footer" style="padding:0!important;height:36px!important;line-height:
+                36px!important;">
+	<div class="float-l" style="text-align:center;width:100%;">
+		<span class="first-page" onclick="page(1)">首页</span>
+		<span class="prev-page" onclick="page({$data.pre})">上一页</span>
+		<span class="next-page" onclick="page({$data.next})">下一页</span>
+		<span class="last-page" onclick="page({$data.pagesum})">尾页</span>
+		<span>页数：<em class="red">{$data.page}</em>/{$data.pagesum}</span>
+		<span>共有<em class="red">{$data.counts}</em>条记录</span>
+	</div>
+	<div class="float-l"></div>
+</div>

@@ -1,0 +1,177 @@
+<extend name="./App/Common/View/default/Base/common.html" />
+<block name="main_content">
+    <include file="./App/Common/View/default/Public/crumb.html" />
+    <div class="mod">
+        <div class="mod-head">
+            <h3>
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="{:U('Admin/Route/lists')}">路由管理</a>
+                    </li>
+                </ul>
+            </h3>
+        </div>
+        <div class="tab-content mod-content">
+            <div class="table-responsive">
+                <div>
+                    <a style="padding:2px 10px; font-size:96%; color:#fff; background:#337ab7; border-radius: 5px; border: none;display:inline-block; text-align:center;" href="{:U('Admin/Route/add')}">新增记录</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<font color="red"></font>
+                </div>               <!--公众号搜索功能-->
+                <style>
+                   /* #jilu{
+                        font-size: 13px;
+                        line-height: 15px;
+                    }*/
+                    input[placeholder], [placeholder], *[placeholder] {
+                        color:#778899 !important;
+                    }
+                    form{margin:0px;display: inline}
+                    .search{
+                            width:200px;
+                            height: 25px;
+                            border-radius: 5px;
+                            border: 1px solid #ccc;
+                            padding-left: 10px;
+                            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+                        }
+                    #select{
+                            border-radius: 5px;
+                            border: 1px solid red;
+                        }
+                </style>
+                <div id="showdiv">
+                <div id="msg">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th style="width:5%">选中</th>
+                        <th style="padding-left:20px;">序号</th>
+                        <th>标题</th>
+                        <th>控制器</th>
+                        <th>方法</th>
+                        <th style="text-align:center;">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <volist name="navs" key="k" id="vo">
+                        <tr>
+                            <td style="width:5%"><input type="checkbox" name="id" class="checks" value="{$vo.nid}"></td>
+                            <td style="padding-left:20px;">{$k}</td>
+			         		<td>{$vo.title}</td>
+                            <td>{$vo.pcontroller}</td>
+                            <td>{$vo.paction}</td>
+                            <td style="text-align:center;">
+                               <a href="{:U('Admin/Navigation/edit',array('id'=>$vo['nid']))}"><img src="__ROOT__/edit.gif" alt="" width='12px' height='12px'></a>  &nbsp;&nbsp; <a href="javascript:void(0);" onclick="del({$vo.nid})"><img src="__ROOT__/del.gif" alt="" width='15px' height='15px'></a>
+                            </td>
+                        </tr>
+                    </volist>
+                    </tbody>
+                </table>
+                </div>
+                </div>
+            <div class="mod-table-foot">
+                <span style="margin-left:8px;"><input type="checkbox" class="check-all"><div class="quanxuan" style="margin-left:2%; display:inline-block;">全选</div><a href="javascript:void(0);" onclick="delall()" style="vertical-align: middle; display:inline-block;"><img src="__ROOT__/del.gif" alt=""  style="width:15px; height:20px; display:inline-block; margin:0 0 0 10px;"></a></span>
+                <span class="pull-left">                <div class="page-control"><ul class="pagination pull-right">    </ul></div>            </div>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="script">
+    <script type="text/javascript">
+        function delall(){
+            if(confirm('你确定要删除多项吗？')){
+                var id = document.getElementsByName("id");
+                // bootAlert(own_id.length);
+                var str = '';
+                var lengths = id.length;
+                for(var i=0;i<lengths;i++){  
+                    if(id[i].checked)  
+                    str+=id[i].value+',';   
+                }
+                // bootAlert(str);
+                var postUrl = "{:U('Admin/Navigation/dele_all')}";
+                $.post(postUrl,{'id':str},function(data){
+                    if (data.status == 1) {
+                        bootAlert(data.info);
+                        setTimeout(function () {
+                            location.reload();
+                        }, 100);
+                    } else {
+                        bootAlert(data.info);
+                    }
+                });
+            }
+        }
+        function del(obj) {
+            // bootAlert(pid);
+            var postUrl = "{:U('Admin/Navigation/delete')}";
+            if (confirm('你确定要该子菜单删除吗？')) {
+                $.post(postUrl, {"id":obj}, function (data) {
+                    if (data.status == 1) {
+                        bootAlert(data.info);
+                        setTimeout(function () {
+                            location.reload();
+                        }, 100);
+                    } else {
+                        bootAlert(data.info);
+                    }
+                });
+            }
+
+        }
+        $(".check-all").on('ifChecked', function (e)
+        {
+            // bootAlert(1);
+            e.preventDefault();
+
+            $(".icheckbox_square-blue").iCheck('check');
+        });
+
+        $(".check-all").on('ifUnchecked', function (e)
+        {
+            // bootAlert(0);
+            e.preventDefault();
+
+            $(".icheckbox_square-blue").iCheck('uncheck');
+
+        });
+        var tableFristText = $('.table-title-text');
+        tableFristText.each(function(i,elem){
+            var sl = "...";
+            var html = "";
+            if($(elem).html().length >4){
+                html = $(elem).html().slice(0,4) + sl;
+            }else {
+                html = $(elem).html();
+            }
+            $(elem).html(html);
+        });
+        $(".show").click(function(){  
+            old_val=$(this).html();
+            var id = $(this).attr('ids');
+            if(old_val == '<font color="green">显示</font>'){
+                $(this).html('<font color="red">不显示</font>');
+                var getUrl = "{:U('Admin/Navigation/check_status')}";
+                $.get(getUrl,{'nav_status':0,'id':id},function(e){
+                    if(e == 1){
+                        bootAlert('操作成功');
+                        location.reload();
+                    }else{
+                        bootAlert('操作失败');
+                    }
+                });
+            }else{
+                $(this).html('<font color="green">显示</font>');
+                var getUrl = "{:U('Admin/Navigation/check_status')}";
+                $.get(getUrl,{'nav_status':1,'id':id},function(e){
+                    if(e == 1){
+                        bootAlert('操作成功');
+                        location.reload();
+                    }else{
+                        bootAlert('操作失败');
+                    }
+                });
+            } 
+        });  
+    </script>
+</block>
